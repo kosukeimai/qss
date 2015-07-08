@@ -1,0 +1,138 @@
+- Class: meta
+  Course: INTRO
+  Lesson: INTRO1
+  Author: Elisha Cohen
+  Type: Standard
+  Organization: Princeton University
+  Version: 2.3.0
+  
+- Class: text
+  Output: 'These exercises are a companion to Chapter 1 of ''A First Course in Quantitative Social Science''. When you see ..., press Enter.'
+  
+- Class: text
+  Output: 'If at any time you need help with R, you can type help.start() at the prompt which will open an index of R materials. Many R resources are also available on the web and are easily found through a web search.'
+
+- Class: text
+  Output: 'We will denote R objects by using double quotes around them.'
+
+- Class: text
+  Output: 'Let''s start by practicing arithmetic operations by using R as a basic calculator.'
+
+# Question 1
+- Class: cmd_question
+  Output: 'How would you type 8 minus 2?'
+  CorrectAnswer: 8 - 2
+  AnswerTests: omnitest(correctExpr= '8 - 2')
+  Hint: See 'arithmetic operations'
+
+# Question 2
+- Class: cmd_question
+  Output: 'How would you square 10?'
+  CorrectAnswer: 10 ^ 2
+  AnswerTests: omnitest(correctExpr='10 ^ 2')
+  Hint: See 'arithmetic operations'
+
+# Question 3
+- Class: cmd_question
+  Output: 'How would you take the square root of 9?'
+  CorrectAnswer: sqrt(9)
+  AnswerTests: omnitest(correctExpr='sqrt(9)')
+  Hint: See 'arithmetic operations'
+  
+- Class: text
+  Output: 'Next, we will practice creating objects and assigning values to them.'
+
+# Question 4
+- Class: cmd_question
+  Output: 'Try assigning the value ''8 - 2'' to the object "result".'
+  CorrectAnswer: result <- 8 - 2
+  AnswerTests: omnitest(correctExpr='result <- 8 - 2')
+  Hint: See 'objects'
+
+# Question 5
+- Class: cmd_question
+  Output: 'Call the object "result" that we created above.'
+  CorrectAnswer: result
+  AnswerTests: omnitest(correctExpr='result')
+  Hint: See 'objects'
+  
+- Class: text
+  Output: 'We can also assign a string of characters to an object.'
+
+# Question 6
+- Class: cmd_question
+  Output: 'Assign the phrase ''social science'' to the object "course".'
+  CorrectAnswer: course <- 'social science'
+  AnswerTests: omnitest(correctExpr='course <- \'social science\'')
+  Hint: See 'objects'
+  
+- Class: text
+  Output: 'Spaces are allowed in character strings.'
+  
+- Class: text
+  Output: 'We can also replace objects with new values.'
+
+# Question 7
+- Class: cmd_question
+  Output: 'Replace the object "course", which we defined above, with the phrase ''learning R''.'
+  CorrectAnswer: course <- 'learning R'
+  AnswerTests: omnitest(correctExpr='course <- \'learning R\'')
+  Hint: See 'objects'
+
+- Class: text
+  Output: 'Next, we are going to start working with real data estimates of world population (in thousands). A vector of data called "world.pop" has been loaded with this lesson. The first element is for 1950 up to the last element for 2010.'
+
+# Question 8
+- Class: cmd_question
+  Output: 'Call the object "world.pop" to see what it looks like.'
+  CorrectAnswer: world.pop
+  AnswerTests: any_of_exprs('world.pop', 'print(world.pop)')
+  Hint: See 'vectors'
+
+# Question 9
+- Class: cmd_question
+  Output: 'Let''s use indexing to look at the 4th element of the vector.'
+  CorrectAnswer: world.pop[4]
+  AnswerTests: omnitest(correctExpr='world.pop[4]')
+  Hint: See 'vectors'
+
+# Question 10  
+- Class: cmd_question
+  Output: 'Use indexing and the concatenate function to call just the 1st and 4th elements of "world.pop".'
+  CorrectAnswer: world.pop[c(1,4)]
+  AnswerTests: any_of_exprs('world.pop[c(1,4)]', 'c(world.pop[1], world.pop[4])')
+  Hint: See 'vectors'
+  
+- Class: text
+  Output: 'Next we are going to practice using functions.'
+
+# Question 11
+- Class: cmd_question
+  Output: 'What is the length (the number of elements) of the "world.pop" vector?'
+  CorrectAnswer: length(world.pop)
+  AnswerTests: omnitest(correctExpr='length(world.pop)')
+  Hint: See 'functions'
+
+# Question 12
+- Class: cmd_question
+  Output: 'Create a vector using the sequence function that goes from 1950 to 2010 by increments of 10. Assign this vector to an object called "year".'
+  CorrectAnswer: year <- seq(from = 1950, to = 2010, by = 10)
+  AnswerTests: any_of_exprs('year <- seq(from = 1950, to = 2010, by = 10)', 'year <- seq(1950, 2010, 10)')
+  Hint: See 'functions'
+
+# Question 13
+- Class: cmd_question
+  Output: 'Use the year vector just created to assign names to the "world.pop" vector.'
+  CorrectAnswer: names(world.pop) <- year
+  AnswerTests: omnitest(correctExpr='names(world.pop) <- year')
+  Hint: See 'functions'
+ 
+# Question 14 
+- Class: mult_question
+  Output: 'How are missing values labeled in R?'
+  AnswerChoices: 'empty; NA; missing'
+  CorrectAnswer: NA
+  AnswerTests: omnitest(correctVal = 'NA')
+  Hint: see 'data files'
+  
+  

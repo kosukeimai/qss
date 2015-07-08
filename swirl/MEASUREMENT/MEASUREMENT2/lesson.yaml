@@ -1,0 +1,88 @@
+- Class: meta
+  Course: MEASUREMENT
+  Lesson: MEASUREMENT2
+  Author: Elisha Cohen
+  Type: Standard
+  Organization: Princeton University
+  Version: 2.2.21
+
+- Class: text
+  Output: 'The following exercises are a companion to Chapter 3: Measurement.'
+
+- Class: text
+  Output: 'These excercises correspond to sections 3.5 through 3.7.'
+
+# Question 1
+- Class: mult_question
+  Output: 'In section 3.6, what kind of plot are we using to visualize ideological differences between Democrats and Republicans?'
+  AnswerChoices: 'scatterplot; bar plot; histogram'
+  CorrectAnswer: scatterplot
+  AnswerTests: omnitest(correctVal='scatterplot')
+  Hint: See 'Summarizing Bivariate Relationships'
+
+# Question 2
+- Class: mult_question
+  Output: 'True or False: Political polarization describes the phenomenon where the ideological centers of two political parties diverge over time.'
+  AnswerChoices: 'True; False'
+  CorrectAnswer: True
+  AnswerTests: omnitest(correctVal='True')
+  Hint: See 'Summarizing Bivariate Relationships'
+
+# Question 3
+- Class: mult_question
+  Output: 'What angle is the Lorenz curve if everyone earns exactly the same income?'
+  AnswerChoices: '30 degrees; 45 degrees; 90 degrees'
+  CorrectAnswer: 45 degrees
+  AnswerTests: omnitest(correctVal='45 degrees')
+  Hint: See 'Correlation'
+
+# Question 4
+- Class: mult_question
+  Output: 'To estimate the correlation between two variables x and y, we need to know the mean of each as well as the _______________________.'
+  AnswerChoices: 'maximum; standard deviation; length'
+  CorrectAnswer: standard deviation
+  AnswerTests: omnitest(correctVal='standard deviation')
+  Hint: See 'Correlation'
+  
+# Question 5
+- Class: cmd_question
+  Output: 'Use "matrix()" to create a matrix of 2 rows by 5 columns filled by row. Assign this matrix to an object called "x".'
+  CorrectAnswer: x <- matrix(1:10, nrow = 2, ncol = 5, byrow = TRUE)
+  AnswerTests: omnitest(correctExpr='x <- matrix(1:10, nrow = 2, ncol = 5, byrow = TRUE)')
+  Hint: See 'Matrix in R'
+
+# Question 6
+- Class: cmd_question
+  Output: 'Take the row means of this matrix'
+  CorrectAnswer: rowMeans(x)
+  AnswerTests: omnitest(correctExpr='rowMeans(x)')
+  Hint: See 'Matrix in R'
+
+# Question 7
+- Class: cmd_question
+  Output: 'A list, "z", has been included in this lesson. Call the list object to see what it looks like.'
+  CorrectAnswer: z
+  AnswerTests: omnitest(correctExpr='z')
+  Hint: See 'List in R'
+
+# Question 8
+- Class: cmd_question
+  Output: 'Call the first element of the list using brackets and the number 1.'
+  CorrectAnswer: z[[1]]
+  AnswerTests: omnitest(correctExpr='z[[1]]')
+  Hint: See 'List in R'
+  
+# Question 9
+- Class: cmd_question
+  Output: 'Call the third element of the list using brackets and the name of the third element.'
+  CorrectAnswer: z[["z3"]]
+  AnswerTests: omnitest(correctExpr='z[["z3"]]')
+  Hint: See 'List in R'
+  
+# Question 10
+- Class: mult_question
+  Output: 'In the kmeans() function which option is used to define the number of clusters?'
+  AnswerChoices: 'centers; groups; iterations'
+  CorrectAnswer: centers
+  AnswerTests: omnitest(correctVal='centers')
+  Hint: See 'Clustering'

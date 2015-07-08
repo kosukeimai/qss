@@ -1,0 +1,89 @@
+- Class: meta
+  Course: PREDICTION
+  Lesson: PREDICTION2
+  Author: Elisha cohen
+  Type: Standard
+  Organization: Princeton University
+  Version: 2.2.21
+
+- Class: text
+  Output: 'The following exercises are a companion to Chapter 4: Prediction.'
+  
+# Question 1  
+- Class: mult_question
+  Output: 'True or False: A positive correlation means that one variable is more likely to be above its mean when the other variable is also above its mean.'
+  AnswerChoices: 'True; False'
+  CorrectAnswer: True
+  AnswerTests: omnitest(correctVal='True')
+  Hint: See 'Correlationa and Scatterplot'
+  
+# Question 2
+- Class: mult_question
+  Output: 'In the model y = a + bx + e, a is the ____________'
+  AnswerChoices: 'Intercept; slope; error term'
+  CorrectAnswer: Intercept
+  AnswerTests: omnitest(correctVal='Intercept')
+  Hint: See 'Least squares'
+
+# Question 3
+- Class: cmd_question
+  Output: 'The intercept a, in the model y = a + bx + e, represents the average value of y when x is equal to ____________'
+  CorrectAnswer: 0
+  AnswerTests: omnitest(correctExpr='0')
+  Hint: See 'Least squares'
+
+# Question 4
+- Class: mult_question
+  Output: 'We use the regression line to predict the value of the outcome variable y hat, otherwise known as __________'
+  AnswerChoices: 'predicted value; fitted value; both of these'
+  CorrectAnswer: both of these
+  AnswerTests: omnitest(correctVal='both of these')
+  Hint: See 'Least squares'
+
+# Question 5
+- Class: mult_question
+  Output: 'True or False: R squared ranges from 0 to 1.'
+  AnswerChoices: 'True; False'
+  CorrectAnswer: True
+  AnswerTests: omnitest(correctVal='True')
+  Hint: See 'Model Fit'
+  
+# Question 6
+- Class: mult_question
+  Output: 'An R squared close to 1 suggests the model fits ___________'
+  AnswerChoices: 'well; not well'
+  CorrectAnswer: well
+  AnswerTests: omnitest(correctVal='well')
+  Hint: See 'Model Fit'
+
+# Question 7
+- Class: mult_question
+  Output: 'If one of our goals is to apply our model to other data and make predictions we should avoid ________________.'
+  AnswerChoices: 'overfitting; in-sample predictions; outliers'
+  CorrectAnswer: overfitting
+  AnswerTests: omnitest(correctVal='overfitting')
+  Hint: See 'Model Fit'
+  
+# Question 8
+- Class: mult_question
+  Output: 'Association ________________ imply causation.'
+  AnswerChoices: 'will always; will never; does not necessarily'
+  CorrectAnswer: does not necessarily
+  AnswerTests: omnitest(correctVal='does not necessarily')
+  Hint: See 'Regression and Causation'
+
+# Question 9
+- Class: mult_question
+  Output: 'The main reason it is difficult to draw causal inference in observational studies is due to __________.'
+  AnswerChoices: 'confounders; associations; errors'
+  CorrectAnswer: confounders
+  AnswerTests: omnitest(correctVal='confounders')
+  Hint: See 'Randomized Experiments'
+
+# Question 10
+- Class: mult_question
+  Output: 'A regression discontinuity design attempts to make causal inferences by analyzing observations lying __________ a given threshold.'
+  AnswerChoices: 'closely across; far away from'
+  CorrectAnswer: closely across
+  AnswerTests: omnitest(correctVal='closely across')
+  Hint: See 'Regression Discontinuity design'

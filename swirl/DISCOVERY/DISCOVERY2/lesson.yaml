@@ -1,0 +1,107 @@
+############
+# Preamble #
+############
+- Class: meta
+  Course: DISCOVERY
+  Lesson: DISCOVERY2
+  Author: Winston Chou
+  Type: Standard
+  Organization: Princeton University
+  Version: 1.0.0
+
+################
+# Introduction #
+################
+- Class: text
+  Output: 'These exercises are a companion to Chapter 5 of ''A First Course in Quantitative Social Science''. When you see ..., press Enter.'
+
+- Class: text
+  Output: 'Chapter 5 also introduces tools for analyzing network data, which describe the relationships between units.'
+
+- Class: cmd_question
+  Output: 'To complete the exercises, you will need to have the "igraph" package installed on your machine. Use the install.packages() function to make sure that you have "igraph".'
+  CorrectAnswer: install.packages("igraph")
+  AnswerTests: omnitest(correctExpr = "install.packages(\"igraph\")")
+
+- Class: mult_question
+  Output: 'What are some examples of networks?'
+  AnswerChoices: 'marriages between families; international trade flows; friendships on Facebook; all of these'
+  CorrectAnswer: 'all of these'
+  AnswerTests: omnitest(correctVal = "all of these")
+  Hint: See ''Network Data''. 
+
+####################
+# Network Analysis #
+####################
+- Class: text
+  Output: 'Network data often take the form of an adjacency matrix. Adjacency matrices have the same number of rows and columns, and each row (column) corresponds to a unit. Each cell describes the relationship between a pair of units, and each diagonal cell describes the relationship of a unit with itself.' 
+
+- Class: text
+  Output: 'Let''s explore the adjacency matrix "florence" described in Chapter 5. "florence" has already been loaded for you.'
+
+- Class: cmd_question
+  Output: 'Verify that "florence" is a square adjacency matrix using the dim() function.'
+  CorrectAnswer: dim(florence)
+  AnswerTests: omnitest(correctExpr = "dim(florence)")
+
+- Class: cmd_question
+  Output: 'Now, use indexing to have R output the adjacency (sub)matrix for the first 5 families only.'
+  CorrectAnswer: florence[1:5, 1:5]
+  AnswerTests: omnitest(correctExpr = "florence[1:5, 1:5]")
+  Hint: See ''Marriage Network in Renaissance Florence''. 
+
+- Class: mult_question
+  Output: 'Is "florence" an example of directed or undirected network data?'
+  AnswerChoices: '"florence" is undirected; "florence" is directed; we cannot tell yet'
+  CorrectAnswer: "florence" is undirected
+  AnswerTests: omnitest(correctVal = "\"florence\" is undirected")
+  Hint: See ''Marriage Network in Renaissance Florence''. 
+
+- Class: cmd_question
+  Output: 'Let''s try visualizing "florence" using a graph. Call the library() function to load the "igraph" package.'
+  CorrectAnswer: library(igraph)
+  AnswerTests: any_of_exprs("library(igraph)"; "library(\"igraph\")")
+
+- Class: cmd_question 
+  Output: 'There are two steps to plotting the network graph of "florence". First, use graph.adjacency() function to produce an "igraph" object called "florence.graph". Be sure to specify that the adjancency matrix is undirected and that there are no marriages within families.'
+  CorrectAnswer: florence.graph <- graph.adjacency(florence, mode = "undirected", diag = FALSE)
+  AnswerTests: omnitest(correctExpr = "florence.graph <- graph.adjacency(florence, mode = \"undirected\", diag = FALSE)")
+  Hint: See ''Marriage Network in Renaissance Florence''. 
+
+- Class: cmd_question
+  Output: 'Second, call the plot() function with "florence.graph" as its argument to visualize the Florentine marriage network.'
+  CorrectAnswer: plot(florence.graph)
+  AnswerTests: omnitest(correctExpr = "plot(florence.graph)")
+
+- Class: mult_question
+  Output: 'Based on the network graph, which do you think was the most isolated major family in Renaissance Florence?'
+  AnswerChoices: 'Medici; Ridolfi; Bischeri; Strozzi; Pucci'
+  CorrectAnswer: Pucci
+  AnswerTests: omnitest(correctVal = "Pucci")
+  Hint: See ''Marriage Network in Renaissance Florence''. 
+
+- Class: mult_question
+  Output: 'We can quantify each family''s place in the network using a measure of centrality. One common measure of centrality is known as ''betweenness''. Which of these statements best describes betweenness?'
+  AnswerChoices: 'A node''s betweenness is the proportion of shortest paths between two other nodes that contain it; A node''s betweenness is the number of nodes that are immediately connected to it; A node''s betweenness is a measure of how close it is to other nodes; None of these'
+  CorrectAnswer: A node''s betweenness is the proportion of shortest paths between two other nodes that contain it
+  AnswerTests: omnitest(correctVal = "A node''s betweenness is the proportion of shortest paths between two other nodes that contain it")
+  Hint: See ''Undirected Graphs and Centrality Measures''.
+
+- Class: cmd_question
+  Output: 'Compute the betweenness of each node in "florence".'
+  CorrectAnswer: betweenness(florence)
+  AnswerTests: omnitest(correctExpr = "betweenness(florence)")
+  Hint: See ''Undirected Graphs and Centrality Measures''. 
+
+- Class: mult_question
+  Output: 'Based on you find, which of the elite Florentine families was least central in the marriage network?'
+  AnswerChoices: 'Medici; Ridolfi; Bischeri; Strozzi; Pucci'
+  CorrectAnswer: Pucci
+  AnswerTests: omnitest(correctVal = "Pucci")
+  Hint: See ''Undirected Graphs and Centrality Measures''. 
+
+#######
+# End #
+#######
+- Class: text
+  Output: 'You''ve successfully completed part 2 of the Discovery course!'

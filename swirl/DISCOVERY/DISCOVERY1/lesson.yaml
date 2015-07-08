@@ -1,0 +1,89 @@
+############
+# Preamble #
+############
+- Class: meta
+  Course: DISCOVERY
+  Lesson: DISCOVERY1
+  Author: Winston Chou
+  Type: Standard
+  Organization: Princeton University
+  Version: 1.0.0
+
+################
+# Introduction #
+################
+- Class: text
+  Output: 'These exercises are a companion to Chapter 5 of ''A First Course in Quantitative Social Science''. When you see ..., press Enter.'
+
+- Class: text
+  Output: 'Chapter 5 introduces many concepts related to discovery, one of which is ''unsupervised learning''.'
+
+- Class: mult_question
+  Output: 'What is an example of an ''unsupervised learning'' problem?'
+  AnswerChoices: 'Finding topics in a set of newspaper articles; Discovering ideological differences among legislators; Identifying commonly used words in an author''s corpus; All of these'
+  CorrectAnswer: 'All of these'
+  AnswerTests: omnitest(correctVal = "All of these")
+  Hint: See Chapter 5. 
+
+- Class: mult_question
+  Output: 'How did unsupervised learning enable researchers to address the disputed authorship of the Federalist Papers?'
+  AnswerChoices: 'Hamilton and Madison preferred to discuss different topics; Hamilton and Madison favored different words to describe the same thing; Madison left coded messages in his prose; All of these'
+  CorrectAnswer: 'Hamilton and Madison favored different words'
+  AnswerTests: omnitest(correctVal = "Hamilton and Madison favored different words")
+  Hint: See 'The Disputed Authorship of The Federalist Papers'.
+
+#################
+# Text Analysis #
+#################
+- Class: cmd_question
+  Output: 'Chapter 5 also introduces several important R extensions, or packages. Let''s use the install.packages() function to install the "wordcloud" package.'
+  CorrectAnswer: install.packages()
+- Class: cmd_question
+  Output: 'Now call the library() function to load the "wordcloud" package.'
+  CorrectAnswer: library(wordcloud)
+  AnswerTests: any_of_exprs("library(wordcloud)", "library(\"wordcloud\")")
+  Hint: See 'The Disputed Authorship of The Federalist Papers'.
+
+- Class: text 
+  Output: 'We will use the "wordcloud" package to visualize a document-term matrix called "dtm", which has already been loaded for you.'
+
+- Class: mult_question
+  Output: 'What kind of information does a document-term matrix like "dtm" contain?'
+  AnswerChoices: 'Term frequencies across a set of documents; The number of times a word is used in a document; The number of documents that contain a word at least once; All of these'
+  CorrectAnswer: 'All of these'
+  AnswerTests: omnitest(correctVal = "All of these")
+  Hint: See 'The Disputed Authorship of The Federalist Papers'.
+
+- Class: cmd_question
+  Output: 'Use the inspect() function to visualize the first 5 rows and 8 columns of "dtm".'
+  CorrectAnswer: inspect(dtm[1:5, 1:8])
+  AnswerTests: omnitest(correctExpr = "inspect(dtm[1:5, 1:8]")
+  Hint: See 'The Disputed Authorship of The Federalist Papers'.
+
+- Class: mult_question
+  Output: 'Why does working with a document-term matrix requires us to make the ''bag-of-words'' assumption?'
+  AnswerChoices: 'A document-term matrix says nothing about grammar or order of words; A document-term matrix contains a lot of words; A document-term matrix sorts similar words into bags; None of these'
+  CorrectAnswer: A document-term matrix says nothing about grammar or order of words
+  AnswerTests: omnitext(correctVal = "A document-term matrix says nothing about grammar or the order of words")
+  Hint: See 'The Disputed Authorship of The Federalist Papers'.
+
+- Class: cmd_question
+  Output: 'Currently, "dtm" belongs to a special R class called "DocumentTermMatrix". This object class is not easily manipulated in R. Using the as.matrix() function, coerce "dtm" to a matrix object in R called "dtm.mat".'
+  CorrectAnswer: dtm.mat <- as.matrix(dtm)
+  AnswerTests: omnitest(correctExpr = "dtm.mat <- as.matrix(dtm)")
+  Hint: See 'The Disputed Authorship of The Federalist Papers'.
+
+- Class: cmd_question
+  Output: 'Finally, use the wordcloud() function to visualize the information contained in the eighth document of "dtm.mat" only.'
+  CorrectAnswer: wordcloud(colnames(dtm.mat), dtm.mat[8, ])
+  AnswerTests: omnitest(correctExpr = "wordcloud(dtm.mat[8, ])")
+  Hint: See 'The Disputed Authorship of The Federalist Papers'.
+
+- Class: mult_question
+  Output: 'Which of these do you think best describes the topic of the eighth Federalist Paper?'
+  AnswerChoices: 'The costs and benefits of standing militia; Trade between the colonies; The universal rights of man; The abolition of slavery'
+  CorrectAnswer: The costs and benefits of standing militia
+  AnswerTests: omnitest(correctVal = "The costs and benefits of standing militia")
+
+- Class: text
+  Output: 'You''ve successfully completed the first Discovery course!'

@@ -1,0 +1,128 @@
+- Class: meta
+  Course: INTRO
+  Lesson: INTRO2
+  Author: Elisha Cohen
+  Type: Standard
+  Organization: Princeton University
+  Version: 2.2.21
+
+- Class: text
+  Output: 'These exercises are a companion to Chapter 1 of ''A First Course in Quantitative Social Science''.'
+
+# Question 1
+- Class: cmd_question
+  Output: 'How would you multiply 4 by 7?'
+  CorrectAnswer: 4 * 7
+  AnswerTests: omnitest(correctExpr='4 * 7')
+  Hint: See 'arithmetic operations'
+  
+# Question 2
+- Class: cmd_question
+  Output: 'How would you multiply 2 times the quantity 9 plus 1?'
+  CorrectAnswer: 2 * (9 + 1)
+  AnswerTests: any_of_exprs('2 * (9 + 1)', '(9 + 1) * 2')
+  Hint: See 'arithmetic operations'
+  
+- Class: text
+  Output: 'R will treat numbers like characters if you tell it to. However, you will no longer be able to use arithmetic operations on the object.'
+
+# Question 3
+- Class: cmd_question
+  Output: 'Create an object called "myobject" and assign the value 10 to it.'
+  CorrectAnswer: myobject <- 10
+  AnswerTests: omnitest(correctExpr='myobject <- 10')
+  Hint: See 'objects'
+  
+# Question 4  
+- Class: cmd_question
+  Output: 'Replace the object "myobject" with the character ''10'''
+  CorrectAnswer: myobject <- '10'
+  AnswerTests: omnitest(correctExpr='myobject <- \'10\'')
+  Hint: See 'objects'
+  
+# Question 5
+- Class: mult_question
+  Output: 'What function can we use to tell whether "result" is a character or a numeric object?'
+  AnswerChoices: 'which(); class(); is.character()'
+  CorrectAnswer: class()
+  AnswerTests: omnitest(correctVal = 'class()')
+  Hint: see 'objects'
+
+# Question 6
+- Class: mult_question
+  Output: 'Which function is used to concatenate different elements of a vector?'
+  AnswerChoices: 'a(); b(); c()'
+  CorrectAnswer: c()
+  AnswerTests: omnitest(correctVal = 'c()')
+  Hint: See 'vectors'
+
+- Class: text
+  Output: 'A vector of data called "world.pop" has been loaded with this lesson. The first element is for 1950 up to the last element for 2010.'
+
+- Class: text
+  Output: '"world.pop" is a numeric vector so we can perform arithmetic operations on it.'
+
+# Question 7
+- Class: cmd_question
+  Output: 'Divide each element of "world.pop" by 1000 and assign it to an object called "pop.million".'
+  CorrectAnswer: pop.million <- world.pop / 1000
+  AnswerTests: omnitest(correctExpr='pop.million <- world.pop / 1000')
+  Hint: See 'vectors'
+ 
+# Question 8 
+- Class: mult_question
+  Output: 'Which function is used to find the maximum?'
+  AnswerChoices: 'min(); max(); sum()'
+  CorrectAnswer: max()
+  AnswerTests: omnitest(correctVal = 'max()')
+  Hint: See 'functions'  
+
+# Question 9
+- Class: mult_question
+  Output: 'Which function is used to load an external CSV file?'
+  AnswerChoices: 'read.csv(); import(); upload()'
+  CorrectAnswer: read.csv()
+  AnswerTests: omnitest(correctVal = 'read.csv()')
+  Hint: see 'data files'
+  
+- Class: text
+  Output: 'A data frame object called "UNpop" has already been included in this lesson.'
+ 
+# Question 10 
+- Class: cmd_question
+  Output: 'What are the dimensions of "UNpop"?'
+  CorrectAnswer: dim(UNpop)
+  AnswerTests: omnitest(correctExpr='dim(UNpop)')
+  Hint: see 'data files'
+  
+# Question 11  
+- Class: cmd_question
+  Output: 'Call the variable "world.pop" from the UNpop data frame.'
+  CorrectAnswer: UNpop$world.pop
+  AnswerTests: omnitest(correctExpr='UNpop$world.pop')
+  Hint: see 'data files'
+
+# Question 12
+- Class: cmd_question
+  Output: 'Use indexing and/or the $ operator to look at the last four observations of the ''year'' variable in the "UNpop" data frame.'
+  CorrectAnswer: UNpop$year[4:7]
+  AnswerTests: any_of_exprs('UNpop[4:7, ''year'']', 'UNpop[4:7, 2]', 'UNpop$year[4:7]', 'UNpop[c(4:7), ''year'']', 'UNpop[c(4:7), 2]', 'UNpop$year[c(4:7)]')
+  Hint: see 'data files'
+  
+# Question 13  
+- Class: mult_question
+  Output: 'Which character is used to write comments?'
+  AnswerChoices: '#; *; !'
+  CorrectAnswer: #
+  AnswerTests: omnitest(correctVal = '#')
+  Hint: see 'data files'
+
+# Question 14
+- Class: mult_question
+  Output: 'Which function do we use to load an R package?'
+  AnswerChoices: 'library(); install.packages(); open()'
+  CorrectAnswer: library()
+  AnswerTests: omnitest(correctVal = 'library()')
+  Hint: see 'packages'
+  
+  

@@ -1,0 +1,96 @@
+- Class: meta
+  Course: MEASUREMENT
+  Lesson: MEASUREMENT1
+  Author: Elisha Cohen
+  Type: Standard
+  Organization: Princeton University
+  Version: 2.2.21
+
+- Class: text
+  Output: 'The following exercises are a companion to Chapter 3: Measurement.'
+
+- Class: text
+  Output: 'We will start by using "afghan.csv" dataset described in the chapter. It has already been loaded for you and should show up in your Environment window.'
+
+# Question 1
+- Class: cmd_question
+  Output: 'How do we summarize the Afghan data?'
+  CorrectAnswer: summary(afghan)
+  AnswerTests: omnitest(correctExpr='summary(afghan)')
+  Hint: See 'Measuring Civilian Victimization during Wartime'
+
+# Question 2
+- Class: mult_question
+  Output: 'Looking at the summary data, which of these variables has missing values?'
+  AnswerChoices: 'violent.exp.ISAF; employed; age'
+  CorrectAnswer: violent.exp.ISAF
+  AnswerTests: omnitest(correctVal='violent.exp.ISAF')
+  Hint: See 'Measuring Civilian Victimization during Wartime'
+
+# Question 3
+- Class: cmd_question
+  Output: 'Looking at the summary statistics, what is the mean number of years of education by the respondents?'
+  CorrectAnswer: 4
+  AnswerTests: any_of_exprs('4', '4.0', '4.00', '4.002','4.002179')
+  Hint: See 'Measuring Civilian Victimization during Wartime'
+
+# Question 4
+- Class: cmd_question
+  Output: 'Make a table of proportions in each province by employment status.'
+  CorrectAnswer: prop.table(table(afghan$province, afghan$employed))
+  AnswerTests: any_of_exprs('prop.table(table(afghan$province, afghan$employed))', 'prop.table(table(afghan$employed, afghan$province))')
+  Hint: See 'Measuring Civilian Victimization during Wartime'
+
+# Question 5
+- Class: mult_question
+  Output: 'Which province has the most employed respondents?'
+  AnswerChoices: 'Helmand; Khost; Kunar; Logar; Uruzgan'
+  CorrectAnswer: Helmand
+  AnswerTests: omnitest(correctVal='Helmand')
+  Hint: See 'Measuring Civilian Victimization during Wartime'
+
+# Question 6
+- Class: cmd_question
+  Output: 'How would you count the total number of missing elements of "violent.exp.taliban"?'
+  CorrectAnswer: sum(is.na(afghan$violent.exp.taliban))
+  AnswerTests: omnitest(correctExpr='sum(is.na(afghan$violent.exp.taliban))')
+  Hint: See 'Handling Missing Data in R'
+
+# Question 7
+- Class: cmd_question
+  Output: 'Use listwise deletion on the afghan dataset to create a new data frame called "afghan.clean".'
+  CorrectAnswer: afghan.clean <- na.omit(afghan)
+  AnswerTests: omnitest(correctExpr='afghan.clean <- na.omit(afghan)')
+  Hint: See 'Handling Missing Data in R'
+
+# Question 8
+- Class: mult_question
+  Output: 'Histograms create ______________ along the variable of interest.'
+  AnswerChoices: 'intervals; bins; both are correct'
+  CorrectAnswer: both are correct
+  AnswerTests: omnitest(correctVal='both are correct')
+  Hint: See 'Visualizing the Univariate Distribution'
+
+# Question 9
+- Class: cmd_question
+  Output: 'How would you estimate the mean number of years of education by province?'
+  CorrectAnswer: tapply(afghan$educ.years, afghan$province, mean, na.rm=TRUE)
+  AnswerTests: any_of_exprs('tapply(afghan$educ.years, afghan$province, mean, na.rm=TRUE)',
+                            'tapply(afghan$educ.years, afghan$province, mean)',
+                            'tapply(afghan$province, afghan$educ.years, mean, na.rm=TRUE)',
+                            'tapply(afghan$province, afghan$educ.years, mean)')
+  Hint: See 'Visualizing the Univariate Distribution'
+
+# Question 10
+- Class: mult_question
+  Output: 'When printing and saving graphs use ____________ to open a pdf device and _____________ to close the device.'
+  AnswerChoices: 'pdf() and dev.off(); pdf.open() and dev.close(); pdf.on() and dev()'
+  CorrectAnswer: pdf() and dev.off()
+  AnswerTests: omnitest(correctVal='pdf() and dev.off()')
+  Hint: See 'Printing and Saving Graphs'
+
+- Class: text
+  Output: 'You''ve successfully finished the Measurement course part 1!'
+
+
+

@@ -1,0 +1,138 @@
+############
+# Preamble #
+############
+- Class: meta
+  Course: CAUSALITY
+  Lesson: CAUSALITY1
+  Author: Winston Chou
+  Type: Standard
+  Organization: Princeton University
+  Version: 2.3.0
+
+################
+# Introduction #
+################
+- Class: text
+  Output: 'These exercises are a companion to Chapter 2 of ''A First Course in Quantitative Social Science''. When you see ..., press Enter.'
+
+- Class: text
+  Output: 'Chapter 2 introduces several functions for working with data. We will begin by reviewing functions for loading and viewing external data files.'
+
+# Question 0 
+- Class: text
+  Output: 'A variety of external data files can be loaded into R, such as tables with comma separated values (or CSV''s) and R Workspace files (RData files).' 
+
+- Class: mult_question
+  Output: 'Which is the appropriate function for loading a CSV file?'
+  AnswerChoices: 'read.csv(); load.csv(); load()'
+  CorrectAnswer: "read.csv()"
+  AnswerTests: omnitest(correctVal = "read.csv()")
+  Hint: 'See ''Data Files'' in Chapter 1.'
+
+##############################
+# Exploratory data functions #
+##############################
+# Question 1
+- Class: cmd_question
+  Output: 'Using the read.csv() function, we have pre-loaded the external data file "resume.csv" as an object called "resume". Call the head() function to look at the first six rows of "resume".'
+  CorrectAnswer: head(resume)
+  AnswerTests: omnitest(correctExpr = "head(resume)")
+  Hint: 'See ''Data Files'' in Chapter 1.'
+
+# Question 2
+- Class: mult_question
+  Output: 'What kind of object is "resume"?'
+  AnswerChoices: '"data.frame"; "numeric"; "logical"'
+  CorrectAnswer: "data.frame"
+  AnswerTests: omnitest(correctVal = "\"data.frame\"")
+  Hint: 'See ''Data Files'' in Chapter 1.'
+
+# Question 3
+- Class: mult_question
+  Output: 'What function could we use to find the number of observations (rows) and variables (columns) in "resume"?'
+  AnswerChoices: 'dim(); class(); head()'
+  CorrectAnswer: dim()
+  AnswerTests: omnitest(correctVal = "dim()")
+  Hint: 'See ''Racial Discrimination in the Labor Market''.'
+
+# Question 4
+- Class: mult_question
+  Output: 'Suppose a variable is binary, that is, it takes on values of either 0 or 1 (for example, female gender). Which of the following is the same as its sample mean?'
+  AnswerChoices: 'the sample median; the sample rate of 1''s; neither of these'
+  CorrectAnswer: the sample rate of 1's
+  AnswerTests: omnitest(correctVal = "the sample rate of 1's")
+  Hint: 'Think about the formula for the mean.'
+
+# Question 5
+- Class: cmd_question
+  Output: 'This question has two parts. First, create a summary of "resume" that contains, along with other information, the sample means of each variable in "resume".'
+  CorrectAnswer: summary(resume)
+  AnswerTests: omnitest(correctExpr = "summary(resume)")
+  Hint: 'See ''Racial Discrimination in the Labor Market''.'
+
+- Class: mult_question
+  Output: 'What was the callback rate in the data? In other words, about what percent of the fictitious applicants received a call back?'
+  AnswerChoices: '2%; 16%; 8%; 9%'
+  CorrectAnswer: 8%
+  AnswerTests: omnitest(correctVal = "8%")
+  Hint: 'See ''Racial Discrimination in the Labor Market''.'
+
+# Question 6
+- Class: cmd_question
+  Output: '"resume" contains two binary variables, "sex" and "call". Create a table that compares the number of female applicants to the number of male applicants who did and did not receive a call back. Be sure to label the rows as ''sex'' and the columns as ''call''.'
+  CorrectAnswer: table(sex = resume$sex, call = resume$call)
+  AnswerTests: omnitest(correctExpr = "table(sex = resume$sex, call = resume$call)")
+  Hint: 'See ''Racial Discrimination in the Labor Market''.'
+
+#################################
+# Logical values and subsetting #
+#################################
+# Question 1
+- Class: mult_question
+  Output: 'Scroll up and look at the first six observations in "resume". What value would R return if you entered the following expression: "resume[3, 3] == ''white''"?'
+  AnswerChoices: '"TRUE"; "FALSE"; "YES"; "NO"'
+  CorrectAnswer: "FALSE"
+  AnswerTests: omnitest(correctVal = "\"FALSE\"")
+  Hint: 'See ''Subsetting the Data in R''.'
+
+# Question 2
+- Class: mult_question
+  Output: 'What kind of value is "FALSE"?'
+  AnswerChoices: '"character"; "logical"; "binary"; "numeric"'
+  CorrectAnswer: "logical"
+  AnswerTests: omnitest(correctVal = "\"logical\"")
+  Hint: 'See ''Subsetting the Data in R''.'
+
+# Question 3
+- Class: cmd_question
+  Output: 'Translate the following statement using R`s logical values (i.e., "TRUE" and "FALSE") and operators (i.e., !, =, &, and |): True or false is not false.'
+  CorrectAnswer: TRUE | FALSE == !FALSE
+  AnswerTests: any_of_exprs("TRUE | FALSE == !FALSE", "TRUE | FALSE != FALSE", "(TRUE | FALSE) != FALSE")
+  Hint: 'See ''Subsetting the Data in R'' (and be sure you use proper capitalization and spacing!).'
+
+# Question 4
+- Class: cmd_question
+  Output: 'Use indexing to find the proportion of fictitious female job applicants who received calls back in "resume".'
+  CorrectAnswer: mean(resume$call[resume$sex == "female"])
+  AnswerTests: omnitest(correctExpr = "mean(resume$call[resume$sex == \"female\"])")
+  Hint: 'See ''Subsetting the Data in R''.'
+
+- Class: text
+  Output: 'We can also find the proportion of fictitious female job applicants receiving calls back using the subset() function.'
+
+# Question 5
+- Class: cmd_question
+  Output: 'To see this, create a new data.frame object called "resumeF" that only consists of female applicants.'
+  CorrectAnswer: resumeF <- subset(resume, sex == "female")
+  AnswerTests: any_of_exprs("resumeF <- subset(resume, sex == \"female\")", "resumeF <- subset(resume, sex == \"female\", )")
+  Hint: 'See ''Subsetting the Data in R''.'
+
+# Question 6
+- Class: cmd_question
+  Output: 'Now calculate the proportion of those receiving calls in "resumeF".'
+  CorrectAnswer: mean(resumeF$call)
+  AnswerTests: omnitest(correctExpr = "mean(resumeF$call)")
+  Hint: 'Be sure to use the $ operator to call variables from your dataframe.'
+
+- Class: text
+  Output: 'You''ve successfully completed the first Causality course!'
