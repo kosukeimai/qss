@@ -16,23 +16,15 @@
   CorrectAnswer: True
   AnswerTests: omnitest(correctVal='True')
   Hint: See 'Correlationa and Scatterplot'
-  
-# Question 2
-- Class: mult_question
-  Output: 'In the model y = a + bx + e, a is the ____________'
-  AnswerChoices: 'Intercept; slope; error term'
-  CorrectAnswer: Intercept
-  AnswerTests: omnitest(correctVal='Intercept')
-  Hint: See 'Least squares'
 
-# Question 3
+# Question 2
 - Class: cmd_question
   Output: 'The intercept a, in the model y = a + bx + e, represents the average value of y when x is equal to ____________'
   CorrectAnswer: 0
   AnswerTests: omnitest(correctExpr='0')
   Hint: See 'Least squares'
 
-# Question 4
+# Question 3
 - Class: mult_question
   Output: 'We use the regression line to predict the value of the outcome variable y hat, otherwise known as __________'
   AnswerChoices: 'predicted value; fitted value; both of these'
@@ -40,50 +32,58 @@
   AnswerTests: omnitest(correctVal='both of these')
   Hint: See 'Least squares'
 
-# Question 5
+# Question 4
 - Class: mult_question
-  Output: 'True or False: R squared ranges from 0 to 1.'
-  AnswerChoices: 'True; False'
-  CorrectAnswer: True
-  AnswerTests: omnitest(correctVal='True')
-  Hint: See 'Model Fit'
-  
-# Question 6
-- Class: mult_question
-  Output: 'An R squared close to 1 suggests the model fits ___________'
+  Output: 'An R^2 close to 1 suggests the model fits ___________'
   AnswerChoices: 'well; not well'
   CorrectAnswer: well
   AnswerTests: omnitest(correctVal='well')
   Hint: See 'Model Fit'
 
-# Question 7
+# Question 5
 - Class: mult_question
-  Output: 'If one of our goals is to apply our model to other data and make predictions we should avoid ________________.'
-  AnswerChoices: 'overfitting; in-sample predictions; outliers'
-  CorrectAnswer: overfitting
-  AnswerTests: omnitest(correctVal='overfitting')
-  Hint: See 'Model Fit'
+  Output: 'The difference between the observed outcome and its predicted value is called a _______.'
+  AnswerChoices: 'residual; prediction error; either of these'
+  CorrectAnswer: either of these
+  AnswerTests: omnitest(correctVal='either of these')
+  Hint: See 'Least Squares'
+
+## Programming Questions
+# Question 6
+- Class: cmd_question
+  Output: 'In the model y = 5 + 2x, what is the intercept?'
+  CorrectAnswer: 5
+  AnswerTests: omnitest(correctVal='5')
+  Hint: See 'Least Squares'
+
+# Question 7
+- Class: cmd_question
+  Output: 'We have included two vectors x and y. Regress y on x and assign it to an object called "fit".'
+  CorrectAnswer: fit <- lm(y ~ x)
+  AnswerTests: omnitest(correctExpr='fit <- lm(y ~ x)')
+  Hint: See 'Least Squares'
   
 # Question 8
-- Class: mult_question
-  Output: 'Association ________________ imply causation.'
-  AnswerChoices: 'will always; will never; does not necessarily'
-  CorrectAnswer: does not necessarily
-  AnswerTests: omnitest(correctVal='does not necessarily')
-  Hint: See 'Regression and Causation'
+- Class: cmd_question
+  Output: 'Call the "fit" object.'
+  CorrectAnswer: fit
+  AnswerTests: omnitest(correctExpr='fit')
+  Hint: See 'Least Squares'
 
 # Question 9
-- Class: mult_question
-  Output: 'The main reason it is difficult to draw causal inference in observational studies is due to __________.'
-  AnswerChoices: 'confounders; associations; errors'
-  CorrectAnswer: confounders
-  AnswerTests: omnitest(correctVal='confounders')
-  Hint: See 'Randomized Experiments'
+- Class: cmd_question
+  Output: 'What are the estimated coefficients?'
+  CorrectAnswer: coef(fit)
+  AnswerTests: omnitest(correctExpr='coef(fit)')
+  Hint: See 'Least Squares'
 
 # Question 10
-- Class: mult_question
-  Output: 'A regression discontinuity design attempts to make causal inferences by analyzing observations lying __________ a given threshold.'
-  AnswerChoices: 'closely across; far away from'
-  CorrectAnswer: closely across
-  AnswerTests: omnitest(correctVal='closely across')
-  Hint: See 'Regression Discontinuity design'
+- Class: cmd_question
+  Output: 'What are the predicted values?'
+  CorrectAnswer: fitted(fit)
+  AnswerTests: any_of_exprs('fitted(fit)', 'predict(fit)')
+  Hint: See 'Least Squares'
+
+- Class: text
+  Output: 'You have successfully completed part 2 of Prediction!'
+  

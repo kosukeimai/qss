@@ -12,11 +12,11 @@
 # Question 1
 - Class: mult_question
   Output: 'True or False: Loops can simplify our programming code when we want to repeatedly execute code chunks over and over again.'
-  AnswerChoices: 'True; False'
+  AnswerChoices: '"True"; "False"'
   CorrectAnswer: True
-  AnswerTests: omnitest(correctVal='True')
+  AnswerTests: omnitest(correctVal='"True"')
   Hint: See 'Loop in R'
-
+  
 # Question 2
 - Class: mult_question
   Output: 'To iterate means to'
@@ -26,38 +26,13 @@
   Hint: See 'Loop in R'
   
 # Question 3
-- Class: mult_question
-  Output: 'In the R expression "for (i in X)" the object "i" is considered a ____________'
-  AnswerChoices: 'counter; placeholder; iterator'
-  CorrectAnswer: counter
-  AnswerTests: omnitest(correctVal='counter')
-  Hint: See 'Loop in R' 
-
-# Question 4
 - Class: cmd_question
   Output: 'Given that "n <- 10", how many times will the loop "for (i in 1:n)" iterate through?'
   CorrectAnswer: 10
   AnswerTests: omnitest(correctExpr='10')
   Hint: See 'Loop in R'
- 
-- Class: text
-  Output: 'It is often useful to create an empty vector to store the computational output from a loop'
 
-# Question 5
-- Class: cmd_question
-  Output: 'Create a vector called "output" that is filled with "NA"s and has the length "n". The object "n" has been included in this lesson.'
-  CorrectAnswer: output <- rep(NA, n)
-  AnswerTests: omnitest(correctExpr='output <- rep(NA,n)')
-  Hint: See 'Loop in R'
-  
-# Question 6
-- Class: cmd_question
-  Output: 'Use the "cat()" function to put together a phrase and the object "n". The final output should read ''The object n has length 10''.'
-  CorrectAnswer: cat("The object n has length", n)
-  AnswerTests: omnitest(correctExpr='cat("The object n has length", n)')
-  Hint: See 'Loop in R'
-  
-# Question 7
+# Question 4
 - Class: mult_question
   Output: 'In the conditional expression "if (Y) {expression1}", "expression1" will be executed if "Y" is _____'
   AnswerChoices: 'True; False'
@@ -65,7 +40,7 @@
   AnswerTests: omnitest(correctVal='True')
   Hint: See 'General Conditional Statements in R' 
 
-# Question 8
+# Question 5
 - Class: mult_question
   Output: 'A conditional statement that is nested within a loop is executed _______ the loop.'
   AnswerChoices: 'inside; outside'
@@ -73,18 +48,42 @@
   AnswerTests: omnitest(correctVal='inside')
   Hint: See 'General Conditional Statements in R' 
 
+## Programming Questions
+- Class: text
+  Output: 'It is often useful to create an empty vector to store the computational output from a loop'
+
+# Question 6
+- Class: cmd_question
+  Output: 'Create a vector called "output" that is filled with "NA"s and has the length "n". The object "n" has been included in this lesson.'
+  CorrectAnswer: output <- rep(NA, n)
+  AnswerTests: omnitest(correctExpr='output <- rep(NA,n)')
+  Hint: See 'Loop in R'
+  
+# Question 7
+- Class: cmd_question
+  Output: 'Use the "cat()" function to put together a phrase and the object "n". The final output should read ''The object n has length 10''.'
+  CorrectAnswer: cat("The object n has length", n)
+  AnswerTests: omnitest(correctExpr='cat("The object n has length", n)')
+  Hint: See 'Loop in R'
+  
+# Question 8
+- Class: cmd_question
+  Output: 'Compute the remainder of 11 divided by 3.'
+  CorrectAnswer: 11 %% 3
+  AnswerTests: omnitest(correctExpr='11 %% 3')
+  Hint: See 'General Conditional Statements in R'
+
 # Question 9
-- Class: mult_question
-  Output: 'The "%%" operator computes the ___________.'
-  AnswerChoices: 'remainder; total; sum'
-  CorrectAnswer: remainder
-  AnswerTests: omnitest(correctVal='remainder')
-  Hint: See 'General Conditional Statements in R' 
+- Class: cmd_question
+  Output: 'A vector called "fruit" has been loaded for you. Call the vector to see what it looks like.'
+  CorrectAnswer: fruit
+  AnswerTests: omnitest(correctExpr='fruit')
 
 # Question 10
-- Class: mult_question
-  Output: 'In a classification problem, an incorrect prediction is called a _________'
-  AnswerChoices: 'misclassification; error; bad prediction'
-  CorrectAnswer: misclassification
-  AnswerTests: omnitest(correctVal='misclassification')
+- Class: cmd_question
+  Output: 'Use a function to determine the different types of fruit (we want to see each fruit listed once)' 
+  CorrectAnswer: unique(fruit)
+  AnswerTests: omnitest(correctExpr='unique(fruit)')
   Hint: See 'Poll Predictions'
+
+  

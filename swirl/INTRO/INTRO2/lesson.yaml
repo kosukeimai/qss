@@ -41,19 +41,20 @@
   Hint: See 'objects'
   
 # Question 5
-- Class: mult_question
-  Output: 'What function can we use to tell whether "result" is a character or a numeric object?'
-  AnswerChoices: 'which(); class(); is.character()'
-  CorrectAnswer: class()
-  AnswerTests: omnitest(correctVal = 'class()')
+- Class: cmd_question
+  Output: 'Use a function to see whether "result" is a character or a numeric object.'
+  CorrectAnswer: class(result)
+  AnswerTests: omnitest(correctExpr= 'class(result)')
   Hint: see 'objects'
 
+- Class: text
+  Output: 'A vector called "x" with 10 integers from 1 to 100 has been included in this lesson.'
+
 # Question 6
-- Class: mult_question
-  Output: 'Which function is used to concatenate different elements of a vector?'
-  AnswerChoices: 'a(); b(); c()'
-  CorrectAnswer: c()
-  AnswerTests: omnitest(correctVal = 'c()')
+- Class: cmd_question
+  Output: 'Concatenate the first two elements of "x".'
+  CorrectAnswer: c(x[1],x[2])
+  AnswerTests: omnitest(correctExpr = 'c(x[1],x[2])')
   Hint: See 'vectors'
 
 - Class: text
@@ -70,19 +71,17 @@
   Hint: See 'vectors'
  
 # Question 8 
-- Class: mult_question
-  Output: 'Which function is used to find the maximum?'
-  AnswerChoices: 'min(); max(); sum()'
-  CorrectAnswer: max()
-  AnswerTests: omnitest(correctVal = 'max()')
+- Class: cmd_question
+  Output: 'Find the maximum of "x".'
+  CorrectAnswer: max(x)
+  AnswerTests: omnitest(correctExpr = 'max(x)')
   Hint: See 'functions'  
 
 # Question 9
-- Class: mult_question
-  Output: 'Which function is used to load an external CSV file?'
-  AnswerChoices: 'read.csv(); import(); upload()'
-  CorrectAnswer: read.csv()
-  AnswerTests: omnitest(correctVal = 'read.csv()')
+- Class: cmd_question
+  Output: 'Read in the csv file called "data.csv" and assign it to a data frame called "df". Use the full path name "data_path" to call the data.'
+  CorrectAnswer: df <- read.csv(data_path, head = TRUE)
+  AnswerTests: any_of_exprs('df <- read.csv(data_path, head = TRUE)', 'df <- read.csv(data_path, head = T)', 'df <- read.csv(data_path)')
   Hint: see 'data files'
   
 - Class: text
@@ -104,25 +103,22 @@
 
 # Question 12
 - Class: cmd_question
-  Output: 'Use indexing and/or the $ operator to look at the last four observations of the ''year'' variable in the "UNpop" data frame.'
+  Output: 'Use indexing and/or the $ operator to look at the last four observations of the "year" variable in the "UNpop" data frame.'
   CorrectAnswer: UNpop$year[4:7]
-  AnswerTests: any_of_exprs('UNpop[4:7, ''year'']', 'UNpop[4:7, 2]', 'UNpop$year[4:7]', 'UNpop[c(4:7), ''year'']', 'UNpop[c(4:7), 2]', 'UNpop$year[c(4:7)]')
+  AnswerTests: any_of_exprs('UNpop[4:7, year]', 'UNpop[4:7, 2]', 'UNpop$year[4:7]', 'UNpop[c(4:7), year]', 'UNpop[c(4:7), 2]', 'UNpop$year[c(4:7)]')
   Hint: see 'data files'
-  
-# Question 13  
-- Class: mult_question
-  Output: 'Which character is used to write comments?'
-  AnswerChoices: '#; *; !'
-  CorrectAnswer: #
-  AnswerTests: omnitest(correctVal = '#')
+
+# Question 13
+- Class: cmd_question
+  Output: 'R uses a special character to denote comments. Use the "print()" function to write ''____ starts every comment''. Fill in the blank with the appropriate character.'
+  CorrectAnswer: print("# starts every comment")
+  AnswerTests: omnitest(correctExpr='print("# starts every comment")')
   Hint: see 'data files'
 
 # Question 14
-- Class: mult_question
-  Output: 'Which function do we use to load an R package?'
-  AnswerChoices: 'library(); install.packages(); open()'
-  CorrectAnswer: library()
-  AnswerTests: omnitest(correctVal = 'library()')
-  Hint: see 'packages'
-  
+- Class: cmd_question
+  Output: 'Load the R package "utils".'
+  CorrectAnswer: library(utils)
+  AnswerTests: omnitest(correctExpr='library(utils)')
+  Hint: see 'data files'
   

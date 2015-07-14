@@ -9,3 +9,5 @@
 year <- seq(from = 1950, to = 2010, by = 10)
 world.pop <- c(2525779, 3026003, 3691173, 4449049, 5320817, 6127700, 6916183)
 UNpop <- as.data.frame(cbind(world.pop, year))
+
+x <- sample(1:100, 10)

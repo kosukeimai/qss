@@ -4,3 +4,4 @@
 # throughout the lesson.
 
 n <- 10
+fruit <- c("apple", "orange", "banana", "orange", "apple", "apple")

@@ -13,12 +13,9 @@
 # Introduction #
 ################
 - Class: text
-  Output: 'These exercises are a companion to Chapter 2 of ''A First Course in Quantitative Social Science''. When you see ..., press Enter.'
+  Output: 'These exercises are a companion to Chapter 2 of ''A First Course in Quantitative Social Science''.'
 
-#################################
-# Causality and research design #
-#################################
-
+## Conceptual Questions
 # Question 1
 - Class: mult_question
   Output: 'Chapter 2 discusses several approaches to identifying causal relationships. Which of the following approaches is considered the ''gold standard'' in many scientific disciplines?'
@@ -32,98 +29,87 @@
 
 # Question 2
 - Class: mult_question
-  Output: 'With observational studies, it is often hard to establish that changes in one variable caused changes in another variable. In other words, observational studies have less [BLANK] compared to RCTS.'
+  Output: 'With observational studies, it is often hard to establish that changes in one variable caused changes in another variable. In other words, observational studies have less ______ compared to RCTS.'
   AnswerChoices: 'Internal validity; External validity; Generalizability; All of these'
   CorrectAnswer: Internal validity
   AnswerTests: omnitest(correctVal = "Internal validity")
   Hint: 'See ''The Role of Randomization''.'
 
 - Class: text
-  Output: 'The external data file "social.csv" has been loaded for you as the data.frame object "social". Be sure that you have read the section ''Social Pressure and Voter Turnout'' and understand what this data file contains.'
+  Output: 'Take a look at the following nested ifelse() statement: "social$type <- ifelse(social$yearofbirth <= 1943 & social$primary2004 == 1, ''Senior Voter'', ifelse(social$yearofbirth <= 1943 & social$primary2004 == 0, ''Senior Non-voter'', ifelse(social$yearofbirth > 1943 & social$primary2004 == 1, ''Non-senior Voter'', ''Non-senior Non-voter'')))"'
 
 # Question 3
-- Class: cmd_question
-  Output: 'What command could we use to view a summary of the variables in "social"?'
-  CorrectAnswer: summary(social)
-  AnswerTests: omnitest(correctExpr = "summary(social)")
-  Hint: 'See ''Social Pressure and Voter Turnout''.'
+- Class: mult_question
+  Output: 'What kinds of people does "social$type" distinguish between?'
+  AnswerChoices: 'seniors and non-seniors; voters and non-voters; non-senior voters and non-senior non-voters; all of these'
+  CorrectAnswer: all of these
+  AnswerTests: omnitest(correctVal = "all of these")
+  Hint: 'See "Simple Conditional Statements".'
 
 # Question 4
 - Class: mult_question
-  Output: 'About what proportion of individuals in "social" voted in the 2004 primary?'
-  AnswerChoices: '0.2; 0.4; 0.6; 0.8'
-  CorrectAnswer: 0.4
-  AnswerTests: omnitest(correctVal = "0.4")
-  Hint: 'See ''Racial Discrimination in the Labor Market''.'
+  Output: 'The counterfactual is __________'
+  AnswerChoices: 'what actually happened; what would have happened if a key condition were different; what we want to happen'
+  CorrectAnswer: what would have happened if a key condition were different
+  AnswerTests: omnitest(correctVal = 'what would have happened if a key condition were different')
+  Hint: See 'Causal effects and the counterfactual'.
 
 # Question 5
+- Class: mult_question
+  Output: 'When do we observe both potential outcomes i.e. y(1) and y(0)?'
+  AnswerChoices: 'Always; Never; Sometimes'
+  CorrectAnswer: Never
+  AnswerTests: omnitest(correctVal = "Never")
+  Hint: See 'Causal effects and the counterfactual'.
+
+## Programming Questions
+- Class: text
+  Output: 'The external data file "resume.csv" has been loaded for you as the data.frame object "resume". Be sure that you have read the section ''Racial Discrimination in the Labor Market'' and understand what this data file contains.'
+
+# Question 6
 - Class: cmd_question
-  Output: 'How many people lived in the median household?'
-  CorrectAnswer: 2
-  AnswerTests: omnitest(correctExpr = "2")
-  Hint: 'Don`t overthink it!'
+  Output: 'Use indexing to find the proportion of fictitious female job applicants who received calls back in "resume".'
+  CorrectAnswer: mean(resume$call[resume$sex == "female"])
+  AnswerTests: omnitest(correctExpr = "mean(resume$call[resume$sex == \"female\"])")
+  Hint: 'See ''Subsetting the Data in R''.'
+
+- Class: text
+  Output: 'We can also find the proportion of fictitious female job applicants receiving calls back using the subset() function.'
+
+# Question 7
+- Class: cmd_question
+  Output: 'To see this, create a new data.frame object called "resumeF" that only consists of female applicants.'
+  CorrectAnswer: resumeF <- subset(resume, sex == "female")
+  AnswerTests: any_of_exprs("resumeF <- subset(resume, sex == \"female\")", "resumeF <- subset(resume, sex == \"female\", )")
+  Hint: 'See ''Subsetting the Data in R''.'
+
+# Question 8
+- Class: cmd_question
+  Output: 'Now calculate the proportion of those receiving calls in "resumeF".'
+  CorrectAnswer: mean(resumeF$call)
+  AnswerTests: omnitest(correctExpr = "mean(resumeF$call)")
+  Hint: 'Be sure to use the $ operator to call variables from your dataframe.'
+
+- Class: text
+  Output: 'The external data file "social.csv" has been loaded for you as the data.frame object "social". Be sure that you have read the section ''Social Pressure and Voter Turnout'' and understand what this data file contains.'
 
 - Class: text
   Output: 'Recall that the tapply() function takes three arguments, in order, "X", "INDEX", and "FUN". You can think of tapply() as taking an object (typically a vector) called "X"; splitting "X" into categories defined by "INDEX"; and, lastly, applying the "FUN"-ction to each subset of "X".'
 
-# Question 4
+# Question 9
 - Class: cmd_question
   Output: 'Try using tapply() to find the turnout rate in 2008 for each experimental group identified by the variable "messages".'
   CorrectAnswer: tapply(social$primary2008, social$messages, mean)
   AnswerTests: omnitest(correctExpr = "tapply(social$primary2008, social$messages, mean)")
   Hint: 'See ''Social Pressure and Voter Turnout''.'
 
-#####################################
-# Relabeling and standard deviation #
-#####################################
-
 - Class: text
   Output: 'Recall that the ifelse() function takes three arguments. The first argument is a logical statement that can either be "TRUE" or "FALSE". If it is "TRUE", ifelse() returns the second argument. If it is "FALSE", ifelse() returns the third argument.'
 
-# Question 1
+# Question 10
 - Class: cmd_question
   Output: 'We will now use the ifelse() function to recode sex as a numeric variable. Use ifelse() to create a new variable, "social$female", that equals 1 if the applicant is female and 0 otherwise.'
   CorrectAnswer: social$female <- ifelse(social$sex == "female", 1, 0)
   AnswerTests: any_of_exprs("social$female <- ifelse(social$sex == \"female\", 1, 0)", "social$female <- ifelse(social$sex == \"male\", 0, 1)")
   Hint: 'See ''Simple Conditional Statements''.'
 
-- Class: text
-  Output: 'An interesting property of ifelse() statements is that they can be ''nested''. That is, one ifelse() statement can be used as an argument in another ifelse() statement.'
-
-- Class: text
-  Output: 'Take a look at the following nested ifelse() statement: "social$type <- ifelse(social$yearofbirth <= 1943 & social$primary2004 == 1, ''Senior Voter'', ifelse(social$yearofbirth <= 1943 & social$primary2004 == 0, ''Senior Non-voter'', ifelse(social$yearofbirth > 1943 & social$primary2004 == 1, ''Non-senior Voter'', ''Non-senior Non-voter'')))"'
-
-# Question 2
-- Class: mult_question
-  Output: 'What kinds of people does "social$type" distinguish between?'
-  AnswerChoices: 'seniors and non-seniors; voters and non-voters; non-senior voters and non-senior non-voters; all of these'
-  CorrectAnswer: 'all of these'
-  AnswerTests: omnitest(correctVal = "all of these")
-  Hint: 'See "Simple Conditional Statements".'
-
-- Class: text
-  Output: 'We will now use the root-mean-square (RMS) statistic to recreate the output from the sd() function. Be sure you understand why the RMS is a measure of the magnitude of a variable.'
-
-# Question 3
-- Class: cmd_question
-  Output: 'Create an object called "deviation" that contains the difference in 2008 turnout (that is, "social$primary2008") of each observation from the mean. Be sure that observations larger than the mean correspond to positive deviations and vice versa.'
-  CorrectAnswer: deviation <- social$primary2008 - mean(social$primary2008)
-  AnswerTests: omnitest(correctExpr = "deviation <- social$primary2008 - mean(social$primary2008)")
-  Hint: 'Did you ensure that larger values will have positive deviations, and vice versa?'
-
-# Question 4
-- Class: cmd_question
-  Output: 'Now calculate the root-mean-square of "deviation". Make sure you use sqrt(), mean(), and ^ in the proper order!'
-  CorrectAnswer: sqrt(mean(deviation^2))
-  AnswerTests: omnitest(correctExpr = "sqrt(mean(deviation^2))")
-  Hint: 'It''s called a Root-Mean-Square, not a Square-Mean-Root!'
-
-# Question 5
-- Class: cmd_question
-  Output: 'Now use the sd() function to verify that this is the same as the standard deviation of social$primary2008.'
-  CorrectAnswer: sd(social$primary2008)
-  AnswerTests: omnitest(correctExpr = "sd(social$primary2008)")
-  Hint: 'See ''Standard Deviation''.'
-
-- Class: text
-  Output: 'You''ve successfully completed the second Causality course!'

@@ -44,7 +44,7 @@
 
 # Question 4
 - Class: cmd_question
-  Output: 'Try assigning the value ''8 - 2'' to the object "result".'
+  Output: 'Try assigning the value 8 - 2 to the object "result".'
   CorrectAnswer: result <- 8 - 2
   AnswerTests: omnitest(correctExpr='result <- 8 - 2')
   Hint: See 'objects'
@@ -91,7 +91,7 @@
 
 # Question 9
 - Class: cmd_question
-  Output: 'Let''s use indexing to look at the 4th element of the vector.'
+  Output: 'Use indexing to look at the 4th element of the vector.'
   CorrectAnswer: world.pop[4]
   AnswerTests: omnitest(correctExpr='world.pop[4]')
   Hint: See 'vectors'
@@ -127,12 +127,13 @@
   AnswerTests: omnitest(correctExpr='names(world.pop) <- year')
   Hint: See 'functions'
  
-# Question 14 
-- Class: mult_question
-  Output: 'How are missing values labeled in R?'
-  AnswerChoices: 'empty; NA; missing'
-  CorrectAnswer: NA
-  AnswerTests: omnitest(correctVal = 'NA')
-  Hint: see 'data files'
-  
-  
+- Class: text
+  Output: 'We have included a vector "x" in this lesson. This vector contains 10 integers from 0 to 100.'
+
+# Question 14
+- Class: cmd_question
+  Output: 'Replace the first element in "x" with a missing value.'
+  CorrectAnswer: x[1] <- NA
+  AnswerTests: omnitest(correctExpr='x[1] <- NA')
+  Hint: See 'functions'
+ 
