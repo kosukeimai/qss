@@ -5,7 +5,7 @@
 
 
 # Make path to lesson directory
-lesson_dir <- file.path(path.package("swirl"), "Courses", "DISCOVERY", "DISCOVERY1")
+lesson_dir <- file.path(path.package("socraticswirl"), "Courses", "DISCOVERY", "DISCOVERY1")
 
 # Make path to data and let user call read.csv(data_path)
 data_path <- file.path(lesson_dir, "florentine.csv")

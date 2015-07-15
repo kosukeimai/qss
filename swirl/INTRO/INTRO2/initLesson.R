@@ -12,7 +12,7 @@ x <- sample(1:100, 10)
 result <- 8 - 2
 
 # Make path to lesson directory
-lesson_dir <- file.path(path.package("swirl"), "Courses",
+lesson_dir <- file.path(path.package("socraticswirl"), "Courses",
                         "INTRO", "INTRO2")
 
 # Make path to data and let user call read.csv(data_path)
