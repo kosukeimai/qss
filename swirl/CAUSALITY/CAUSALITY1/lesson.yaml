@@ -51,7 +51,7 @@
 - Class: mult_question
   Output: 'True or False: A factor variable is another name for a categorical variable.'
   AnswerChoices: 'True; False'
-  CorrectAnswer: True
+  CorrectAnswer: 'True'
   AnswerTests: omnitest(correctVal = 'True')
   Hint: 'See ''Subsetting the Data in R''.'
 

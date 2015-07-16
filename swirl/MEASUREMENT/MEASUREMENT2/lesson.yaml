@@ -25,7 +25,7 @@
 - Class: mult_question
   Output: 'True or False: Political polarization describes the phenomenon where the ideological centers of two political parties diverge over time.'
   AnswerChoices: 'True; False'
-  CorrectAnswer: True
+  CorrectAnswer: 'True'
   AnswerTests: omnitest(correctVal='True')
   Hint: See 'Summarizing Bivariate Relationships'
 

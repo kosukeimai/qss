@@ -73,7 +73,7 @@
 # Question 8
 - Class: cmd_question
   Output: 'Looking at the summary statistics, what is the mean number of years of education by the respondents?'
-  CorrectAnswer: 4
+  CorrectAnswer: '4'
   AnswerTests: any_of_exprs('4', '4.0', '4.00', '4.002','4.002179')
   Hint: See 'Measuring Civilian Victimization during Wartime'
 

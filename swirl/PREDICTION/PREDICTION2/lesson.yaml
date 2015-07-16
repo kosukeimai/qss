@@ -13,14 +13,14 @@
 - Class: mult_question
   Output: 'True or False: A positive correlation means that one variable is more likely to be above its mean when the other variable is also above its mean.'
   AnswerChoices: 'True; False'
-  CorrectAnswer: True
+  CorrectAnswer: 'True'
   AnswerTests: omnitest(correctVal='True')
   Hint: See 'Correlationa and Scatterplot'
 
 # Question 2
 - Class: cmd_question
   Output: 'The intercept a, in the model y = a + bx + e, represents the average value of y when x is equal to ____________'
-  CorrectAnswer: 0
+  CorrectAnswer: '0'
   AnswerTests: omnitest(correctExpr='0')
   Hint: See 'Least squares'
 
@@ -52,7 +52,7 @@
 # Question 6
 - Class: cmd_question
   Output: 'In the model y = 5 + 2x, what is the intercept?'
-  CorrectAnswer: 5
+  CorrectAnswer: '5'
   AnswerTests: omnitest(correctVal='5')
   Hint: See 'Least Squares'
 

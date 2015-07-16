@@ -13,7 +13,7 @@
 - Class: mult_question
   Output: 'True or False: Loops can simplify our programming code when we want to repeatedly execute code chunks over and over again.'
   AnswerChoices: '"True"; "False"'
-  CorrectAnswer: True
+  CorrectAnswer: 'True'
   AnswerTests: omnitest(correctVal='"True"')
   Hint: See 'Loop in R'
   
@@ -28,7 +28,7 @@
 # Question 3
 - Class: cmd_question
   Output: 'Given that "n <- 10", how many times will the loop "for (i in 1:n)" iterate through?'
-  CorrectAnswer: 10
+  CorrectAnswer: '10'
   AnswerTests: omnitest(correctExpr='10')
   Hint: See 'Loop in R'
 
@@ -36,7 +36,7 @@
 - Class: mult_question
   Output: 'In the conditional expression "if (Y) {expression1}", "expression1" will be executed if "Y" is _____'
   AnswerChoices: 'True; False'
-  CorrectAnswer: True
+  CorrectAnswer: 'True'
   AnswerTests: omnitest(correctVal='True')
   Hint: See 'General Conditional Statements in R' 
 
