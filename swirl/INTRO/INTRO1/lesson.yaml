@@ -22,7 +22,7 @@
 - Class: cmd_question
   Output: 'How would you type 8 minus 2?'
   CorrectAnswer: 8 - 2
-  AnswerTests: omnitest(correctExpr= '8 - 2')
+  AnswerTests: omnitest(correctExpr='8 - 2')
   Hint: See 'arithmetic operations'
 
 # Question 2
