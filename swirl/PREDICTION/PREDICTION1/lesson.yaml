@@ -86,4 +86,6 @@
   AnswerTests: omnitest(correctExpr='unique(fruit)')
   Hint: See 'Poll Predictions'
 
-  
+- Class: text
+  Output: 'You''ve successfully completed part 1 of the Prediction course!'
+

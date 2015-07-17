@@ -113,3 +113,5 @@
   AnswerTests: any_of_exprs("social$female <- ifelse(social$sex == \"female\", 1, 0)", "social$female <- ifelse(social$sex == \"male\", 0, 1)")
   Hint: 'See ''Simple Conditional Statements''.'
 
+- Class: text
+  Output: 'You''ve successfully completed part 2 of the Causality course!'

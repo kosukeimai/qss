@@ -92,4 +92,6 @@
   AnswerTests: omnitest(correctExpr='predict(fit2)')
   Hint: See 'Regression with Multiple Predictors'
 
+- Class: text
+  Output: 'You''ve successfully completed part 3 of the Prediction course!'
 

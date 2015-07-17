@@ -91,3 +91,6 @@
   CorrectAnswer: blue <- rgb(red = 0, green = 0, blue = 1)
   AnswerTests: omnitest(correctExpr = 'blue <- rgb(red = 0, green = 0, blue = 1)')
   Hint: See 'Spatial Data in R'
+
+- Class: text
+  Output: 'You''ve successfully completed part 3 of the Discovery course!'

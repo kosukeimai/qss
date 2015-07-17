@@ -122,3 +122,5 @@
   AnswerTests: omnitest(correctExpr='library(utils)')
   Hint: see 'data files'
   
+- Class: text
+  Output: 'You''ve successfully completed part 2 of the Intro course!'

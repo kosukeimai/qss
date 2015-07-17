@@ -137,3 +137,6 @@
   AnswerTests: omnitest(correctExpr='x[1] <- NA')
   Hint: See 'functions'
  
+- Class: text
+  Output: 'You''ve successfully completed part 1 of the Intro course!'
+
