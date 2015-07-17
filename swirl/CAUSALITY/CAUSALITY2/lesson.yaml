@@ -70,7 +70,7 @@
 - Class: cmd_question
   Output: 'Use indexing to find the proportion of fictitious female job applicants who received calls back in "resume".'
   CorrectAnswer: mean(resume$call[resume$sex == "female"])
-  AnswerTests: omnitest(correctExpr = "mean(resume$call[resume$sex == \"female\"])")
+  AnswerTests: omnitest(correctExpr = 'mean(resume$call[resume$sex == "female"])')
   Hint: 'See ''Subsetting the Data in R''.'
 
 - Class: text
@@ -80,7 +80,7 @@
 - Class: cmd_question
   Output: 'To see this, create a new data.frame object called "resumeF" that only consists of female applicants.'
   CorrectAnswer: resumeF <- subset(resume, sex == "female")
-  AnswerTests: any_of_exprs("resumeF <- subset(resume, sex == \"female\")", "resumeF <- subset(resume, sex == \"female\", )")
+  AnswerTests: any_of_exprs('resumeF <- subset(resume, sex == "female")', 'resumeF <- subset(resume, sex == "female", )')
   Hint: 'See ''Subsetting the Data in R''.'
 
 # Question 8
@@ -110,7 +110,7 @@
 - Class: cmd_question
   Output: 'We will now use the ifelse() function to recode sex as a numeric variable. Use ifelse() to create a new variable, "social$female", that equals 1 if the applicant is female and 0 otherwise.'
   CorrectAnswer: social$female <- ifelse(social$sex == "female", 1, 0)
-  AnswerTests: any_of_exprs("social$female <- ifelse(social$sex == \"female\", 1, 0)", "social$female <- ifelse(social$sex == \"male\", 0, 1)")
+  AnswerTests: any_of_exprs('social$female <- ifelse(social$sex == "female", 1, 0)', 'social$female <- ifelse(social$sex == "male", 0, 1)')
   Hint: 'See ''Simple Conditional Statements''.'
 
 - Class: text
