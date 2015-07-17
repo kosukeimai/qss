@@ -35,9 +35,9 @@
 # Question 3
 - Class: mult_question
   Output: 'We can quantify each family''s place in the network using a measure of centrality. One common measure of centrality is known as ''betweenness''. Which of these statements best describes betweenness?'
-  AnswerChoices: 'A node''s betweenness is the proportion of shortest paths between two other nodes that contain it; A node''s betweenness is the number of nodes that are immediately connected to it; A node''s betweenness is a measure of how close it is to other nodes; None of these'
-  CorrectAnswer: A node''s betweenness is the proportion of shortest paths between two other nodes that contain it
-  AnswerTests: omnitest(correctVal = "A node''s betweenness is the proportion of shortest paths between two other nodes that contain it")
+  AnswerChoices: 'betweenness is the proportion of shortest paths between two other nodes that contain it; A node''s betweenness is the number of nodes that are immediately connected to it; A node''s betweenness is a measure of how close it is to other nodes; None of these'
+  CorrectAnswer: betweenness is the proportion of shortest paths between two other nodes that contain it
+  AnswerTests: omnitest(correctVal = 'betweenness is the proportion of shortest paths between two other nodes that contain it')
   Hint: See 'Undirected Graphs and Centrality Measures'.
 
 # Question 4
@@ -89,8 +89,8 @@
 # Question 9
 - Class: cmd_question
   Output: 'Compute the betweenness of each node in "florence".'
-  CorrectAnswer: betweenness(florence)
-  AnswerTests: omnitest(correctExpr = "betweenness(florence)")
+  CorrectAnswer: betweenness(florence.graph)
+  AnswerTests: omnitest(correctExpr = "betweenness(florence.graph)")
   Hint: See ''Undirected Graphs and Centrality Measures''. 
 
 # Question 10

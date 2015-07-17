@@ -11,7 +11,8 @@ lesson_dir <- file.path(path.package("socraticswirl"), "Courses", "DISCOVERY", "
 data_path <- file.path(lesson_dir, "florentine.csv")
 
 # Load data into a variable for the user
-florence <- read.csv(data_path, stringsAsFactors=FALSE)
+florence <- read.csv(data_path, stringsAsFactors=FALSE, row.names = "FAMILY")
+florence <- as.matrix(florence)
 
 install.packages("igraph")
 library(igraph)
