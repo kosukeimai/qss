@@ -1,0 +1,98 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[colorlinks = true,
+            linkcolor = blue,
+            urlcolor  = blue,
+            citecolor = blue,
+            anchorcolor = blue]{hyperref}
+\usepackage{xcolor}
+
+\newcommand{\rexpr}[1]{\texttt{#1}}
+\renewcommand*\rmdefault{phv}
+
+\begin{document}
+
+%%---------------------------------------
+%% Install R
+%%---------------------------------------
+\section{Install R}
+
+To install R, go to \href{http://cran.rstudio.com/}{R Cran}.\\
+\begin{itemize}
+  \item You must have R ($\ge 3.0.2$), to check which version you have, in R type
+  <<eval=FALSE, prompt=TRUE>>=
+  sessionInfo()
+  @
+  
+\end{itemize}
+
+\noindent Video installation tutorials:\\
+\begin{itemize}
+	\item \href{http://youtu.be/mfGFv-iB724}{Windows R installation video}
+	\item \href{http://youtu.be/Icawuhf0Yqo}{Mac R installation video}
+\end{itemize}
+%%---------------------------------------
+%% Install R Studio
+%%---------------------------------------
+\section{Install R Studio}
+R Studio can be found \href{http://www.rstudio.com/products/rstudio/download/}{here}.
+%%---------------------------------------
+%% Install Devtools
+%%---------------------------------------
+\section{Install devtools}
+\begin{itemize}
+  \item In R or R Studio
+  <<eval=FALSE,prompt=TRUE>>=
+  install.packages("devtools")
+  @
+  Check that \rexpr{devtools} has been loaded
+  <<eval=FALSE,prompt=TRUE>>=
+  library(devtools)
+  @
+  Install \rexpr{rparse}:
+  <<eval=FALSE, prompt=TRUE>>=
+  devtools::install_github("dgrtwo/rparse")
+  @
+     \end{itemize}
+%%---------------------------------------
+%% Install Swirl
+%%---------------------------------------
+\section{Install Swirl}
+\begin{itemize}
+  \item In R or R Studio
+  <<eval=FALSE,prompt=TRUE>>=
+  install.packages("swirl")
+  @
+ 
+	\item The following R packages should automatically be loaded along with Swirl (if you have problems later, check that these are all installed):
+	\begin{itemize}
+	 	\item stringr, testthat, httr, yaml, RCurl, digest, tools
+	 \end{itemize} 
+   \end{itemize}
+%%---------------------------------------
+%% Install Swirl
+%%---------------------------------------
+\section{Install SocraticSwirl}
+<<eval=FALSE, prompt=TRUE>>=
+  devtools::install_github("dimagor/socraticswirl", ref = "fsi")
+  @
+
+
+\section{To Run a Lesson}
+<<eval=FALSE,prompt=TRUE>>=
+  library(socraticswirl)
+  socratic_swirl("INTRO", "INTRO1", "netID@princeton.edu", instance = "prod")
+  start()
+  @
+
+If you want to go to a specific question
+<<eval=FALSE,prompt=TRUE>>=
+  exercise(5)
+  @
+  
+  If you want to experiment in R without swirl paying attention:
+  <<eval=FALSE,prompt=TRUE>>=
+  play() # swirl will ignore you
+  nxt() # will regain swirl's attention
+  @
+\end{document}
