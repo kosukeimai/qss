@@ -28,7 +28,7 @@ To install R, go to \href{http://cran.rstudio.com/}{R Cran}.\\
 
 \noindent Video installation tutorials:\\
 \begin{itemize}
-	\item \href{http://youtu.be/mfGFv-iB724}{Windows R installation video}
+  \item \href{http://youtu.be/mfGFv-iB724}{Windows R installation video}
 	\item \href{http://youtu.be/Icawuhf0Yqo}{Mac R installation video}
 \end{itemize}
 %%---------------------------------------
@@ -44,10 +44,6 @@ R Studio can be found \href{http://www.rstudio.com/products/rstudio/download/}{h
   \item In R or R Studio
   <<eval=FALSE,prompt=TRUE>>=
   install.packages("devtools")
-  @
-  Check that \rexpr{devtools} has been loaded
-  <<eval=FALSE,prompt=TRUE>>=
-  library(devtools)
   @
   Install \rexpr{rparse}:
   <<eval=FALSE, prompt=TRUE>>=
@@ -81,16 +77,19 @@ R Studio can be found \href{http://www.rstudio.com/products/rstudio/download/}{h
 \section{To Run a Lesson}
 <<eval=FALSE,prompt=TRUE>>=
   library(socraticswirl)
-  socratic_swirl("INTRO", "INTRO1", "netID@princeton.edu", instance = "prod")
+  socratic_swirl("INTRO", "INTRO1", "netID@princeton.edu")
   start()
   @
+To run a different lesson, change the first two arguments of the socratic\_swirl() call.\newline
 
-If you want to go to a specific question
-<<eval=FALSE,prompt=TRUE>>=
-  exercise(5)
-  @
-  
-  If you want to experiment in R without swirl paying attention:
+
+For example, to run the second lesson in the Causality chapter:
+<<eval=FALSE, prompt=TRUE>>=
+  socratic_swirl("CAUSALITY", "CAUSALITY2", "netID@princeton.edu")
+  start()
+@
+
+If you want to experiment in R without swirl paying attention:
   <<eval=FALSE,prompt=TRUE>>=
   play() # swirl will ignore you
   nxt() # will regain swirl's attention
