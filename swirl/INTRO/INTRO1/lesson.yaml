@@ -13,7 +13,7 @@
   Output: 'If at any time you need help with R, you can type help.start() at the prompt which will open an index of R materials. Many R resources are also available on the web and are easily found through a web search.'
 
 - Class: text
-  Output: 'In this lesson, we will mark off R objects by putting double quotes around them.'
+  Output: 'We will highlight R objects by putting double quotes around them. However, in actual R code, there is usually no need to put quotation marks around objects.'
 
 - Class: text
   Output: 'Let''s start by practicing arithmetic operations by using R as a basic calculator.'
@@ -136,6 +136,14 @@
   CorrectAnswer: 'x[1] <- NA'
   AnswerTests: omnitest(correctExpr='x[1] <- NA')
   Hint: See 'Functions'.
+
+# Question 15 
+- Class: mult_question
+  Output: 'What do you think R will return when we type "mean(x)"?' 
+  AnswerChoices: 'the average of the remaining numbers; the fifth highest number in "x"; a missing value'
+  CorrectAnswer: a missing value
+  AnswerTests: omnitest(correctVal = 'a missing value')
+  Hint: See 'Data Files'. 
 
 - Class: text
   Output: 'You''ve successfully completed part 1 of the Intro course!'
