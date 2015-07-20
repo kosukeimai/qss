@@ -82,7 +82,7 @@
 
 # Question 4
 - Class: mult_question
-  Output: 'What was the callback rate in the data? In other words, about what percent of the fictitious applicants received a call back?'
+  Output: 'Second, looking at the summary of "resume", what was the callback rate in the data? In other words, about what percent of the fictitious applicants received a call back?'
   AnswerChoices: '2%; 16%; 8%; 9%'
   CorrectAnswer: 8%
   AnswerTests: omnitest(correctVal = "8%")
