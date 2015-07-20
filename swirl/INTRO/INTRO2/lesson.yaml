@@ -12,14 +12,14 @@
 # Question 1
 - Class: cmd_question
   Output: 'How would you multiply 4 by 7?'
-  CorrectAnswer: 4 * 7
+  CorrectAnswer: '4 * 7'
   AnswerTests: omnitest(correctExpr='4 * 7')
   Hint: See 'Arithmetic Operations'.
 
 # Question 2
 - Class: cmd_question
   Output: 'How would you multiply 2 by the quantity 9 plus 1?'
-  CorrectAnswer: 2 * (9 + 1)
+  CorrectAnswer: '2 * (9 + 1)'
   AnswerTests: any_of_exprs('2 * (9 + 1)', '(9 + 1) * 2')
   Hint: See 'Arithmetic Operations'.
 
@@ -29,53 +29,45 @@
 # Question 3
 - Class: cmd_question
   Output: 'Create an object called "myobject" and assign the value 10 to it.'
-  CorrectAnswer: myobject <- 10
+  CorrectAnswer: 'myobject <- 10'
   AnswerTests: omnitest(correctExpr='myobject <- 10')
   Hint: See 'Objects'.
 
 # Question 4
 - Class: cmd_question
   Output: 'Subtract 2 from "myobject" and assign it to the object "result".'
-  CorrectAnswer: result <- myobject - 2
+  CorrectAnswer: 'result <- myobject - 2'
   AnswerTests: omnitest(correctExpr = 'result <- myobject - 2')
   Hint: See 'Objects'. 
 
 # Question 5
 - Class: cmd_question
   Output: 'Use a function to find the class of "result".'
-  CorrectAnswer: class(result)
+  CorrectAnswer: 'class(result)'
   AnswerTests: omnitest(correctExpr= 'class(result)')
   Hint: See 'Objects'. 
 
 # Question 6
 - Class: cmd_question
   Output: 'Replace the object "myobject" with the character ''10''.'
-  CorrectAnswer: myobject <- '10'
+  CorrectAnswer: 'myobject <- "10"'
   AnswerTests: omnitest(correctExpr='myobject <- \'10\'')
   Hint: See 'Objects'. 
-
-# Question 7
-- Class: mult_question
-  Output: 'True or False: "myobject" - 2 is equal to "result".'
-  AnswerChoices: 'True; False'
-  CorrectAnswer: False
-  AnswerTests: omnitest(correctVal = 'False')
-  Hint: See 'Objects'.
-
+ 
 - Class: text
   Output: 'A vector called "x" with 10 integers from 1 to 100 has been included in this lesson.'
 
 # Question 8
 - Class: cmd_question
   Output: 'Concatenate the first two elements of "x".'
-  CorrectAnswer: c(x[1],x[2])
+  CorrectAnswer: 'c(x[1],x[2])'
   AnswerTests: omnitest(correctExpr = 'c(x[1],x[2])')
   Hint: See 'Vectors'.
 
 # Question 9
 - Class: cmd_question
   Output: 'Find the maximum of "x".'
-  CorrectAnswer: max(x)
+  CorrectAnswer: 'max(x)'
   AnswerTests: omnitest(correctExpr = 'max(x)')
   Hint: See 'Functions'.  
 
@@ -88,7 +80,7 @@
 # Question 10
 - Class: cmd_question
   Output: 'Divide each element of "world.pop" by 1000 and assign it to an object called "pop.million".'
-  CorrectAnswer: pop.million <- world.pop / 1000
+  CorrectAnswer: 'pop.million <- world.pop / 1000'
   AnswerTests: omnitest(correctExpr='pop.million <- world.pop / 1000')
   Hint: See 'Vectors'.
 
@@ -98,7 +90,7 @@
 # Question 11
 - Class: cmd_question
   Output: 'Using "data_path", read in "data.csv" and assign it to a data frame object called "df".'
-  CorrectAnswer: df <- read.csv(data_path, head = TRUE)
+  CorrectAnswer: 'df <- read.csv(data_path, head = TRUE)'
   AnswerTests: any_of_exprs('df <- read.csv(data_path, head = TRUE)', 'df <- read.csv(data_path, head = T)', 'df <- read.csv(data_path)')
   Hint: See 'Data Files'.
 
@@ -108,37 +100,37 @@
 # Question 12
 - Class: cmd_question
   Output: 'What are the dimensions of "UNpop"?'
-  CorrectAnswer: dim(UNpop)
+  CorrectAnswer: 'dim(UNpop)'
   AnswerTests: omnitest(correctExpr='dim(UNpop)')
   Hint: See 'Data Files'.
 
 # Question 13
 - Class: cmd_question
   Output: 'Call the variable "world.pop" from the UNpop data frame.'
-  CorrectAnswer: UNpop$world.pop
+  CorrectAnswer: 'UNpop$world.pop'
   AnswerTests: omnitest(correctExpr='UNpop$world.pop')
   Hint: See 'Data Files'.
 
 # Question 14
 - Class: cmd_question
   Output: 'Use indexing and/or the $ operator to look at the last four observations of the "year" variable from the "UNpop" data frame.'
-  CorrectAnswer: UNpop$year[4:7]
+  CorrectAnswer: 'UNpop$year[4:7]'
   AnswerTests: any_of_exprs('UNpop[4:7, year]', 'UNpop[4:7, 2]', 'UNpop$year[4:7]', 'UNpop[c(4:7), year]', 'UNpop[c(4:7), 2]', 'UNpop$year[c(4:7)]')
   Hint: See 'Data Files'.
 
 # Question 15
 - Class: cmd_question
   Output: 'R uses a special character to denote comments. Use the "print()" function to write ''____ starts every comment''. Fill in the blank with the appropriate character.'
-  CorrectAnswer: print("# starts every comment")
-  AnswerTests: omnitest(correctExpr = 'print("# starts every comment")')
+  CorrectAnswer: 'print("# starts every comment")'
+  AnswerTests: omnitest(correctExpr='print("# starts every comment")')
   Hint: See 'Data Files'.
 
 # Question 16
 - Class: cmd_question
   Output: 'What would you type to load the R package "utils"?'
-  CorrectAnswer: library(utils)
+  CorrectAnswer: 'library(utils)'
   AnswerTests: omnitest(correctExpr='library(utils)')
   Hint: See 'Data Files'.
-  
+
 - Class: text
   Output: 'You''ve successfully completed part 2 of the Intro course!'
