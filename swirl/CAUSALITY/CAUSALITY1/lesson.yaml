@@ -34,14 +34,14 @@
 
 # Question 3
 - Class: cmd_question
-  Output: 'Translate the following statement using R`s logical values (i.e., "TRUE" and "FALSE") and operators (i.e., !, =, &, and |): True or false is not false.'
+  Output: 'Translate the following statement using R''s logical values (i.e., "TRUE" and "FALSE") and operators (i.e., !, =, &, and |): True or false is not false.'
   CorrectAnswer: TRUE | FALSE == !FALSE
-  AnswerTests: any_of_exprs("TRUE | FALSE == !FALSE", "TRUE | FALSE != FALSE", "(TRUE | FALSE) != FALSE")
+  AnswerTests: any_of_exprs("TRUE | FALSE == !FALSE", "TRUE | FALSE != FALSE", "(TRUE | FALSE) != FALSE", "T|F == !F", "(T|F) == !F")
   Hint: 'See ''Subsetting the Data in R'' (and be sure you use proper capitalization and spacing!).'
 
 # Question 4
 - Class: mult_question
-  Output: 'In order to calculate the mean of a variable we have used the "length()" function in the denominator. The "length()" of a vector is equivalent to ________'
+  Output: 'In order to calculate the mean of a variable we have used the "length()" function in the denominator. The "length()" of a vector is equivalent to __________'
   AnswerChoices: 'the number of elements; the height; the maximum'
   CorrectAnswer: the number of elements
   AnswerTests: omnitest(correctVal = 'the number of elements')
