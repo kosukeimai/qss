@@ -97,7 +97,7 @@
 
 # Question 11
 - Class: cmd_question
-  Output: 'Using "data_path", read in "data.csv" and assign it to a "data.frame" object called "df".'
+  Output: 'Using "data_path", read in "data.csv" and assign it to a data frame object called "df".'
   CorrectAnswer: df <- read.csv(data_path, head = TRUE)
   AnswerTests: any_of_exprs('df <- read.csv(data_path, head = TRUE)', 'df <- read.csv(data_path, head = T)', 'df <- read.csv(data_path)')
   Hint: See 'Data Files'.
