@@ -20,7 +20,7 @@
  
 # Question 2 
 - Class: mult_question
-  Output: 'John Snow used data from _________ to identify the cause of the cause of the 1854 Cholera epidemic.'
+  Output: 'John Snow used _________ to identify the cause of the cause of the 1854 cholera epidemic.'
   AnswerChoices: 'a natural experiment; a randomized control trial; observational data'
   CorrectAnswer: a natural experiment
   AnswerTests: omnitest(correctVal = 'a natural experiment')
@@ -36,7 +36,7 @@
   
 # Question 4
 - Class: mult_question
-  Output: 'Looking at the map of the United States 2008 presidential election results. We have used the __________ feature to help visualize the degree of support for Democrats and Republicans.'
+  Output: 'Look at the map of the United States 2008 presidential election results. Which feature did we use to help visualize the degree of support for Democrats and Republicans?'
   AnswerChoices: 'hue; shade; transparency'
   CorrectAnswer: transparency
   AnswerTests: omnitest(correctVal = 'transparency')
@@ -44,7 +44,7 @@
   
 # Question 5
 - Class: mult_question
-  Output: 'Using color, transparency and size helps us to visualize the Walmart expansion. From this map we can see that Walmart business strategy has ________'
+  Output: 'Using color, transparency and size helps us to visualize the Walmart expansion. Which of these best describes the location of Walmart Supercenters in the U.S.?'
   AnswerChoices: 'Supercenters equally distributed across the U.S.; Supercenters only on the coasts; Supercenters mainly in the Midwest and South'
   CorrectAnswer: Supercenters mainly in the Midwest and South
   AnswerTests: omnitest(correctVal = 'Supercenters mainly in the Midwest and South')
@@ -52,7 +52,7 @@
 
 ## Programming Questions
 - Class: text
-  Output: 'The "maps()" package has been pre-loaded to assist with this lesson.'
+  Output: 'The "maps" package has been pre-loaded to assist with this lesson.'
   
 # Question 6
 - Class: cmd_question
@@ -63,31 +63,31 @@
   
 # Question 7
 - Class: text
-  Output: 'From the "maps()" package we have also laoded the dataset "us.cities".'
+  Output: 'From the "maps" package we have also loaded the dataset "us.cities".'
 
 - Class: cmd_question
-  Output: 'Use the "subset()" function to subset only cities with populations more than 100,000. The variable for population in the "us.cities" dataset is called "pop". Save this to an object called "lrgcities".'
+  Output: 'Using the "subset()" function, create an "data.frame" object called "lrgcities" which only contains cities with populations greater than 100,000. The variable for population in the "us.cities" dataset is called "pop".'
   CorrectAnswer: lrgcities <- subset(us.cities, pop > 100000, )
   AnswerTests: omnitest(correctExpr = 'lrgcities <- subset(us.cities, pop > 100000,)')
   Hint: See 'Spatial Data in R'
 
 # Question 8
 - Class: cmd_question
-  Output: 'Next, we want to save the USA database as a list and not a plot. Save it to an object called usa.'
+  Output: 'Next, we want to save the USA database as a list and not a plot. Save it to an object called "usa".'
   CorrectAnswer: usa <- map(database = "usa", plot = FALSE)
   AnswerTests: omnitest(correctExpr = 'usa <- map(database = "usa", plot = FALSE)')
   Hint: See 'Spatial Data in R'
 
 # Question 9
 - Class: cmd_question
-  Output: 'Save an object using the "map()" function and setting database to "state", regions to "New Jersey" and plot to "FALSE". Save to an object called nj.'
+  Output: 'Call the "map()" function with the database set to "state", regions to "New Jersey" and plot to "FALSE", and save the output to an object called "nj".'
   CorrectAnswer: nj <- map(database = "state", regions = "New Jersey", plot = FALSE)
   AnswerTests: omnitest(correctExpr = 'nj <- map(database = "state", regions = "New Jersey", plot = FALSE)')
   Hint: See 'Spatial Data in R'
 
 # Question 10
 - Class: cmd_question
-  Output: 'Use the "rgb() package to save the hexadecimal code to the object "blue".'
+  Output: 'Use the "rgb()" function to assign the hexadecimal code for the color blue to the object "blue".'
   CorrectAnswer: blue <- rgb(red = 0, green = 0, blue = 1)
   AnswerTests: omnitest(correctExpr = 'blue <- rgb(red = 0, green = 0, blue = 1)')
   Hint: See 'Spatial Data in R'

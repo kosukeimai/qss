@@ -35,7 +35,7 @@
   
 # Question 4  
 - Class: cmd_question
-  Output: 'Replace the object "myobject" with the character ''10'''
+  Output: 'Replace the object "myobject" with the character ''10''.'
   CorrectAnswer: myobject <- '10'
   AnswerTests: omnitest(correctExpr='myobject <- \'10\'')
   Hint: See 'objects'

@@ -56,7 +56,7 @@
 
 # Question 5
 - Class: mult_question
-  Output: 'When do we observe both potential outcomes i.e. y(1) and y(0)?'
+  Output: 'When do we observe both potential outcomes, i.e., Y(1) and Y(0)?'
   AnswerChoices: 'Always; Never; Sometimes'
   CorrectAnswer: Never
   AnswerTests: omnitest(correctVal = "Never")

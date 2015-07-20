@@ -28,7 +28,7 @@
 
 # Question 3
 - Class: mult_question
-  Output: 'Histograms create ______________ along the variable of interest.'
+  Output: 'Histograms create __________ along the variable of interest.'
   AnswerChoices: 'intervals; bins; both are correct'
   CorrectAnswer: both are correct
   AnswerTests: omnitest(correctVal='both are correct')
@@ -36,7 +36,7 @@
 
 # Question 4
 - Class: mult_question
-  Output: 'When printing and saving graphs use ____________ to open a pdf device and _____________ to close the device.'
+  Output: 'When printing and saving graphs use __________ to open a pdf device and __________ to close the device.'
   AnswerChoices: 'pdf() and dev.off(); pdf.open() and dev.close(); pdf.on() and dev()'
   CorrectAnswer: pdf() and dev.off()
   AnswerTests: omnitest(correctVal='pdf() and dev.off()')
@@ -45,7 +45,7 @@
 
 # Question 5
 - Class: mult_question
-  Output: '''Without replacement'' in a survey means each individual is interviewed _________.'
+  Output: '''Without replacement'' in a survey means each individual is interviewed __________.'
   AnswerChoices: 'once; many times; either of these'
   CorrectAnswer: once
   AnswerTests: omnitest(correctVal='once')
@@ -78,7 +78,7 @@
   Hint: See 'Measuring Civilian Victimization during Wartime'
 
 # Question 9
-- Class: cmd_question
+- Class:  
   Output: 'Make a table of proportions in each province by employment status.'
   CorrectAnswer: prop.table(table(afghan$province, afghan$employed))
   AnswerTests: any_of_exprs('prop.table(table(afghan$province, afghan$employed))', 'prop.table(table(afghan$employed, afghan$province))')

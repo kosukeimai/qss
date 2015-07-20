@@ -26,29 +26,13 @@
 
 # Question 2
 - Class: mult_question
-  Output: 'Is "florence" an example of directed or undirected network data?'
-  AnswerChoices: 'florence is undirected; florence is directed; we cannot tell yet'
-  CorrectAnswer: florence is undirected
-  AnswerTests: omnitest(correctVal = 'florence is undirected')
-  Hint: See 'Marriage Network in Renaissance Florence'. 
-
-# Question 3
-- Class: mult_question
-  Output: 'We can quantify each family''s place in the network using a measure of centrality. One common measure of centrality is known as ''betweenness''. Which of these statements best describes betweenness?'
-  AnswerChoices: 'betweenness is the proportion of shortest paths between two other nodes that contain it; A node''s betweenness is the number of nodes that are immediately connected to it; A node''s betweenness is a measure of how close it is to other nodes; None of these'
-  CorrectAnswer: betweenness is the proportion of shortest paths between two other nodes that contain it
-  AnswerTests: omnitest(correctVal = 'betweenness is the proportion of shortest paths between two other nodes that contain it')
-  Hint: See 'Undirected Graphs and Centrality Measures'.
-
-# Question 4
-- Class: mult_question
   Output: 'A node represents __________'
   AnswerChoices: 'an individual unit; a group of units; all the units'
   CorrectAnswer: an individual unit
   AnswerTests: omnitest(correctVal = 'an individual unit')
   Hint: See 'Undirected Graphs and Centrality Measures'.
 
-# Question 5
+# Question 3
 - Class: mult_question
   Output: 'An edge represents the __________'
   AnswerChoices: 'existence of a relationship between any pair of nodes; lack of a relationship between any pair of nodes; nodes that are the same'
@@ -63,42 +47,81 @@
 - Class: text
   Output: 'Let''s explore the adjacency matrix "florence" described in Chapter 5. "florence" has already been loaded for you.'
 
-# Question 6
+# Question 4
 - Class: cmd_question
   Output: 'Verify that "florence" is a square adjacency matrix using the dim() function.'
   CorrectAnswer: dim(florence)
   AnswerTests: omnitest(correctExpr = "dim(florence)")
 
-# Question 7
+# Question 5
 - Class: cmd_question
   Output: 'Now, use indexing to have R output the adjacency (sub)matrix for the first 5 families only.'
   CorrectAnswer: florence[1:5, 1:5]
   AnswerTests: omnitest(correctExpr = "florence[1:5, 1:5]")
   Hint: See ''Marriage Network in Renaissance Florence''. 
 
+# Question 6
+- Class: mult_question
+  Output: 'Is "florence" an example of directed or undirected network data?'
+  AnswerChoices: 'florence is undirected; florence is directed; we cannot tell yet'
+  CorrectAnswer: florence is undirected
+  AnswerTests: omnitest(correctVal = 'florence is undirected')
+  Hint: See 'Marriage Network in Renaissance Florence'. 
+
 - Class: text
   Output: 'Let''s try visualizing "florence" using a graph. We''ve already installed the igraph package for you to use.'
 
-# Question 8
+# Question 7
 - Class: cmd_question 
   Output: 'There are two steps to plotting the network graph of "florence". First, use graph.adjacency() function to produce an "igraph" object called "florence.graph". Be sure to specify that the adjancency matrix is undirected and that there are no marriages within families.'
   CorrectAnswer: florence.graph <- graph.adjacency(florence, mode = "undirected", diag = FALSE)
   AnswerTests: omnitest(correctExpr = 'florence.graph <- graph.adjacency(florence, mode = "undirected", diag = FALSE)')
   Hint: See 'Marriage Network in Renaissance Florence'. 
 
+- Class: cmd_question
+  Output: 'Now use the "plot()" function to visualize the marriage network described by "florence.graph".'
+  CorrectAnswer: plot(florence.graph)
+  AnswerTests: omnitest(correctExpr = 'plot(florence.graph)')
+  Hint: See 'Marriage Network in Renaissance Florence'. 
+
+# Question 8
+- Class: mult_question
+  Output: 'We can quantify each family''s place in the network using a measure of centrality. One common measure of centrality is known as ''betweenness''. Which of these statements best describes betweenness?'
+  AnswerChoices: 'betweenness is the proportion of shortest paths between two other nodes that contain it; A node''s betweenness is the number of nodes that are immediately connected to it; A node''s betweenness is a measure of how close it is to other nodes; None of these'
+  CorrectAnswer: betweenness is the proportion of shortest paths between two other nodes that contain it
+  AnswerTests: omnitest(correctVal = 'betweenness is the proportion of shortest paths between two other nodes that contain it')
+  Hint: See 'Undirected Graphs and Centrality Measures'.
+
 # Question 9
 - Class: cmd_question
-  Output: 'Compute the betweenness of each node in "florence".'
-  CorrectAnswer: betweenness(florence.graph)
-  AnswerTests: omnitest(correctExpr = "betweenness(florence.graph)")
+  Output: 'Compute the betweenness of each node in "florence" and store the result as an object called "between".'
+  CorrectAnswer: between <- betweenness(florence.graph)
+  AnswerTests: omnitest(correctExpr = 'betweenness(florence.graph)')
   Hint: See ''Undirected Graphs and Centrality Measures''. 
 
-# Question 10
+# Question 10 
+- Class: cmd_question
+  Output: 'Now, use the "sort()" function to output a vector that starts with the family with highest betweenness and ends with the family with lowest betweenness.'
+  CorrectAnswer: sort(between, decreasing = TRUE)
+  AnswerTests: omnitest(correctExpr = 'sort(between, decreasing = TRUE)')
+  Hint: See ''Directed Graphs and Centrality''. 
+
+- Class: text
+  Output: 'The "sort()" and "order()" functions are closely related. Whereas "sort()" returns the ordered vector itself, "order()" returns the ordering index vector.'
+
+# Question 11
+- Class: cmd_question
+  Output: 'Verify this by using "order()" and indexing to output the same vector from the previous question.'
+  CorrectAnswer: between[order(between, decreasing = TRUE)]
+  AnswerTests: omnitest(correctExpr = 'between[order(between, decreasing = TRUE)]')
+  Hint: See ''Directed Graphs and Centrality''. 
+
+# Question 12
 - Class: mult_question
-  Output: 'Based on you find, which of the elite Florentine families was least central in the marriage network?'
+  Output: 'Based on you find, which of the elite Florentine families was most central in the marriage network?'
   AnswerChoices: 'Medici; Ridolfi; Bischeri; Strozzi; Pucci'
-  CorrectAnswer: Pucci
-  AnswerTests: omnitest(correctVal = "Pucci")
+  CorrectAnswer: Medici
+  AnswerTests: omnitest(correctVal = "Medici")
   Hint: See 'Undirected Graphs and Centrality Measures'. 
 
 - Class: text

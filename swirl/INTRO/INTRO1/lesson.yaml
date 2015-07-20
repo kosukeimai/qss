@@ -13,7 +13,7 @@
   Output: 'If at any time you need help with R, you can type help.start() at the prompt which will open an index of R materials. Many R resources are also available on the web and are easily found through a web search.'
 
 - Class: text
-  Output: 'We will denote R objects by using double quotes around them.'
+  Output: 'In this lesson, we will mark off R objects by putting double quotes around them.'
 
 - Class: text
   Output: 'Let''s start by practicing arithmetic operations by using R as a basic calculator.'
