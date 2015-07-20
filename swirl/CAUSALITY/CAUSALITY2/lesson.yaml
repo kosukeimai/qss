@@ -64,7 +64,7 @@
 
 ## Programming Questions
 - Class: text
-  Output: 'The external data file "resume.csv" has been loaded for you as the data.frame object "resume". Be sure that you have read the section ''Racial Discrimination in the Labor Market'' and understand what this data file contains.'
+  Output: 'The external data file "resume.csv" has been loaded for you as the data frame object "resume". Be sure that you have read the section ''Racial Discrimination in the Labor Market'' and understand what this data file contains.'
 
 # Question 6
 - Class: cmd_question
