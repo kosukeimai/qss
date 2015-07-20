@@ -56,7 +56,7 @@
 
 # Question 7
 - Class: mult_question
-  Output: True or False: "myobject" - 2 is equal to "result".
+  Output: 'True or False: "myobject" - 2 is equal to "result".'
   AnswerChoices: 'True; False'
   CorrectAnswer: False
   AnswerTests: omnitest(correctVal = 'False')
@@ -130,7 +130,7 @@
 - Class: cmd_question
   Output: 'R uses a special character to denote comments. Use the "print()" function to write ''____ starts every comment''. Fill in the blank with the appropriate character.'
   CorrectAnswer: print("# starts every comment")
-  AnswerTests: omnitest(correctExpr='print("# starts every comment")')
+  AnswerTests: omnitest(correctExpr = 'print("# starts every comment")')
   Hint: See 'Data Files'.
 
 # Question 16
