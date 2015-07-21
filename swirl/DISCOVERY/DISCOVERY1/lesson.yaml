@@ -30,9 +30,9 @@
 # Question 2
 - Class: mult_question
   Output: 'How did unsupervised learning enable researchers to address the disputed authorship of the Federalist Papers?'
-  AnswerChoices: 'Hamilton and Madison preferred to discuss different topics; Hamilton and Madison favored different words to describe the same thing; Madison left coded messages in his prose; All of these'
-  CorrectAnswer: Hamilton and Madison preferred to discuss different topics
-  AnswerTests: omnitest(correctVal = 'Hamilton and Madison preferred to discuss different topics')
+  AnswerChoices: 'Hamilton and Madison preferred to discuss different topics; Hamilton and Madison favored different words; Madison left coded messages in his prose; All of these'
+  CorrectAnswer: Hamilton and Madison favored different words
+  AnswerTests: omnitest(correctVal = 'Hamilton and Madison favored different words')
   Hint: See 'The Disputed Authorship of The Federalist Papers'.
 
 # Question 3
