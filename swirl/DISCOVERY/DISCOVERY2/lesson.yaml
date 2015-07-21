@@ -96,7 +96,7 @@
 - Class: cmd_question
   Output: 'Compute the betweenness of each node in "florence" and store the result as an object called "between".'
   CorrectAnswer: between <- betweenness(florence.graph)
-  AnswerTests: omnitest(correctExpr = 'betweenness(florence.graph)')
+  AnswerTests: omnitest(correctExpr = 'between <- betweenness(florence.graph)')
   Hint: See ''Undirected Graphs and Centrality Measures''. 
 
 # Question 10 
