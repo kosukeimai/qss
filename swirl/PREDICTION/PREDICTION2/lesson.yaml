@@ -19,14 +19,14 @@
 
 # Question 2
 - Class: cmd_question
-  Output: 'The intercept a, in the model y = a + bx + e, represents the average value of y when x is equal to ____________'
+  Output: 'The intercept a in the model y = a + bx + e represents the average value of y when x is equal to _____.'
   CorrectAnswer: '0'
   AnswerTests: omnitest(correctExpr='0')
   Hint: See 'Least squares'
 
 # Question 3
 - Class: mult_question
-  Output: 'We use the regression line to predict the value of the outcome variable y hat, otherwise known as __________'
+  Output: 'We use the regression line to predict the value of the outcome variable y hat, otherwise known as _____'
   AnswerChoices: 'predicted value; fitted value; both of these'
   CorrectAnswer: both of these
   AnswerTests: omnitest(correctVal='both of these')

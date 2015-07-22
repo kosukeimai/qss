@@ -19,7 +19,7 @@
   
 # Question 2
 - Class: mult_question
-  Output: 'To iterate means to'
+  Output: 'To iterate means to _____.'
   AnswerChoices: 'perform repeatedly; perform once; skip over'
   CorrectAnswer: perform repeatedly
   AnswerTests: omnitest(correctVal='perform repeatedly')
@@ -34,7 +34,7 @@
 
 # Question 4
 - Class: mult_question
-  Output: 'In the conditional expression "if (Y) {expression1}", "expression1" will be executed if "Y" is _____'
+  Output: 'In the conditional expression "if (Y) {expression1}", "expression1" will be executed if "Y" is _____.'
   AnswerChoices: 'True; False'
   CorrectAnswer: 'True'
   AnswerTests: omnitest(correctVal='True')
@@ -42,7 +42,7 @@
 
 # Question 5
 - Class: mult_question
-  Output: 'A conditional statement that is nested within a loop is executed _______ the loop.'
+  Output: 'A conditional statement that is nested within a loop is executed _____ the loop.'
   AnswerChoices: 'inside; outside'
   CorrectAnswer: inside
   AnswerTests: omnitest(correctVal='inside')
@@ -81,7 +81,7 @@
 
 # Question 10
 - Class: cmd_question
-  Output: 'Use a function to determine the different types of fruit (we want to see each fruit listed once)' 
+  Output: 'Use a function to determine the different types of fruit (we want to see each fruit listed once).' 
   CorrectAnswer: unique(fruit)
   AnswerTests: omnitest(correctExpr='unique(fruit)')
   Hint: See 'Poll Predictions'
