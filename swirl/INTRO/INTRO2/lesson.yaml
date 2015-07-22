@@ -137,7 +137,7 @@
 - Class: cmd_question
   Output: 'What would you type to load the R package "utils"?'
   CorrectAnswer: 'library(utils)'
-  AnswerTests: omnitest(correctExpr='library(utils)')
+  AnswerTests: any_of_exprs('library(utils)', 'library("utils")')
   Hint: See 'Data Files'.
 
 - Class: text
