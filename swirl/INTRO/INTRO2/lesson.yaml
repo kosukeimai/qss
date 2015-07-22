@@ -123,7 +123,7 @@
 - Class: cmd_question
   Output: 'Use indexing and/or the $ operator to look at the last four observations of the "year" variable from the "UNpop" data frame.'
   CorrectAnswer: 'UNpop$year[4:7]'
-  AnswerTests: any_of_exprs('UNpop[4:7, year]', 'UNpop[4:7, 2]', 'UNpop$year[4:7]', 'UNpop[c(4:7), year]', 'UNpop[c(4:7), 2]', 'UNpop$year[c(4:7)]')
+  AnswerTests: any_of_exprs('UNpop[4:7, "year"]', 'UNpop[4:7, 2]', 'UNpop$year[4:7]', 'UNpop[c(4:7), "year"]', 'UNpop[c(4:7), 2]', 'UNpop$year[c(4:7)]')
   Hint: See 'Data Files'.
 
 # Question 15
