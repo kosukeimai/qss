@@ -68,13 +68,13 @@
 
 # Question 6
 - Class: cmd_question
-  Output: 'Use indexing to find the proportion of fictitious female job applicants who received calls back in "resume".'
+  Output: 'Use indexing to find the callback rate for fictitious female job applicants in "resume".'
   CorrectAnswer: mean(resume$call[resume$sex == "female"])
   AnswerTests: omnitest(correctExpr='mean(resume$call[resume$sex == "female"])')
   Hint: 'See ''Subsetting the Data in R''.'
 
 - Class: text
-  Output: 'We can also find the proportion of fictitious female job applicants receiving calls back using the "subset()" function.'
+  Output: 'We can also find the callback rate for fictitious female job applicants using the "subset()" function.'
 
 # Question 7
 - Class: cmd_question
@@ -85,7 +85,7 @@
 
 # Question 8
 - Class: cmd_question
-  Output: 'Now calculate the proportion of those receiving calls in "resumeF".'
+  Output: 'Now calculate the callback rate in "resumeF".'
   CorrectAnswer: mean(resumeF$call)
   AnswerTests: omnitest(correctExpr="mean(resumeF$call)")
   Hint: 'Be sure to use the $ operator to call variables from your data frame.'
@@ -98,7 +98,7 @@
 
 # Question 9
 - Class: cmd_question
-  Output: 'Try using tapply() to find the turnout rate in 2008 for each experimental group identified by the variable "messages".'
+  Output: 'Try using "tapply()" to find the turnout rate in 2008 for each experimental group identified by the variable "messages".'
   CorrectAnswer: tapply(social$primary2008, social$messages, mean)
   AnswerTests: omnitest(correctExpr="tapply(social$primary2008, social$messages, mean)")
   Hint: 'See ''Social Pressure and Voter Turnout''.'
