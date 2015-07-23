@@ -70,7 +70,7 @@
 - Class: cmd_question
   Output: 'Use indexing to find the callback rate for fictitious female job applicants in "resume".'
   CorrectAnswer: mean(resume$call[resume$sex == "female"])
-  AnswerTests: omnitest(correctExpr='mean(resume$call[resume$sex == "female"])')
+  AnswerTests: any_of_exprs('mean(resume$call[resume$sex == "female"])', 'mean(resume[resume$sex == "female", "call"])', 'mean(resume[resume[, "sex"] == "female", "call"])')
   Hint: 'See ''Subsetting the Data in R''.'
 
 - Class: text
@@ -80,15 +80,15 @@
 - Class: cmd_question
   Output: 'To find the result of Question 6 through a different method, create a new data frame object called "resumeF" that only consists of female applicants.'
   CorrectAnswer: resumeF <- subset(resume, sex == "female")
-  AnswerTests: any_of_exprs('resumeF <- subset(resume, sex == "female")', 'resumeF <- subset(resume, sex == "female", )')
+  AnswerTests: any_of_exprs('resumeF <- subset(resume, sex == "female")', 'resumeF <- subset(resume, subset = (sex == "female"))')
   Hint: 'See ''Subsetting the Data in R''.'
 
 # Question 8
 - Class: cmd_question
   Output: 'Now calculate the callback rate in "resumeF".'
   CorrectAnswer: mean(resumeF$call)
-  AnswerTests: omnitest(correctExpr="mean(resumeF$call)")
-  Hint: 'Be sure to use the $ operator to call variables from your data frame.'
+  AnswerTests: any_of_exprs('mean(resumeF$call)', 'mean(resumeF[, "call"])')
+  Hint: 'See ''Subsetting the Data in R''.'
 
 - Class: text
   Output: 'The external data file "social.csv" has been loaded for you as the data.frame object "social". Be sure that you have read the section ''Social Pressure and Voter Turnout'' and understand what this data file contains.'
@@ -100,17 +100,20 @@
 - Class: cmd_question
   Output: 'Try using "tapply()" to find the turnout rate in 2008 for each experimental group identified by the variable "messages".'
   CorrectAnswer: tapply(social$primary2008, social$messages, mean)
-  AnswerTests: omnitest(correctExpr="tapply(social$primary2008, social$messages, mean)")
+  AnswerTests: any_of_exprs('tapply(social$primary2008, social$messages, mean)', 'tapply(social[, "primary2008"], social[, "messages"], mean)', 'tapply(social$primary2008, social[, "messages"], mean)', 'tapply(social[, "primary2008"], social$messages, mean)')
   Hint: 'See ''Social Pressure and Voter Turnout''.'
 
 - Class: text
   Output: 'Recall that the "ifelse()" function takes three arguments. The first argument is a logical statement that can either be "TRUE" or "FALSE". If it is "TRUE", "ifelse()" returns the second argument. If it is "FALSE", "ifelse()" returns the third argument.'
 
+- Class: text
+  Output: 'We will now use the "ifelse()" function to recode sex as a numeric variable.'
+
 # Question 10
 - Class: cmd_question
-  Output: 'We will now use the "ifelse()" function to recode sex as a numeric variable. Use "ifelse()" to create a new variable, "social$female", that equals 1 if the applicant is female and 0 otherwise.'
+  Output: 'Use "ifelse()" to create a new variable, "social$female", that equals 1 if the applicant is female and 0 otherwise.'
   CorrectAnswer: social$female <- ifelse(social$sex == "female", 1, 0)
-  AnswerTests: any_of_exprs('social$female <- ifelse(social$sex == "female", 1, 0)', 'social$female <- ifelse(social$sex == "male", 0, 1)')
+  AnswerTests: any_of_exprs('social$female <- ifelse(social$sex == "female", 1, 0)', 'social$female <- ifelse(social$sex == "male", 0, 1)', 'social$female <- ifelse(social[, "sex"] == "female", 1, 0)', 'social$female <- ifelse(social[, "sex"] == "male", 0, 1)')
   Hint: 'See ''Simple Conditional Statements''.'
 
 - Class: text
