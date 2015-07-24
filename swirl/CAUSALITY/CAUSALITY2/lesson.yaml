@@ -78,9 +78,9 @@
 
 # Question 7
 - Class: cmd_question
-  Output: 'To find the result of Question 6 through a different method, create a new data frame object called "resumeF" that only consists of female applicants.'
+  Output: 'To find the result of Question 6 through a different method, use "subset()" to create a new data frame object called "resumeF" that only consists of female applicants.'
   CorrectAnswer: resumeF <- subset(resume, sex == "female")
-  AnswerTests: any_of_exprs('resumeF <- subset(resume, sex == "female")', 'resumeF <- subset(resume, subset = (sex == "female"))', 'resumeF <- resume[resume$sex == "female", ]')
+  AnswerTests: any_of_exprs('resumeF <- subset(resume, sex == "female")', 'resumeF <- subset(resume, subset = (sex == "female"))')
   Hint: 'See ''Subsetting the Data in R''.'
 
 # Question 8
