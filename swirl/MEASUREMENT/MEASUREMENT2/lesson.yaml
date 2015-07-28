@@ -65,7 +65,7 @@
 - Class: cmd_question
   Output: 'Take the row means of this matrix'
   CorrectAnswer: rowMeans(x)
-  AnswerTests: any_of_exprs('rowMeans(x)', 'x[, 3]', 'rowSums(x) / 5', 'rowSums(x) / ncol(x)', 'apply(x, 1, mean)', 'c(mean(x[1, ]), mean(x[2, ]))')
+  AnswerTests: any_of_exprs('rowMeans(x)', 'rowSums(x) / ncol(x)', 'apply(x, 1, mean)', 'c(mean(x[1, ]), mean(x[2, ]))')
   Hint: See 'Matrix in R'
 
 # Question 8
