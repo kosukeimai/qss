@@ -81,7 +81,7 @@
 - Class:  cmd_question
   Output: 'Make a table of proportions in each province by employment status.'
   CorrectAnswer: prop.table(table(afghan$province, afghan$employed))
-  AnswerTests: any_of_exprs('prop.table(table(afghan$province, afghan$employed))', 'prop.table(table(afghan$employed, afghan$province))')
+  AnswerTests: any_of_exprs('prop.table(table(afghan$province, afghan$employed))', 'prop.table(table(afghan$employed, afghan$province))', 'prop.table(table(province = afghan$province, employed = afghan$employed))', 'prop.table(table(employed = afghan$employed, province = afghan$province))', 'prop.table(table(Province = afghan$province, Employed = afghan$employed))', 'prop.table(table(Employed = afghan$employed, Province = afghan$province))')
   Hint: See 'Measuring Civilian Victimization during Wartime'
 
 # Question 10
