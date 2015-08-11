@@ -66,16 +66,16 @@
 
 # Question 7
 - Class: cmd_question
-  Output: 'What are the estimated coefficients of "fit"?'
+  Output: 'How do you see the coefficients of "fit"?'
   CorrectAnswer: coef(fit)
-  AnswerTests: omnitest(correctExpr='coef(fit)')
+  AnswerTests: any_of_exprs('coef(fit)', 'fit$coef')
   Hint: See 'Regression with Multiple Predictors'
 
 # Question 8
 - Class: cmd_question
-  Output: 'What is the difference in coefficients between x2 and x1 from fit?'
+  Output: 'Calculate the difference in coefficients between x2 and x1 from fit.'
   CorrectAnswer: coef(fit)["x2"] - coef(fit)["x1"]
-  AnswerTests: omnitest(correctExpr='coef(fit)["x2"] - coef(fit)["x1"]')
+  AnswerTests: any_of_exprs('coef(fit)["x2"] - coef(fit)["x1"]', 'coef(fit)[2] - coef(fit)[1]', 'fit$coef[2] - fit$coef[1]', 'fit$coef["x2"] - fit$coef["x1"]')
   Hint: See 'Regression with Multiple Predictors'
 
 # Question 9
@@ -87,7 +87,7 @@
 
 # Question 10
 - Class: cmd_question
-  Output: 'Predict the fitted values of "fit2".'
+  Output: 'Use a function to predict the fitted values of "fit2".'
   CorrectAnswer: predict(fit2)
   AnswerTests: omnitest(correctExpr='predict(fit2)')
   Hint: See 'Regression with Multiple Predictors'
