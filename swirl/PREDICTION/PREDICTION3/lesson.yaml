@@ -80,9 +80,9 @@
 
 # Question 9
 - Class: cmd_question
-  Output: 'Run the regression again this time including x1 squared as regressor and the intercept and save it to an object called "fit2".'
-  CorrectAnswer: fit2 <- lm(y ~ x1 + (x1)^2 + x2, data = df)
-  AnswerTests: any_of_exprs('fit2 <- lm(y ~ x1 + x1^2 + x2, data = df)', 'fit2 <- lm(y ~ x1 + x2 + x1^2, data = df)')
+  Output: 'Run the regression again this time including x1 squared as regressor and the intercept and save it to an object called "fit2". Make sure to use the I() function when squaring the x1 term.'
+  CorrectAnswer: fit2 <- lm(y ~ x1 + I(x1^2) + x2, data = df)
+  AnswerTests: any_of_exprs('fit2 <- lm(y ~ x1 + I(x1^2) + x2, data = df)', 'fit2 <- lm(y ~ x1 + x2 + I(x1^2), data = df)')
   Hint: See 'Regression with Multiple Predictors'
 
 # Question 10
