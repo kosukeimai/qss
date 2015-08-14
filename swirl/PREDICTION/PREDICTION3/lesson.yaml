@@ -66,7 +66,7 @@
 
 # Question 7
 - Class: cmd_question
-  Output: 'How do you see the coefficients of "fit"?'
+  Output: 'Use an R function to call the coefficients of "fit".'
   CorrectAnswer: coef(fit)
   AnswerTests: any_of_exprs('coef(fit)', 'fit$coef')
   Hint: See 'Regression with Multiple Predictors'
