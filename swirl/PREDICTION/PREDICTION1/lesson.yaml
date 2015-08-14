@@ -26,10 +26,10 @@
   Hint: See 'Loop in R'
   
 # Question 3
-- Class: cmd_question
+- Class: exact_question
   Output: 'Given that "n <- 10", how many times will the loop "for (i in 1:n)" iterate through?'
-  CorrectAnswer: '10'
-  AnswerTests: omnitest(correctExpr='10')
+  CorrectAnswer: 10
+  AnswerTests: omnitest(correctVal='10')
   Hint: See 'Loop in R'
 
 # Question 4
@@ -68,10 +68,10 @@
   
 # Question 8
 - Class: cmd_question
-  Output: 'Compute the remainder of 11 divided by 3.'
-  CorrectAnswer: 11 %% 3
-  AnswerTests: omnitest(correctExpr='11 %% 3')
-  Hint: See 'General Conditional Statements in R'
+  Output: 'Write a for loop that takes the code ''cat(''The object i has length'', i, ''\n'')'' and repeats it for the numbers 1 through 5.'
+  CorrectAnswer: for(i in 1:5){cat("The object i has length", i, "\n")}
+  AnswerTests: omnitest(correctExpr='for(i in 1:5){cat("The object i has length", i, "\n")}')
+  Hint: See 'Loop in R'
 
 # Question 9
 - Class: cmd_question
