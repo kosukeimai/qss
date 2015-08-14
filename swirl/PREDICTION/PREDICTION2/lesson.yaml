@@ -75,6 +75,7 @@
   Output: 'What are the estimated coefficients?'
   CorrectAnswer: coef(fit)
   AnswerTests: omnitest(correctExpr='coef(fit)')
+  AnswerTests: any_of_exprs('coef(fit)', 'fit$coef')
   Hint: See 'Least Squares'
 
 # Question 10
