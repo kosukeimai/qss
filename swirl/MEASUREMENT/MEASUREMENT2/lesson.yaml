@@ -56,7 +56,7 @@
 ## Programming Questions  
 # Question 6
 - Class: cmd_question
-  Output: 'Use "matrix()" to create a matrix of 2 rows by 5 columns filled by row. Assign this matrix to an object called "x".'
+  Output: 'Use "matrix()" to create a matrix of 2 rows by 5 columns filled by row with the numbers 1 through 10. Assign this matrix to an object called "x".'
   CorrectAnswer: x <- matrix(1:10, nrow = 2, ncol = 5, byrow = TRUE)
   AnswerTests: omnitest(correctExpr='x <- matrix(1:10, nrow = 2, ncol = 5, byrow = TRUE)')
   Hint: See 'Matrix in R'

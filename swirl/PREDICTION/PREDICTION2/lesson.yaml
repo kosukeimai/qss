@@ -65,16 +65,16 @@
   
 # Question 8
 - Class: cmd_question
-  Output: 'Call the "fit" object.'
+  Output: 'Type in the "fit" object to see what it looks like.'
   CorrectAnswer: fit
   AnswerTests: omnitest(correctExpr='fit')
   Hint: See 'Least Squares'
 
 # Question 9
 - Class: cmd_question
-  Output: 'What are the estimated coefficients?'
+  Output: 'How do you see the estimated coefficients from the "fit" object?'
   CorrectAnswer: coef(fit)
-  AnswerTests: omnitest(correctExpr='coef(fit)')
+  AnswerTests: any_of_exprs('coef(fit)', 'fit$coef')
   Hint: See 'Least Squares'
 
 # Question 10
