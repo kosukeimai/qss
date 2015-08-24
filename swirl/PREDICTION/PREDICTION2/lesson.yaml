@@ -62,7 +62,7 @@
   CorrectAnswer: fit <- lm(y ~ x)
   AnswerTests: omnitest(correctExpr='fit <- lm(y ~ x)')
   Hint: See 'Least Squares'
-  
+
 # Question 8
 - Class: cmd_question
   Output: 'Type in the "fit" object to see what it looks like.'
@@ -86,4 +86,6 @@
 
 - Class: text
   Output: 'You''ve successfully completed part 2 of the Prediction course!'
-  
+
+
+

@@ -16,7 +16,7 @@
   CorrectAnswer: 'True'
   AnswerTests: omnitest(correctVal='"True"')
   Hint: See 'Loop in R'
-  
+
 # Question 2
 - Class: mult_question
   Output: 'To iterate means to _____.'
@@ -24,11 +24,11 @@
   CorrectAnswer: perform repeatedly
   AnswerTests: omnitest(correctVal='perform repeatedly')
   Hint: See 'Loop in R'
-  
+
 # Question 3
 - Class: exact_question
   Output: 'Given that "n <- 10", how many times will the loop "for (i in 1:n)" iterate through?'
-  CorrectAnswer: 10
+  CorrectAnswer: '10'
   AnswerTests: omnitest(correctVal='10')
   Hint: See 'Loop in R'
 
@@ -58,14 +58,14 @@
   CorrectAnswer: output <- rep(NA, n)
   AnswerTests: omnitest(correctExpr='output <- rep(NA,n)')
   Hint: See 'Loop in R'
-  
+
 # Question 7
 - Class: cmd_question
   Output: 'Use the "cat()" function to put together a phrase and the object "n". The final output should read ''The object n has length 10''.'
   CorrectAnswer: cat("The object n has length", n)
   AnswerTests: omnitest(correctExpr='cat("The object n has length", n)')
   Hint: See 'Loop in R'
-  
+
 # Question 8
 - Class: cmd_question
   Output: 'Write a for loop that takes the code ''cat(''The object i has length'', i, ''\n'')'' and repeats it for the numbers 1 through 5.'
@@ -88,4 +88,6 @@
 
 - Class: text
   Output: 'You''ve successfully completed part 1 of the Prediction course!'
+
+
 
