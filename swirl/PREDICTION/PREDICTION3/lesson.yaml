@@ -54,14 +54,14 @@
 - Class: cmd_question
   Output: 'A dataset called "df" has been pre-loaded for you. It contains three variables x1, x2 and y. Regress y on x1 and x2.'
   CorrectAnswer: lm(y ~ x1 + x2, data = df)
-  AnswerTests: omnitest(correctExpr='lm(y ~ x1 + x2, data = df)')
+  AnswerTests: any_of_exprs('lm(y ~ x1 + x2, data = df)', 'lm(df$y ~ df$x1 + df$x2, data = df)')
   Hint: See 'Regression with Multiple Predictors'
 
 # Question 6
 - Class: cmd_question
   Output: 'Regress y on x1 and x2 again, this time omitting the intercept and saving it to the object "fit".'
   CorrectAnswer: fit <- lm(y ~ -1 + x1 + x2, data = df)
-  AnswerTests: omnitest(correctExpr='fit <- lm(y ~ -1 + x1 + x2, data = df)')
+  AnswerTests: any_of_exprs('fit <- lm(y ~ -1 + x1 + x2, data = df)','fit <- lm(df$y ~ -1 + df$x1 + df$x2, data = df)')
   Hint: See 'Regression with Multiple Predictors'
 
 # Question 7
