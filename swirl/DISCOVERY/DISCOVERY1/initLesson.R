@@ -3,6 +3,9 @@
 # the user's working directory and thus be accessible to them
 # throughout the lesson.
 
+install.packages("tm")
+install.packages("SnowballC")
+install.packages("NLP")
 # Load required packages
 library(tm, SnowballC)
 
