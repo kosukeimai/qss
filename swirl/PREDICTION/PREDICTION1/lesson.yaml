@@ -68,23 +68,30 @@
 
 # Question 8
 - Class: cmd_question
-  Output: 'Write a for loop that takes the code ''cat(''The object i has length'', i, ''\n'')'' and repeats it for the numbers 1 through 5.'
-  CorrectAnswer: for(i in 1:5){cat("The object i has length", i, "\n")}
-  AnswerTests: omnitest(correctExpr='for(i in 1:5){cat("The object i has length", i, "\n")}')
-  Hint: See 'Loop in R'
-
-# Question 9
-- Class: cmd_question
   Output: 'A vector called "fruit" has been loaded for you. Call the vector to see what it looks like.'
   CorrectAnswer: fruit
   AnswerTests: omnitest(correctExpr='fruit')
 
-# Question 10
+# Question 9
 - Class: cmd_question
   Output: 'Use a function to determine the different types of fruit (we want to see each fruit listed once).' 
   CorrectAnswer: unique(fruit)
   AnswerTests: omnitest(correctExpr='unique(fruit)')
   Hint: See 'Poll Predictions'
+
+# Question 10
+- Class: cmd_question
+  Output: 'Here is a variant of the classic ''FizzBuzz'' coding question. Write a for loop that executes the code ''cat(''The following number i is divisible by 3'', i, ''\n'')'' for numbers from 1 to 50 (inclusive) only for the numbers divisible by 3. Include brackets for the conditional.'
+  CorrectAnswer: for(i in 1:50){if (i %% 3 == 0) { cat("The following number i is divisible by 3", i, "\n") }}
+  AnswerTests: omnitest(correctExpr='for(i in 1:50){if (i %% 3 == 0) { cat("The following number i is divisible by 3", i, "\n") }}')
+  Hint: See 'Loop in R' and 'General Conditional Statements in R'. The modulo operator is "%%".
+
+# Question 11
+- Class: cmd_question
+  Output: 'Continuing from the previous FizzBuzz code you wrote, if the number is divisible by 5 (but not by 3), execute the code ''cat(''The following number i is divisible by 5'', i, ''\n'')''.'
+  CorrectAnswer: for(i in 1:50){if (i %% 3 == 0) { cat("The following number i is divisible by 3", i, "\n") } else if (i %% 5 == 0) { cat("The following number i is divisible by 5", i, "\n")}}
+  AnswerTests: omnitest(correctExpr='for(i in 1:50){if (i %% 3 == 0) { cat("The following number i is divisible by 3", i, "\n") } else if (i %% 5 == 0) { cat("The following number i is divisible by 5", i, "\n")}}')
+  Hint: The answer involves adding a single else if condition.
 
 - Class: text
   Output: 'You''ve successfully completed part 1 of the Prediction course!'
