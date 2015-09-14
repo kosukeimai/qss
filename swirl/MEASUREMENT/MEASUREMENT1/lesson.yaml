@@ -20,7 +20,7 @@
 
 # Question 2
 - Class: mult_question
-  Output: 'Listwise deletion will delete an entire observation if __________'.
+  Output: 'Listwise deletion will delete an entire observation if ________.'
   AnswerChoices: 'at least one of its variables has a missing value; if all of its variables are missing; if none of its variables are missing'
   CorrectAnswer: at least one of its variables has a missing value
   AnswerTests: omnitest(correctVal='at least one of its variables has a missing value')
