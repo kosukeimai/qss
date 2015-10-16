@@ -1,0 +1,85 @@
+- Class: meta
+  Course: imai_swirl
+  Lesson: imai_uncertainty1
+  Author: Evan Chow
+  Type: Standard
+  Organization: Princeton University
+  Version: 1.1.1
+
+# Question 1
+- Class: mult_question
+  Output: 'Suppose you wish to test whether education has an effect on wages. What could be the null hypothesis?'
+  AnswerChoices: 'Education has no effect on wages; Education has an effect on wages; Wages has no effect on education; Wages has an effect on education'
+  CorrectAnswer: 'Education has no effect on wages'
+  AnswerTests: omnitest(correctVal='Education has no effect on wages')
+  Hint: See 7.2.2.
+
+# Question 2
+- Class: mult_question
+  Output: 'When hiring, large companies get tons of overqualified applicants, so they are fine with rejecting qualified applicants, though they do want to make sure selected applicants are actually qualified. Do large companies care more about Type I or Type II errors?'
+  AnswerChoices: 'Type I; Type II'
+  CorrectAnswer: 'Type I'
+  AnswerTests: omnitest(correctVal='Type I')
+  Hint: See 7.2.4.
+
+# Question 3
+- Class: mult_question
+  Output: 'You wish to conduct a study to test whether students at your university sleep more hours than the national average. What t-test should you use?'
+  AnswerChoices: 'two sample, one-sided; two sample, two-sided; one sample, one-sided; one sample, two-sided'
+  CorrectAnswer: 'one sample, one-sided'
+  AnswerTests: omnitest(correctVal='one sample, one-sided')
+  Hint: See 7.2.5.
+
+# Question 4
+- Class: exact_question
+  Output: 'You have a coin which you suspect is unfair and instead shows heads with probability 0.7. So, you decide to test this by flipping it exactly once: if heads comes up, you say it is unfair, otherwise, you say it is fair. What is the power of this test (express to the nearest 0.1)?'
+  CorrectAnswer: '0.7'
+  AnswerTests: omnitest(correctVal='0.7')
+  Hint: See 7.2.6.
+
+# Question 5
+- Class: exact_question
+  Output: 'Flipping a coin once is not super informative, you think to yourself, and so decide to flip the coin two more times. If any heads appear, you say the coin is unfair, otherwise, you say it is fair. With these three flips in total, what is the power of the test now (express to the nearest 0.001)?'
+  CorrectAnswer: '0.875'
+  AnswerTests: omnitest(correctVal='0.875')
+  Hint: See 7.2.6.
+
+# Question 6
+- Class: mult_question
+  Output: 'What does the quantity (1 - power) represent?'
+  AnswerChoices: 'probability of true positive; probability of true negative; probability of false positive; probability of false negative'
+  CorrectAnswer: 'probability of false negative'
+  AnswerTests: omnitest(correctVal='probability of false negative')
+  Hint: See 7.2.6.
+
+# Question 7
+- Class: mult_question
+  Output: 'You repeatedly run statistical tests until you get significance. This fallacy is known as:'
+  AnswerChoices: 'multiple testing; repeated error detection; likelihood fallacy; multiple hypothesis detection'
+  CorrectAnswer: 'multiple testing'
+  AnswerTests: omnitest(correctVal='multiple testing')
+  Hint: See 7.2.4.
+
+# Question 8
+- Class: mult_question
+  Output: 'You think a die is unfair, so you roll twice. If you get 2 sixes in a row, you deem it unfair. What is the probability of a Type I error in this test?'
+  AnswerChoices: '1/2; 1/6; 1/12; 1/36'
+  CorrectAnswer: '1/36'
+  AnswerTests: omnitest(correctVal='1/36')
+  Hint: See 7.2.2. Type I error = Prob(reject H0 | H1 is true)
+
+# Question 9
+- Class: mult_question
+  Output: 'You wish to test whether political sentiment of the average Texan is significantly different from that of the average New Yorker. What test would be appropriate?'
+  AnswerChoices: 'one-sample t-test; two-sample z-test; two-sample t-test; one-sample z-test'
+  CorrectAnswer: 'two-sample t-test'
+  AnswerTests: omnitest(correctVal='two-sample t-test')
+  Hint: See 7.2.5.
+
+# Question 10
+- Class: mult_question
+  Output: 'How does a t-test primarily differ from a z-test?'
+  AnswerChoices: 'You do not know the population mean; You do not know the population standard deviation; You do not know the confidence level; You do not know if the data is normally distributed'
+  CorrectAnswer: 'You do not know the population standard deviation'
+  AnswerTests: omnitest(correctVal='You do not know the population standard deviation')
+  Hint: See 7.2.5.
