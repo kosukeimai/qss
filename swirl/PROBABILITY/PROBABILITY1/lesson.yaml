@@ -61,7 +61,7 @@
 
 # Question 8
 - Class: exact_question
-  Output: 'There are three prisoners: A, B, & C. One prisoner, selected uniformly at random, will be pardoned while the other two will be executed. Prisoner A asks the jailer (who knows) to tell him one of the prisoners who will be executed: 'If I will be pardoned, just flip a coin and tell me B or C; if C will be pardoned, tell me B; and if B will be pardoned, tell me C.' The jailer says B will be executed. What is now the probability of C being pardoned (express to the nearest 0.01)?'
+  Output: 'There are three prisoners: A, B, & C. One prisoner, selected uniformly at random, will be pardoned while the other two will be executed. Prisoner A asks the jailer (who knows) to tell him one of the prisoners who will be executed: "If I will be pardoned, just flip a coin and tell me B or C; if C will be pardoned, tell me B; and if B will be pardoned, tell me C." The jailer says B will be executed. What is now the probability of C being pardoned (express to the nearest 0.01)?'
   CorrectAnswer: '0.67'
   AnswerTests: omnitest(correctVal='0.67')
   Hint: See 6.2.2.
