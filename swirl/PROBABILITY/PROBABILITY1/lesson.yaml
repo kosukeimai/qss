@@ -31,11 +31,11 @@
 
 # Question 4
 - Class: mult_question
-  Output: 'Out of all unique anagrams for the word MIMIC (including the original word), what is the probability that the letter I comes first?'
-  AnswerChoices: '0.1; 0.2; 0.3; 0.4'
-  CorrectAnswer: '0.4'
-  AnswerTests: omnitest(correctVal='0.4')
-  Hint: See 6.1.5.
+  Output: 'Which of these is NOT the numerator of a correct use of Bayes Rule and/or the definition of conditional probability, for P(A | B, C)?'
+  AnswerChoices: 'P(B | A, C) P(A | C); P(B, C | A) P(A); P(A, B, C); P(A, B | C) P(C)'
+  CorrectAnswer: 'P(A, B | C) P(C)'
+  AnswerTests: omnitest(correctVal='P(A, B | C) P(C)')
+  Hint: See 6.2.3.
 
 # Question 5
 - Class: exact_question
@@ -47,7 +47,7 @@
 # Question 6
 - Class: mult_question
   Output: 'What was the conditional independence assumption we made in our race + surname example?'
-  AnswerChoices: 'Once we know the label of the output variable we can assume that the predictor variables are independent.; Once we know the probabilities of the predictor variables we can assume that the label of the output variable is independent.; Once we know the probability of the output variable we can assume the probabilities of the predictor variables are independent.'
+  AnswerChoices: 'Once we know the race of the individual, we can assume that the predictor variables are independent.; Once we know the probabilities of the predictor variables we can assume that the race of the individual is independent.; Once we know the probability of the race we can assume the probabilities of the predictor variables are independent.'
   CorrectAnswer: 'Once we know the label of the output variable we can assume that the predictor variables are independent.'
   AnswerTests: omnitest(correctVal='Once we know the label of the output variable we can assume that the predictor variables are independent.')
   Hint: See 6.3.2.
@@ -60,20 +60,28 @@
   Hint: See 6.2.2.
 
 # Question 8
+- Class: mult_question
+  Output: 'There are three prisoners: A, B, & C. One prisoner, selected uniformly at random, will be pardoned while the other two will be executed. Prisoner A asks the jailer (who knows) to tell him one of the prisoners who will be executed: "If I will be pardoned, just flip a coin and tell me B or C; if C will be pardoned, tell me B; and if B will be pardoned, tell me C." The jailer says B will be executed. Using Bayes Rule, what is the numerator of the expression evaluating the probability that C is pardoned?'
+  AnswerChoices: 'P(jailer says B executed | C is pardoned) * P(C is pardoned); P(B is executed | C is pardoned) * P(B is executed); P(C is pardoned | jailer says B is executed) * P(B is executed)'
+  CorrectAnswer: 'P(jailer says B executed | C is pardoned) * P(C is pardoned)'
+  AnswerTests: omnitest(correctVal='P(jailer says B executed | C is pardoned) * P(C is pardoned)')
+  Hint: See 6.2.2.
+
+# Question 9
 - Class: exact_question
-  Output: 'There are three prisoners: A, B, & C. One prisoner, selected uniformly at random, will be pardoned while the other two will be executed. Prisoner A asks the jailer (who knows) to tell him one of the prisoners who will be executed: 'If I will be pardoned, just flip a coin and tell me B or C; if C will be pardoned, tell me B; and if B will be pardoned, tell me C.' The jailer says B will be executed. What is now the probability of C being pardoned (express to the nearest 0.01)?'
+  Output: 'Based on the previous question, What is the probability of C being pardoned (express to the nearest 0.01)?'
   CorrectAnswer: '0.67'
   AnswerTests: omnitest(correctVal='0.67')
   Hint: See 6.2.2.
 
-# Question 9
+# Question 10
 - Class: exact_question
   Output: 'You have a bucket with 2 coins: one is a regular coin, while the other has heads on both sides. You pick a coin at random and flip it: it turns up heads. What is the probability you chose the fair coin (express to the nearest 0.01)?'
   CorrectAnswer: '0.33'
   AnswerTests: omnitest(correctVal='0.33')
   Hint: See 6.2.2.
 
-# Question 10
+# Question 11
 - Class: exact_question
   Output: 'Suppose again, you have that bucket with 2 coins, one a regular coin and the other w/heads on both sides. You pick a coin at random. If at any point you get a tails, you obviously picked the fair coin. If you keep getting heads, you stop & decide it is the unfair coin, but only if the probability you picked the fair coin is less than 1/1000, otherwise you keep flipping. What is the minimum number of times you must flip heads in a row before you can decide it is indeed the unfair coin?'
   CorrectAnswer: '10'
