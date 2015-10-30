@@ -54,12 +54,6 @@
   Hint: See toward the end of 7.3.2.
 
 # Question 7
-- Class: mult_question
-  Output: 'If the correlation between X and Y is 4, the standard deviation of X is 2 and the standard deviation of Y is 2, then what is the covariance between X and Y?'
-  AnswerChoices: '8; 4; 2; 1'
-  CorrectAnswer: '8'
-  AnswerTests: omnitest(correctVal='8')
-  Hint: See 7.3.3.
 
 # Question 8
 - Class: mult_question
