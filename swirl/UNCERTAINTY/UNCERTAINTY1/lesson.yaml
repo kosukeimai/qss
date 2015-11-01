@@ -24,7 +24,7 @@
 
 # Question 3
 - Class: exact_question
-  Output: 'The variance in a population is 5. For samples of size 10, what is the variance in the sample mean (express your answer to the nearest 0.1)?'
+  Output: 'The variance in a population is 5. For a sample of size 10 from that population, what is the variance in the sample mean (express your answer to the nearest 0.1)?'
   CorrectAnswer: '0.5'
   AnswerTests: omnitest(correctVal='0.5')
   Hint: See 7.1.2. Use the Central Limit Theorem.
@@ -69,7 +69,7 @@
 # NOTE: forgot whether to use null hypothesis probability (p=0.5 for fair coin), or the 
 # sample probability you actually get. I think it's the latter but may want to check.
 - Class: mult_question
-  Output: 'Suppose you think a coin is fair with a probability of heads coming up equal to 0.5. For 95% confidence and a margin of error of 0.001, roughly how many flips should you do?'
+  Output: 'Suppose you think a coin is fair with a probability of heads coming up equal to 0.5. For 95% confidence and a margin of error of 0.001, roughly how many flips should you do to test your guess?'
   AnswerChoices: '100000; 500000; 1000000; 5000000'
   AnswerTests: omnitest(correctVal='1000000')
   Hint: See 7.1.3. What does this say about sample size?
