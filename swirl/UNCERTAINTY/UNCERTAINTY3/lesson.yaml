@@ -40,7 +40,7 @@
 
 # Question 5
 - Class: mult_question
-  Output: 'If the correlation between X and Y is 4, the standard deviation of X is 2 and the standard deviation of Y is 2, then what is the covariance between X and Y?'
+  Output: 'If the correlation between X and Y is 4, the standard deviation of X is 1 and the standard deviation of Y is 2, then what is the covariance between X and Y?'
   AnswerChoices: '8; 4; 2; 1'
   CorrectAnswer: '8'
   AnswerTests: omnitest(correctVal='8')
@@ -48,12 +48,18 @@
 
 # Question 6
 - Class: exact_question
-  Output: 'For 765 observations and 8 explanatory variables in a linear regression model, when calculating the p-values for the coefficients how many degrees of freedom will the t-statistic have?'
-  CorrectAnswer: '757'
-  AnswerTests: omnitest(correctVal='757')
+  Output: 'For 765 observations and 8 explanatory variables in a linear regression model with an intercept, when calculating the p-values for the coefficients how many degrees of freedom will the t-statistic have?'
+  CorrectAnswer: '756'
+  AnswerTests: omnitest(correctVal='756')
   Hint: See toward the end of 7.3.2.
 
 # Question 7
+- Class: mult_question
+  Output: 'The variance of a variable can be written as V(x) = E[x^2] - E[x]^2. Using this formula and the properties of the residuals: What is the Variance of the residuals in a linear regression (where e denotes the vector of resisuals)?'
+  AnswerChoices: 'E[e^2] - E[e]^2; E[e^2]; both expressions are correct'
+  CorrectAnswer: 'both expressions are correct'
+  AnswerTests: omnitest(correctVal='both expressions are correct')
+  Hint: See toward the end of 7.3.2.
 
 # Question 8
 - Class: mult_question
