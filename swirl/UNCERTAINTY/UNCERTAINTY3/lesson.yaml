@@ -55,7 +55,7 @@
 
 # Question 7
 - Class: mult_question
-  Output: 'The variance of a variable can be written as V(x) = E[x^2] - E[x]^2. Using this formula and the properties of the residuals: What is the Variance of the residuals in a linear regression (where e denotes the vector of resisuals)?'
+  Output: 'The variance of a variable can be written as V(x) = E[x^2] - E[x]^2. Using that formula and the properties of the residuals: What is a valid expression for the Variance of the residuals in a linear regression (where e denotes the vector of resisuals)?'
   AnswerChoices: 'E[e^2] - E[e]^2; E[e^2]; both expressions are correct'
   CorrectAnswer: 'both expressions are correct'
   AnswerTests: omnitest(correctVal='both expressions are correct')
