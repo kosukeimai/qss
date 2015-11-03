@@ -48,13 +48,8 @@
 - Class: mult_question
   Output: 'What was the conditional independence assumption we made in our race + surname example?'
   AnswerChoices: 'Once we know the race of the individual, we can assume that the predictor variables are independent.; Once we know the probabilities of the predictor variables we can assume that the race of the individual is independent.; Once we know the probability of the race we can assume the probabilities of the predictor variables are independent.'
-<<<<<<< HEAD
-  CorrectAnswer: 'Once we know the label of the output variable we can assume that the predictor variables are independent.'
-  AnswerTests: omnitest(correctVal='"Once we know the label of the output variable we can assume that the predictor variables are independent."')
-=======
   CorrectAnswer: 'Once we know the race of the individual, we can assume that the predictor variables are independent.'
   AnswerTests: omnitest(correctVal='Once we know the race of the individual, we can assume that the predictor variables are independent.')
->>>>>>> refs/remotes/origin/probability1fix
   Hint: See 6.3.2.
 
 # Question 7
