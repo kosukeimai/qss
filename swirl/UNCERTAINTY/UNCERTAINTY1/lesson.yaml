@@ -48,8 +48,8 @@
 - Class:  mult_question
   Output: 'Retrospective bias corrected confidence intervals differ from the prospective bias corrected confindence intervals because:'
   AnswerChoices: 'Actually, both correction methods do not differ at all; In the prospective method the magnitude of the bias is estimated without observing the true parameter values; In practice the retrospective bias corrected confidence intervals have a lower coverage rate; In the prospective method more data points are needed in its estimation'
-  CorrectAnswer: 'In the prospective method he magnitude of bias is estimated without observing the true parameter values'
-  AnswerTests: omnitest(correctVal='In the prospective method he magnitude of bias is estimated without observing the true parameter values')
+  CorrectAnswer: 'In the prospective method the magnitude of bias is estimated without observing the true parameter values'
+  AnswerTests: omnitest(correctVal='In the prospective method the magnitude of bias is estimated without observing the true parameter values')
   Hint: See 7.1.3.
 
 # Question 7
@@ -80,7 +80,7 @@
 
 # Question 11
 - Class: mult_question
-  Output: 'The variance of a binomial distributed random variable is given by: p(1-p). What is the value of p that maximizes the variance of such a variable?'
+  Output: 'The variance of a Bernoulli distributed random variable is given by: p(1-p). What is the value of p that maximizes the variance of such a variable?'
   AnswerChoices: '0; 1; 1/2; 1/4'
   AnswerTests: omnitest(correctVal='1/2')
   Hint: See 7.1.3. 
