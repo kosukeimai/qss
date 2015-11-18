@@ -78,8 +78,9 @@
   Hint: See 7.3.3.
 
 # Question 10
-- Class: exact_question
+- Class: mult_question
   Output: 'What is the relevant parameter if you wanted to set the significance level for confidence intervals within the predict() function (type a single word within double quotes)?'
+  AnswerChoices: 'p-value; level; significance'
   CorrectAnswer: 'level'
   AnswerTests: omnitest(correctVal='level')
   Hint: See 7.3.3.
