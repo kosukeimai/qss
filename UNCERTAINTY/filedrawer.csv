@@ -1,0 +1,222 @@
+"id","journal","DV","IV","max.h"
+1,NA,"Unwritten","Null",12
+2,"COMMUNICATION","Published, non top","Weak",9
+3,"OTHER","Published, non top","Strong",38
+4,"OTHER","Published, non top","Strong",9
+5,"PSYCHOLOGY","Published, non top","Strong",2
+6,"COMMUNICATION","Published, non top","Weak",5
+8,NA,"Unpublished","Weak",4
+10,NA,"Unpublished","Weak",15
+11,"POLITICAL SCIENCE","Published, top","Strong",13
+12,NA,"Unwritten","Weak",31
+13,"POLITICAL SCIENCE","Published, non top","Strong",10
+14,"POLITICAL SCIENCE","Published, top","Strong",23
+15,"COMMUNICATION","Published, top","Strong",46
+16,"PSYCHOLOGY","Published, top","Weak",18
+18,NA,"Unwritten","Strong",24
+19,NA,"Unwritten","Strong",38
+20,"COMMUNICATION","Published, top","Strong",75
+21,"POLITICAL SCIENCE","Published, non top","Weak",22
+22,NA,"Unwritten","Null",116
+23,"PSYCHOLOGY","Published, non top","Strong",31
+25,NA,"Unpublished","Strong",39
+26,"OTHER","Published, non top","Strong",5
+27,"POLITICAL SCIENCE","Published, non top","Strong",16
+30,NA,"Unpublished","Strong",14
+31,NA,"Unpublished","Null",20
+32,"PSYCHOLOGY","Published, top","Strong",6
+33,"POLITICAL SCIENCE","Published, top","Strong",20
+34,NA,"Unpublished","Weak",6
+35,NA,"Unwritten","Strong",36
+37,"OTHER","Published, non top","Weak",17
+38,NA,"Unpublished","Strong",3
+39,NA,"Unpublished","Weak",6
+40,NA,"Unpublished","Strong",4
+41,NA,"Unpublished","Weak",1
+42,"OTHER","Published, non top","Weak",25
+44,"OTHER","Published, non top","Strong",60
+45,NA,"Unwritten","Null",18
+46,"POLITICAL SCIENCE","Published, non top","Null",33
+47,NA,"Unpublished","Null",17
+48,NA,"Unpublished","Strong",2
+49,"COMMUNICATION","Published, top","Strong",11
+50,"POLITICAL SCIENCE","Published, non top","Weak",7
+51,NA,"Unpublished","Weak",6
+55,NA,"Unpublished","Strong",10
+56,NA,"Unwritten","Null",12
+57,"OTHER","Published, non top","Strong",38
+58,NA,"Unpublished","Strong",19
+60,NA,"Unpublished","Strong",55
+61,NA,"Unpublished","Weak",6
+62,NA,"Unwritten","Strong",3
+63,NA,"Unpublished","Strong",19
+64,NA,"Unpublished","Strong",21
+65,"OTHER","Published, non top","Strong",38
+66,"POLITICAL SCIENCE","Published, non top","Strong",5
+67,"OTHER","Published, non top","Weak",3
+68,NA,"Unpublished","Strong",2
+70,"COMMUNICATION","Published, non top","Null",52
+71,"COMMUNICATION","Published, top","Null",36
+72,NA,"Unpublished","Weak",20
+73,NA,"Unpublished","Null",7
+76,"OTHER","Published, non top","Null",33
+77,"POLITICAL SCIENCE","Published, non top","Weak",21
+78,"COMMUNICATION","Published, non top","Weak",16
+80,"PSYCHOLOGY","Published, non top","Weak",19
+81,"COMMUNICATION","Published, top","Strong",15
+84,"OTHER","Published, non top","Strong",47
+86,"POLITICAL SCIENCE","Published, top","Strong",21
+87,NA,"Unpublished","Null",27
+88,"POLITICAL SCIENCE","Published, top","Weak",16
+89,"OTHER","Published, non top","Weak",10
+90,"OTHER","Published, non top","Strong",26
+91,NA,"Unpublished","Strong",5
+92,"OTHER","Published, top","Null",36
+93,NA,"Unpublished","Weak",9
+94,NA,"Unpublished","Weak",12
+95,"OTHER","Published, non top","Strong",50
+96,NA,"Unwritten","Null",35
+97,"PSYCHOLOGY","Published, non top","Weak",43
+98,NA,"Unwritten","Weak",24
+99,NA,"Unpublished","Null",20
+100,"OTHER","Published, non top","Strong",59
+101,"OTHER","Published, top","Strong",12
+102,NA,"Unpublished","Strong",1
+103,"POLITICAL SCIENCE","Published, non top","Weak",7
+104,NA,"Unwritten","Null",14
+105,NA,"Unwritten","Null",73
+106,NA,"Unpublished","Weak",6
+107,"OTHER","Published, non top","Weak",16
+108,"POLITICAL SCIENCE","Published, non top","Strong",17
+109,NA,"Unpublished","Weak",6
+110,NA,"Unpublished","Weak",18
+111,NA,"Unwritten","Null",11
+112,NA,"Unpublished","Weak",5
+113,NA,"Unwritten","Null",17
+114,"PSYCHOLOGY","Published, top","Strong",49
+116,"PSYCHOLOGY","Published, top","Strong",43
+117,NA,"Unwritten","Weak",23
+118,NA,"Unwritten","Null",7
+119,"COMMUNICATION","Published, non top","Strong",9
+120,"COMMUNICATION","Published, top","Weak",6
+121,NA,"Unwritten","Null",31
+122,NA,"Unpublished","Strong",44
+123,"POLITICAL SCIENCE","Published, top","Strong",14
+124,NA,"Unwritten","Null",10
+125,NA,"Unwritten","Weak",52
+126,NA,"Unwritten","Weak",12
+127,NA,"Unwritten","Null",31
+128,"POLITICAL SCIENCE","Published, top","Weak",17
+129,NA,"Unpublished","Weak",17
+130,"POLITICAL SCIENCE","Published, non top","Strong",8
+131,NA,"Unwritten","Null",22
+132,NA,"Unwritten","Null",14
+133,NA,"Unpublished","Weak",30
+135,NA,"Unpublished","Strong",10
+136,"POLITICAL SCIENCE","Published, non top","Strong",3
+137,NA,"Unpublished","Weak",20
+138,"COMMUNICATION","Published, top","Weak",7
+139,"PSYCHOLOGY","Published, non top","Strong",6
+140,NA,"Unwritten","Null",44
+141,NA,"Unpublished","Weak",10
+142,"POLITICAL SCIENCE","Published, non top","Weak",4
+143,"PSYCHOLOGY","Published, non top","Strong",70
+144,NA,"Unpublished","Weak",19
+146,"OTHER","Published, top","Strong",4
+147,"POLITICAL SCIENCE","Published, top","Strong",16
+148,"PSYCHOLOGY","Published, top","Strong",11
+149,NA,"Unwritten","Null",49
+151,"POLITICAL SCIENCE","Published, non top","Weak",21
+152,"POLITICAL SCIENCE","Published, non top","Weak",2
+153,"OTHER","Published, non top","Strong",55
+154,NA,"Unpublished","Strong",3
+155,"POLITICAL SCIENCE","Published, non top","Null",48
+156,"PSYCHOLOGY","Published, non top","Strong",34
+157,NA,"Unpublished","Strong",14
+158,"POLITICAL SCIENCE","Published, non top","Weak",8
+159,NA,"Unwritten","Weak",33
+160,NA,"Unwritten","Weak",12
+161,"OTHER","Published, non top","Weak",9
+163,"OTHER","Published, non top","Strong",4
+164,"COMMUNICATION","Published, top","Null",75
+165,"OTHER","Published, non top","Strong",16
+166,"COMMUNICATION","Published, top","Strong",17
+167,NA,"Unpublished","Weak",12
+168,"POLITICAL SCIENCE","Published, non top","Strong",16
+169,NA,"Unpublished","Weak",0
+170,"POLITICAL SCIENCE","Published, non top","Weak",9
+171,NA,"Unpublished","Strong",34
+173,"POLITICAL SCIENCE","Published, top","Weak",18
+174,NA,"Unpublished","Strong",4
+175,"POLITICAL SCIENCE","Published, non top","Weak",11
+176,"PSYCHOLOGY","Published, top","Strong",45
+177,"OTHER","Published, non top","Weak",7
+178,"POLITICAL SCIENCE","Published, top","Null",20
+179,"OTHER","Published, non top","Strong",9
+180,NA,"Unpublished","Weak",6
+181,"COMMUNICATION","Published, non top","Weak",7
+182,"POLITICAL SCIENCE","Published, non top","Weak",39
+183,NA,"Unwritten","Null",4
+184,"OTHER","Published, top","Weak",12
+185,NA,"Unpublished","Weak",31
+186,NA,"Unpublished","Strong",4
+187,"POLITICAL SCIENCE","Published, top","Weak",3
+188,"POLITICAL SCIENCE","Published, non top","Strong",8
+190,"POLITICAL SCIENCE","Published, non top","Weak",2
+191,"POLITICAL SCIENCE","Published, non top","Null",12
+192,NA,"Unpublished","Weak",1
+193,NA,"Unpublished","Null",22
+194,NA,"Unpublished","Strong",9
+195,NA,"Unwritten","Null",48
+196,"PSYCHOLOGY","Published, non top","Weak",70
+197,"POLITICAL SCIENCE","Published, top","Strong",7
+198,NA,"Unwritten","Weak",24
+199,NA,"Unwritten","Null",7
+200,NA,"Unpublished","Strong",40
+201,"OTHER","Published, non top","Weak",52
+202,NA,"Unpublished","Strong",2
+203,NA,"Unpublished","Weak",52
+204,NA,"Unwritten","Null",4
+205,"POLITICAL SCIENCE","Published, non top","Strong",5
+206,"POLITICAL SCIENCE","Published, non top","Strong",35
+207,NA,"Unpublished","Weak",22
+208,"OTHER","Published, non top","Weak",43
+209,NA,"Unpublished","Strong",7
+210,NA,"Unpublished","Weak",8
+211,NA,"Unwritten","Null",25
+212,NA,"Unwritten","Null",9
+213,"OTHER","Published, non top","Weak",16
+214,NA,"Unpublished","Strong",2
+215,NA,"Unpublished","Strong",1
+216,NA,"Unwritten","Null",71
+217,"POLITICAL SCIENCE","Published, non top","Strong",18
+218,NA,"Unwritten","Null",5
+219,"POLITICAL SCIENCE","Published, non top","Strong",22
+220,"POLITICAL SCIENCE","Published, top","Weak",9
+221,"COMMUNICATION","Published, top","Strong",78
+222,"POLITICAL SCIENCE","Published, non top","Weak",7
+224,"OTHER","Published, non top","Weak",5
+225,"PSYCHOLOGY","Published, top","Strong",24
+226,NA,"Unwritten","Null",59
+227,"OTHER","Published, top","Null",39
+228,NA,"Unwritten","Weak",60
+229,NA,"Unpublished","Weak",6
+230,NA,"Unwritten","Null",10
+231,"OTHER","Published, non top","Strong",72
+232,NA,"Unpublished","Strong",4
+233,NA,"Unpublished","Weak",14
+234,NA,"Unwritten","Null",11
+235,NA,"Unpublished","Strong",23
+237,NA,"Unpublished","Strong",3
+238,NA,"Unpublished","Null",17
+239,NA,"Unpublished","Weak",4
+240,NA,"Unpublished","Weak",7
+241,NA,"Unwritten","Null",8
+242,NA,"Unpublished","Weak",5
+243,"PSYCHOLOGY","Published, non top","Strong",54
+244,NA,"Unpublished","Strong",10
+245,NA,"Unwritten","Null",36
+246,"OTHER","Published, non top","Strong",11
+247,NA,"Unwritten","Null",5
+248,NA,"Unwritten","Weak",7
+249,NA,"Unpublished","Strong",6
