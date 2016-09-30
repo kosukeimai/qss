@@ -1,5 +1,5 @@
 # qss
-Supplementary Materials for the book manuscript, ``Quantitative Social Science: Introduction,'' to be published from Princeton University Press in 2017
+Supplementary Materials for the book manuscript, ``Quantitative Social Science: An Introduction,'' to be published from Princeton University Press in 2017
 
 This repository contains the data sets for all of the chapters.  See another repo [qss-swirl](../../../qss-swirl) for swirl exercises.
 
