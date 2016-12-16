@@ -1,7 +1,7 @@
 # Chapter 2: Causality
 
 ## R scripts
-1. The script for the entire chapter: [intro.R](intro.R)
+1. The script for the entire chapter: [causality.R](causality.R)
 
 ## Data sets
 1. Resume experiment data (Table 2.1): [resume.csv]
