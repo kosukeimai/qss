@@ -3,7 +3,7 @@ Supplementary Materials for the book manuscript, **[Quantitative Social Science:
 
 The book is based on the teaching philosophy summarized in the talk I gave at the Nuffield Foundation's [Q-Step Programme](http://www.nuffieldfoundation.org/q-step): Have a look at the [talk slides](http://imai.princeton.edu/talk/files/Q-Step15.pdf)
 
-This repository contains the data sets for all of the chapters.  See another repo [qss-swirl](../../../qss-swirl) for swirl exercises.
+This repository contains the data sets and **R** scripts for all of the chapters.  See another repo [qss-swirl](../../../qss-swirl) for swirl exercises.
 
 1. [Introduction](INTRO)
 2. [Causality](CAUSALITY)
