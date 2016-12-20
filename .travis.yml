@@ -1,11 +1,17 @@
 
-language: bash
+language: c
 warnings_are_errors: true
 sudo: required
 
 script: 
    - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
    - chmod 755 ./travis-tool.sh
+   - ./travis-tool.sh bootstrap
+   - ./travis-tool.sh install_deps
+   - ./travis-tool.sh install_r stringr lubridate
+   - Rscript -e 'library(stringr); library(lubridate)'
+   - ./travis-tool.sh install_r lintr foreign
+   - Rscript -e 'library(lintr); library(foreign)'
    - echo "Execute the R testing scripts ..."
    - cd INTRO; Rscript intro.R; cd ..
 
@@ -13,6 +19,7 @@ env:
   global: 
     - CRAN: http://cran.rstudio.com
 
+Depends: R (>= 3.0.2)
 # the R packages used in the testing scripts should be added here 
 r_packages: swirl, lintr, foreign
 
