@@ -6,13 +6,14 @@ sudo: required
 script: 
    - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
    - chmod 755 ./travis-tool.sh
-   - ./travis-tool.sh install_aptget r-cran-foreign
+   - echo "Execute the R testing scripts ..."
    - cd INTRO; Rscript intro.R; cd ..
 
 env:
   global: 
     - CRAN: http://cran.rstudio.com
 
+# the R packages used in the testing scripts should be added here 
 r_packages: swirl, lintr, foreign
 
 notifications:
