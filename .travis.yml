@@ -1,5 +1,5 @@
 
-language: r
+language: bash
 warnings_are_errors: true
 sudo: required
 
