@@ -8,6 +8,10 @@ env:
    - CRAN: http://cran.rstudio.com
 
 script: 
+   - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
+   - chmod 755 ./travis-tool.sh
+   - ./travis-tool.sh install_aptget r-cran-lintr
+   - ./travis-tool.sh install_aptget r-cran-foreign
    - cd INTRO; Rscript intro.R; cd ..
 
 notifications:
