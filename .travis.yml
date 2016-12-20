@@ -1,0 +1,17 @@
+
+language: r
+warnings_are_errors: true
+sudo: required
+
+env:
+ global:
+   - CRAN: http://cran.rstudio.com
+
+script: 
+   - cd INTRO; Rscript intro.R; cd ..
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
+

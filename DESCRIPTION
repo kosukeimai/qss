@@ -1,0 +1,11 @@
+Description: Test swirl course and lesson files, yaml etc, at the time of submitting.
+URL: http://swirlstats.com
+Depends:
+    R (>= 3.0.2)
+Imports:
+    swirl,
+    lintr,
+    foreign
+
+License: GPL-3
+
