@@ -7,8 +7,8 @@ script:
    - chmod 755 ./travis-tool.sh
    - ./travis-tool.sh bootstrap
    - echo "Install the dependency R packages used in the test scripts ..."
-#   - ./travis-tool.sh install_r lintr 
-#   - ./travis-tool.sh install_r foreign
+   - ./travis-tool.sh install_r foreign
+   - ./travis-tool.sh install_r lintr 
    - Rscript -e 'library(lintr); library(foreign)'
    - echo "Execute the R testing scripts ..."
    - cd INTRO; Rscript intro.R; cd ..
@@ -23,8 +23,6 @@ script:
 env:
   global: 
     - CRAN: http://cran.rstudio.com
-
-r_packages: lintr, foreign
 
 notifications:
   email:
