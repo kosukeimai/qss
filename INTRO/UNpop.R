@@ -5,5 +5,5 @@
 ##
 library(foreign)
 UNpop <- read.csv("UNpop.csv")
-UNpop$world.pop <- UNpop$world.pop / 1000 # population in millions 
+UNpop$world.pop <- UNpop$world.pop / 1000 # population in millions
 write.dta(UNpop, file = "UNpop.dta")
