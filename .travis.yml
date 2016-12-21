@@ -1,19 +1,24 @@
-
-language: bash
+language: c
 warnings_are_errors: true
 sudo: required
-
-env:
- global:
-   - CRAN: http://cran.rstudio.com
 
 script: 
    - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
    - chmod 755 ./travis-tool.sh
-   - ./travis-tool.sh install_aptget r-cran-foreign
-   - Rscript -e 'install.packages("lintr")'
-   - Rscript -e 'install.packages("foreign")'
+   - ./travis-tool.sh bootstrap
+   - echo "Install the dependency R packages used in the test scripts ..."
+   - ./travis-tool.sh install_r foreign
+   - ./travis-tool.sh install_r lintr 
+   - Rscript -e 'library(lintr); library(foreign)'
+   - echo "Execute the R testing scripts ..."
    - cd INTRO; Rscript intro.R; cd ..
+
+#
+#  Note: (1) For each unique R package X in library(X) for any test scripts, install X:
+#            ./travis-tool.sh install_r X
+#        (2) For each test script s.R under a subdirectory D, execute the script s.R:
+#            cd D; Rscript s.R; cd ..
+#
 
 env:
   global: 
