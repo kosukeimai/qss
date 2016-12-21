@@ -178,5 +178,5 @@ UNpop <- read.csv("UNpop.csv")
 UNpop$world.pop <- UNpop$world.pop / 1000  # population in millions
 write.dta(UNpop, file = "UNpop.dta")
 
-## library(lintr)
-## lint("UNpop.R")
+library(lintr)
+lint("UNpop.R")
