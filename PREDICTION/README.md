@@ -12,3 +12,7 @@
 6. Women as Policy Makers Experiment Data (Table 4.7): [women.csv] (women.csv)
 7. Revisiting the Social Pressure Experiment Data (Table 2.4): [social.csv] (social.csv)
 8. British Parliament Member Personal Wealth Data (Table 4.8): [MPs.csv] (MPs.csv)
+9. 2008 Intrade Prediction Market Data (Table 4.9): [intrade08.csv] (intrade08.csv)
+10. 2012 Intrade Prediction Market Data (Table 4.9): [intrade12.csv] (intrade12.csv)
+11. Progresa Program Data (Table 4.11): [progresa.csv] (progresa.csv)
+12. Brazilian Government Transfer Data (Table 4.12): [transfer.csv] (transfer.csv) 
