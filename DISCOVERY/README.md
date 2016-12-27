@@ -13,6 +13,6 @@
 7. Walmart Store Opening Data (Table 5.5): [walmart.csv] (walmart.csv)
 
 ### Exercises
-1. Analyzing the Preambles of Constitutions (Table 5.7): [constitution.csv] (constitution.csv)
+1. Analyzing the Preambles of Constitutions (Table 5.6): [constitution.csv] (constitution.csv)
 2. International Trade Network Data (Table 5.7): [trade.csv] (trade.csv)
 3. County-Level US Presidential Election Data (Table 5.8): [elections.csv] (elections.csv)
