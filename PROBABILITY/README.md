@@ -11,6 +11,5 @@
 4. 2008 US Presidential Election Data (Table 4.1): [pres08.csv] (pres08.csv)
 
 ### Exercises
-1. The Mathematics of Enigma
-2. Intrade Betting Market Data (Table 4.9): [intrade08.csv] (intrade08.csv)
-3. Russian and Canadian Election Data (Table 6.5): [fraud.Rdata] (fraud.Rdata)
+1. Intrade Betting Market Data (Table 4.9): [intrade08.csv] (intrade08.csv)
+2. Russian and Canadian Election Data (Table 6.5): [fraud.Rdata] (fraud.Rdata)
