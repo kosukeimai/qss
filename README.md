@@ -12,3 +12,5 @@ This repository contains the data sets and **R** scripts for all of the chapters
 5. [Discovery](DISCOVERY)
 6. [Probability](PROBABILITY)
 7. [Uncertainty](UNCERTAINTY)
+
+There is also a useful [Tydyverse](http://r4ds.had.co.nz/) version of the QSS code created by [Jeff Arnold](https://github.com/jrnold/) and posted at https://jrnold.github.io/qss-tidy/ (the source code is available at https://github.com/jrnold/qss-tidy).
