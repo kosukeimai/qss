@@ -13,4 +13,17 @@ This repository contains the data sets and **R** scripts for all of the chapters
 6. [Probability](PROBABILITY)
 7. [Uncertainty](UNCERTAINTY)
 
+The data and code in this repository are also available as an R package [`qss`](https://github.com/kosukeimai/qss-package).  To install this package, use the followign command:
+
+    install.packages("devtools") # if you have not installed devtools package already
+    devtools::install_github("kosukeimai/qss-package")
+    
+Once the `qss` package is installed, you can use the data and code:
+
+    library(qss)
+    data(package = "qss") # list all data sets
+    demo(package = "qss") # list all code
+    data(elections) # load the elections data
+    demo(causality) # run the code in the Causality chapter
+
 There is also a [tidyverse](http://tidyverse.org/) version of the QSS code created by [Jeff Arnold](https://github.com/jrnold/) and posted at https://jrnold.github.io/qss-tidy/ (the source code is available at https://github.com/jrnold/qss-tidy).
