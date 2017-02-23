@@ -13,7 +13,7 @@ This repository contains the data sets and **R** scripts for all of the chapters
 6. [Probability](PROBABILITY)
 7. [Uncertainty](UNCERTAINTY)
 
-The data and code in this repository are also available as an R package [`qss`](https://github.com/kosukeimai/qss-package).  To install this package, use the followign command:
+The data and code in this repository are also available as an R package [`qss`](https://github.com/kosukeimai/qss-package).  To install this package, use the following command:
 
     install.packages("devtools") # if you have not installed devtools package already
     devtools::install_github("kosukeimai/qss-package")
