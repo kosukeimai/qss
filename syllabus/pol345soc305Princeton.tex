@@ -1,0 +1,592 @@
+\documentclass[11pt]{article}
+
+% == margins
+\addtolength{\hoffset}{-0.75in} \addtolength{\voffset}{-0.75in}
+\addtolength{\textwidth}{1.5in} \addtolength{\textheight}{1.5in}
+
+\usepackage{url}
+\usepackage{amssymb}
+
+%% === hyperref options ===
+\usepackage{color}
+\usepackage[bookmarks=true, bookmarksopen=true, linkcolor=webred]{hyperref}
+\usepackage{chngpage}
+\definecolor{myblue}{rgb}{0,0.1,0.6}
+\definecolor{myred}{rgb}{.803, .36,.36}
+\newcommand{\mcomment}[1]{\textcolor{myred}{[#1 -M]}}
+\newcommand{\kcomment}[1]{\textcolor{myblue}{[#1 -K]}}
+%% === document starts here
+
+\title{\bf POL345/SOC305: Introduction to Quantitative\\ Social
+  Science} \author{{\bf \Large Fall 2016} \\ \\ Margaret Frye (Sociology)
+  \hspace{1in} Kosuke Imai (Politics)} \date{Princeton University}
+
+\begin{document}
+
+\newcommand\R{{\textsf R}}
+\newcommand\Rst{\textsf{RStudio}}
+\newcommand\Rmarkdown{\textsf{Rmarkdown}}
+\newcommand\QSS{\textsf{QSS}}
+
+
+\maketitle
+
+Would universal health insurance improve the health of the poor? Do
+patterns of arrests in US cities show evidence of racial profiling?
+What accounts for who votes and their choice of candidates? This
+course will teach students how to address these and other social
+science questions by analyzing quantitative data. The course
+introduces basic principles of statistical inference and programming
+skills for data analysis. The goal is to provide students with the
+foundation necessary to analyze data in their own research and to
+become critical consumers of statistical claims made in the news
+media, in policy reports, and in academic research.
+
+\section{Who Should and Should Not Take This Course}
+
+Here is a checklist to consider when deciding whether to take
+POL345/SOC305: 
+
+\begin{itemize}
+\item I am a sociology or politics concentrator (other students who
+  are interested in quantitative social science are welcome too).
+
+\item In addition to developing my knowledge of statistical concepts,
+  I want to learn the computational skills needed to manipulate and
+  analyze data.
+
+\item I am willing to spend considerable time {\it outside} of
+  classroom each week in order to keep up with the course materials.
+
+\item I would like to {\it use} statistics in my junior paper, senior
+  thesis, and/or job in the future.
+
+\end{itemize}
+Please note that there are a number of alternative course offerings
+available for satisfaction of the QR and politics analytical
+requirements, and you should evaluate carefully whether this course is
+appropriate for your interests.  Other introductory statistics courses
+include ECO202, ORF245, PSY251, and WWS200.
+
+\section{POL345/SOC305 and Beyond}
+
+POL345/SOC305 is an introductory statistics and data analysis course,
+and we encourage students who take this course to continue using
+statistics. Alumni of previous statistics courses that we have taught
+have used statistics in their senior thesis and won best thesis
+prizes, and many have sent us emails about their encounters with
+statistics in their summer internships and post-graduate career.  In
+today's information world, data are available everywhere and the role
+of statistics is rapidly increasing in academia, business, medicine,
+public policy, and many other parts of society.  We echo the
+message of {\it The New York Times} which published an article
+entitled
+``\href{http://www.nytimes.com/2009/08/06/technology/06stats.html?_r=1}{For
+  Today's Graduate, Just One Word: Statistics}.''
+
+\section{Contact Information}
+
+\begin{tabular}{lp{1.5in}p{1.75in}}
+  \multicolumn{2}{l}{\textbf{Course Instructors:}}\\
+  {\sc Name} &  Margaret Frye & Kosuke Imai  \\
+  {\sc Office} &  Wallace Hall 147 & Corwin Hall 036    \\
+  {\sc Office Hours} & Wednesdays 1:15--3:00 & Tuesdays 2:00--3:30\\ & (sign up at \href{https://wass.princeton.edu/}{WASS}) & (sign up at \href{https://wass.princeton.edu/}{WASS}) \\
+  {\sc Email} & \href{mailto:mfrye@princeton.edu}{mfrye@princeton.edu} & \href{mailto:kimai@princeton.edu}{kimai@princeton.edu} \\
+\end{tabular}
+\vspace{5mm}
+
+\noindent
+\begin{tabular}{lp{2in}p{2in}}
+   \textbf{Preceptors:}\\
+  {\sc Name} & Herrissa Lamothe & Mariana Campos Horta \\
+  {\sc Office} & Wallace Hall 127 & Wallace Hall 225 \\
+  {\sc Office Hours} & Fridays 2:00--3:30 & Mondays 11:00--12:30 \\
+  {\sc Email} & \href{mailto:hlamothe@princeton.edu}{hlamothe@princeton.edu} & \href{mcampos@princeton.edu}{mcampos@princeton.edu} \\
+  \\
+  {\sc Name} & Adeline Lo & Alexander Kustov \\
+  {\sc Office} & Corwin Hall 037 & Corwin Hall 027 \\
+  {\sc Office Hours} & Thursdays 9:30--11 & Wednesdays 11:45--1:15 \\
+  {\sc Email} & \href{adelinel@princeton.edu}{adelinel@princeton.edu} & \href{akustov@princeton.edu}{akustov@princeton.edu} \\
+  \\ 
+  {\sc Name} & Diana Stanescu & Daniela Urbina Julio \\
+  {\sc Office} & Corwin Hall 235A & Wallace Hall 284 \\
+  {\sc Office Hours} & Tuesdays 4:30--6:00 & Thursdays 11:00--12:30 \\
+  {\sc Email} & \href{stanescu@princeton.edu}{stanescu@princeton.edu} & \href{djulio@princeton.edu}{djulio@princeton.edu} \\
+  \\
+  {\sc Name} & Yo-Yo Chen & Hannah Korevaar \\
+  {\sc Office} & Wallace Hall 284 & Wallace Hall 227 \\
+  {\sc Office Hours} & Wednesdays 16:30--18:00 & Tuesdays 10:00--11:30 \\
+  {\sc Email} & \href{sc37@princeton.edu}{sc37@princeton.edu} & \href{hannahmk@princeton.edu}{hannahmk@princeton.edu} \\
+  \\
+
+\end{tabular}
+\vspace{5mm}
+
+\noindent 
+\begin{tabular}{lp{1.5in}p{1.5in}}
+  \multicolumn{2}{l}{\textbf{Workshop Instructors:}}\\
+  {\sc Name} & Yunkyu Sohn &  Ethan Fosse \\
+  {\sc Office} & Corwin Hall 037 & Wallace Hall 108  \\
+  {\sc Office Hours} & Wednesdays 4:30--6:00 & Fridays 2:00--3:00 \\
+  {\sc Email} & \href{mailto:ysohn@princeton.edu}{ysohn@princeton.edu}  & \href{mailto:efosse@princeton.edu}{efosse@princeton.edu} \\
+\end{tabular}
+\vspace{5mm}
+
+In addition to office hours, each of us is also available by
+appointment.  Questions about lectures, readings, problem sets, and
+exams should be posted on \textsf{Piazza} so that other students in
+the class can benefit from them.  For other matters, the best way to
+reach us is via e-mail.  You can usually expect a response within 24
+hours.
+
+\section{Logistics}
+\begin{itemize}
+
+\item Lectures: Mondays and Wednesdays 3:30pm--4:20pm, Friend Center 101 \\
+  Lectures will often contain in-class data analysis exercises.
+  Students should bring their own laptop to each lecture.  Lecture
+  slides will be posted shortly after lecture at Blackboard.
+
+\item Precepts: All precepts will be held in a computer lab. There is
+  no need to bring your own laptop, although it is fine for you to do
+  so. Precepts will start meeting on Wednesday, September 21 and will
+  meet at the following times and locations:
+  \\
+
+\begin{adjustwidth}{-3.0em}{0.0em}
+\begin{center}
+\begin{tabular}{llllllllllll}	
+  Precept: & P01 & P02A; P02B & P03A; P03B & P04A; P04B \\
+  Day: & Wednesday & Thursday & Thursday & Thursday\\
+  Time: & 7:30-8:50pm & 11:00-12:20am & 1:30-2:50pm & 3:00-4:20pm \\
+  Location: & Robertson 011 & Frist 309; Friend 007 & Friend 005; 007 & Friend 005; 007 \\
+  \\
+  Precept: & P07A; P07B & P05A; P05B & P06A\\
+  Day: & Thursday & Friday & Friday  \\
+  Time: & 7:30-8:50pm & 11:00-12:20am & 1:30-2:50pm\\
+  Location: & Frist 307; Friend 007 & Frist 309; Friend 007 & Frist 309 \\
+\end{tabular}
+\end{center}
+\end{adjustwidth}
+
+\item Precept Assignments: You will be able to select your preferred
+  precept on Tiger Hub from Wednesday (9/14) at 9am to Friday (9/16)
+  at 7pm. If you do not choose a precept by then, we will assign you
+  one. We will also change some assignments to ensure that precept
+  sizes are balanced. You will be notified of your final precept
+  assignment on Monday (9/19).
+\end{itemize}
+
+\section{Course Requirements}
+
+The course requirements consist of the following four components:
+
+\begin{itemize}
+\item {\bf Participation (10\%):} Students should actively participate
+  in all aspects of the course.  Class participation will be judged
+  based on questions asked/answered during the lectures, the precepts,
+  and on \textsf{Piazza}.
+
+\item {\bf Online programming assignments (10\%):} There will be
+  weekly online programming assignments.  They will not be graded but
+  students are expected to complete them on time. {\bf Collaboration
+    is permitted}. These assignments are directly based on the
+  textbook and are designed to check whether you understood the
+  materials covered in the textbook. If, for some reason, you have
+  trouble installing the required \R{} packages, you may use the
+  \Rst{} sever we have set up.  In a web browser (Chrome recommended),
+  type the following url, \url{https://pol-rstudio.princeton.edu} Note
+  that you must be on the campus network to access this server.
+
+\item {\bf Problem sets (10\%):} There will be four problem sets
+  during the semester.  The problem sets provide an opportunity for
+  students to conduct data analysis and learn important statistical
+  concepts.  Each Problem set will be graded as \checkmark$-$
+  (unsatisfactory), \checkmark (satisfactory), or \checkmark+
+  (excellent). Students must complete at least three of them and the
+  best three grades will be counted towards the final course
+  grade. {\bf Collaboration is permitted}, but students must write up
+  the code and answers on their own.
+
+\item {\bf In-class quiz (10\%)}: There will be one closed-book
+  in-class quiz held on November 21.  The quiz will serve as one way
+  for the course staff and students to assess how well students are
+  understanding the key concepts covered in the class up to that point
+  in the semester.
+
+\item {\bf Take-home exams (40\%)}: There will be two open-book
+  take-home exams, one during the midterm week and the other during
+  the final week of the semester. {\bf No collaboration is allowed},
+  and students should not discuss their contents with anyone before
+  submission.  Each take-home exam is equally weighted.
+
+\item {\bf Final group project (20\%)}: There will be a final group
+  project due on ``Dean's Date.'' Students will find a data set of
+  interest, analyze it, and report findings in a short memo.  The
+  details will be announced later during the semester.
+
+\end{itemize}
+For all assignments, late submission is not allowed without at least
+24 hours prior notice.
+
+\section{Submission of the Computer Code via Blackboard Folders}
+
+For the problem sets, take-home exam, and final project, students are
+required to submit a print out of their writeup produced using an
+\Rmarkdown{} file.  Students must also upload an electronic copy of
+the \Rmarkdown{} file to Blackboard using {\tt xxx.Rmd} as a file name
+where {\tt xxx} is your NetID.
+
+\section{Precept Policy}
+
+Precept participation is mandatory, and you must show up on time to
+your assigned precept.  If medical illness or a family emergency
+arises, please let your preceptor know as soon as possible. In cases
+not as serious as those (e.g., a conflict with an extracurricular
+activity), you should notify your preceptor at least 2 days before the
+precept. In either case, letters from doctors or coaches may be requested.
+
+If you wish to make-up for missing a precept due to a circumstance outside of your control (e.g., away game, illness, job interview) do this:
+  \begin{enumerate}
+  \item Use the course calendar (\url{https://goo.gl/MtKhyH}) to find a precept you can attend in the same week as your missed precept. The precept entries in the calendar include the time, location, and the preceptor's name for each precept. 
+  \item Email both your preceptor and the preceptor whose precept you wish to attend to let them know why you must miss precept and which precept you would like to attend instead. Preceptors' email addresses are listed in this syllabus. 
+  \item Attend the precept you selected and let your preceptor know you attended. 
+  \end{enumerate}
+
+\section{Problem Set Collaboration Policy}
+
+Problem sets for this course present opportunities for students to
+discuss questions and collaborate to find a solution together. At the
+same time, as with any class that includes analytical exercises and
+computer programming, there is a clear distinction between permissible
+collaboration and unacceptable plagiarism.  This course will follow a
+modified version of the guidelines used for computer science classes
+here at Princeton. {\it Please take this guideline seriously}.  In
+the past, plagiarism cases typically resulted in one-year suspension
+from Princeton.
+
+Programming necessitates that you reach your own understanding of the
+problem and discover a path to its solution. During this time,
+discussions with other people (whether via the Internet or in person)
+are permitted and encouraged. However, when the time comes to write
+code that solves the problem, such discussions (except with course
+staff members) are no longer appropriate: the code must be your own
+work.  
+
+{\sc Do not, under any circumstances, copy another person's
+  code}. Incorporating someone else's code into your program in any
+form is a violation of academic regulations. Abetting plagiarism or
+unauthorized collaboration by sharing your code is also
+prohibited. Sharing code in digital form is an especially egregious
+violation: do not e-mail your code to anyone.
+
+Novices often have the misconception that copying and mechanically
+transforming a program (by rearranging independent code, renaming
+variables, or similar operations) makes it something different.
+Actually, identifying plagiarized source code is easier than you might
+think.  For example, there exists computer software that can detect
+plagiarism.
+
+This policy supplements the University's academic regulations, making
+explicit what constitutes a violation for this course. Princeton
+Rights, Rules, Responsibilities handbook asserts:
+\begin{quote}
+  The only adequate defense for a student accused of an academic
+  violation is that the work in question does not, in fact, constitute
+  a violation. Neither the defense that the student was ignorant of
+  the regulations concerning academic violations nor the defense that
+  the student was under pressure at the time the violation was
+  committed is considered an adequate defense.
+\end{quote}
+If you have any questions about these matters, please consult a course
+staff member.
+
+\section{Textbook}
+
+This course uses a manuscript of the following textbook.
+\begin{quote}
+  Imai, Kosuke (2017). {\it Quantitative Social Science:
+    Introduction}.  Princeton University Press, Forthcoming.
+\end{quote}
+The textbook, aka ``\QSS,'' is made freely available to the students
+via Blackboard.  Due to the copyright issues, this file should not be
+distributed to those who are not taking this class.
+
+
+\section{Statistical Software}
+
+In this course we use the open-source statistical software \R{}
+(\url{http://www.r-project.org}).  \R{} can be more powerful than
+other statistical software such as \textsf{SPSS}, \textsf{STATA} and
+\textsf{SAS}, but it can also be more difficult to learn.  A variety
+of resources will be made available for POL345/SOC305 students in
+order to learn \R{} as efficiently as possible.  To help make using
+\R{} easier, we'll be using \Rst{} (\url{http://www.rstudio.com/})---a
+user interface that simplifies many common operations.
+
+If you have trouble installing \R{}, \Rst{}, or the required \R{}
+packages, you may use the \Rst{} sever we have set up to complete an
+assignment. In a web browser (Chrome recommended), type the following
+url, \url{https://pol-rstudio.princeton.edu}. Note that you must be on
+the campus network to access this server.
+
+\section{Getting Help}
+
+Because POL345/SOC305 is a challenging course for many of you, we have
+made the following resources available to you in order to facilitate
+efficient learning about statistics and data analysis.  We encourage
+you to take advantage of them whenever you have questions about the
+course materials and are struggling with problem sets.
+\begin{itemize}
+\item {\bf \R{} COMPASS Workshops} You may find \R\ challenging,
+  especially at the beginning of the semester. To help you to master
+  the computational demands of the course, we have created a new
+  resource: a series of optional weekly computing workshops designed
+  around the curriculum of the course. The workshops will be held on
+  Tuesdays from 7:30--9:00pm in Room 307 at the McGraw Teaching Center
+  in the Frist Campus Center. Some of the workshops will provide
+  reinforcement of basic concepts, while others will teach additional
+  skills that go beyond the content of the course but will be very
+  helpful for your own research and career. The workshops are open to
+  all students, staff, and affiliates at Princeton, so please tell
+  your friends about them!  Attendance is voluntary but strongly
+  recommended, as this resource will really help you to master the
+  programming element of the course.  To fully participate in the
+  workshops you should bring a laptop, although there will be a few
+  laptops available at the workshops.  See
+  \url{https://compass-workshops.github.io/info/} for details.
+
+\item {\bf Group Study Hall:} In addition to the instructors and the
+  preceptors, we will have resources available at the McGraw Center to
+  help you learn the course materials. The study halls provide a space
+  for students to work together on the problem sets and swirl
+  exercises. They will be facilitated by undergraduate students who
+  took SOC301 and POL345 recently and excelled in the courses. These
+  students will be familiar with statistics but not with the specific
+  materials covered this year. They will help you puzzle through the
+  exercises and encourage you to work together. The study halls are
+  designed to create a learning space that will allow you to work
+  through difficult material in a supportive and collaborative
+  setting. Unless otherwise announced, Study Hall will be available at
+  the McGraw Center in the Frist Campus Center from 1:30pm to 4:30pm
+  and 7:30pm to 10:30pm on Sundays, starting on September 25. In the
+  weeks when problem sets are due Study Hall will also be available on
+  Mondays and Tuesdays from 7:30 to 10:30pm. The head tutor of this
+  Study Hall is Vilma Jimenez
+  (\href{mailto:vjimenez@princeton.edu}{vjimenez@princeton.edu}).
+
+\item {\bf R Programming Drop-In Hours:} The drop-in sessions are
+  designed to give you a chance to ask specific questions about issues
+  you are having with the \R{} programming language. They will be
+  staffed by students who have taken and done well in multiple courses
+  using \R{}. Unless otherwise announced, \R{} programming drop-in
+  hours will be available on Sundays and Mondays from 7:30pm to
+  10:30pm at the McGraw Center in the Frist Campus Center.
+ 
+\item {\bf Office hours:} Each preceptor will hold weekly office
+  hours, starting the first week. You may also e-mail to set up an
+  appointment with either of us outside of our office hours.
+
+\item {\bf Piazza discussion forum:} In addition to office hours and
+  individual appointments, we will be available online to answer any
+  questions you may have about the course materials and the problem
+  sets.  We use the \textsf{Piazza} discussion forum that will be
+  linked on Blackboard course page or accessible directly at
+  \url{http://piazza.com}.  You should also feel free to respond to
+  questions that you can answer.  \textsf{Piazza} also has a free
+  smartphone application if you are interested.
+
+%\item {\bf Individual advising:} In order to make sure that nobody is
+%  falling behind, I will meet briefly with each of you before the fall
+%  break. This meeting will give me an opportunity to get to know each
+%  of you and receive feedback from you about the course, and I will
+%  provide study tips for anyone who is having difficulties.  Please
+%  sign up through the web appointment system
+%  \url{https://wass.princeton.edu/pages/login.page.php}.
+\end{itemize}
+
+\section{Course Plan}
+
+We have set up a Google Calendar with events, due dates, and sessions.
+The URL for this calendar is \url{https://goo.gl/MtKhyH}.  
+
+\subsection*{Introduction}
+
+\subsubsection*{\sc Week 0: September 12--16}
+
+\begin{itemize}
+\item {\sc Topic}: Overview of the course, Introduction to \R
+
+\item {\sc Textbook}: Chapter~1 (Section 1.3)
+
+\end{itemize}
+
+\subsection*{Causality}
+
+\subsubsection*{\sc Week 1: September 19--23}
+
+\begin{itemize}
+
+\item {\sc Topic}: Randomized experiments
+
+\item {\sc Textbook}: Chapter~2 (Sections 2.1--2.4) 
+
+\item {\sc Workshop}: Introduction to \R{} and \Rst
+
+\item {\sc Problem Set~1}: Posted on Thursday, September 22 
+
+\end{itemize}
+
+
+\subsubsection*{\sc Week 2: September 26--30}
+
+\begin{itemize}
+
+\item {\sc Topic}: Observational studies
+
+\item {\sc Textbook}: Chapter~2 (Sections 2.5--2.7) 
+
+\item {\sc Workshop}: Data Wrangling in \R
+
+\item {\sc Problem Set~1}: Due on Wednesday, September 28
+
+\end{itemize}
+
+\subsection*{Measurement}
+
+\subsubsection*{\sc Week 3: October 3--7}
+
+\begin{itemize}
+
+\item {\sc Topic}: Survey sampling
+
+\item {\sc Textbook}: Chapter 3 (Sections 3.1--3.4)
+
+\item {\sc Workshop}: Base Graphics in \R 
+
+\item {\sc Problem Set~2}: Posted on Thursday, Oct. 6
+
+\end{itemize}
+
+\subsubsection*{\sc Week 4: October 10--14}
+
+\begin{itemize}
+
+\item {\sc Topic}: Clustering
+
+\item {\sc Textbook}: Chapter 3 (Sections 3.5--3.7)
+
+\item {\sc Workshop}: Data Visualization in \R{} with \textsf{ggplot2}
+
+\item {\sc Problem Set~2}: Due on Wednesday, Oct. 12
+
+\end{itemize}
+
+\subsection*{Prediction}
+
+\subsubsection*{\sc Week 5: October 17--21}
+
+\begin{itemize}
+
+\item {\sc Topic}: Prediction and Loop
+
+\item {\sc Textbook}: Chapter 4 (Section 4.1)
+
+\item {\sc Workshop}: Programming Loops in \R
+
+\item {\sc Take-home Exam~1}: Posted on Friday, Oct. 21
+
+\end{itemize}
+
+
+\subsubsection*{\sc Week 6: October 24--28}
+
+\begin{itemize}
+
+\item {\sc Topic}: Regression
+
+\item {\sc Textbook}: Chapter 4 (Sections 4.2~and~4.3) 
+
+\item {\sc Take-home Exam~1}: Due on Friday, Oct. 28
+
+\end{itemize}
+
+\subsubsection*{\sc Fall Break: October 29--November 6}
+
+\medskip
+
+\subsection*{Probability}
+
+
+\subsubsection*{\sc Week 7: November 7--11}
+
+\begin{itemize}
+
+\item {\sc Topic}: Probability and conditional probability
+
+\item {\sc Textbook}: Chapter 6 (Sections 6.1--6.3)
+
+\item {\sc Workshop}: Probability and Simulations in \R
+
+\item {\sc Problem Set~3}: Posted on Thursday, November 10 
+
+\end{itemize}
+
+\subsubsection*{\sc Week 8: November 14--18}
+
+\begin{itemize}
+
+\item {\sc Topic}: Random variables and their distributions, Large
+  sample theorems
+
+\item {\sc Textbook}: Chapter~6 (Sections 6.4--6.5)
+
+\item {\sc Workshop}: Monte Carlo Simulations in \R
+
+\item {\sc Problem Set~3}: Due Wednesday, November 16 
+
+\end{itemize}
+
+\subsubsection*{\sc Week 9: November 21} 
+
+{\sc In-class quiz}
+
+\subsubsection*{\sc Thanksgiving Break: November 23--27}
+
+\subsection*{Uncertainty}
+
+\subsubsection*{\sc Week 10: November 28--December 2}
+
+\begin{itemize}
+
+\item {\sc Topic}: Estimation
+\item {\sc Textbook}: Chapter 7 (Section 7.1)
+\item {\sc Workshop}: Text Analysis in \R
+\item {\sc Problem Set~4}: Posted on Thursday, December 1
+
+\end{itemize}
+
+
+\subsubsection*{\sc Week 11: December 5--9}
+
+\begin{itemize}
+
+\item {\sc Topic}: Hypothesis tests
+\item {\sc Textbook}: Chapter 7 (Section 7.2)
+\item {\sc Problem Set~4}: Due on Wednesday, December 7
+\item {\sc Workshop}: Hypothesis Testing in \R
+\item {\sc Take-home Exam~2}: Posted on Thursday, December 8
+\end{itemize}
+
+
+\subsubsection*{\sc Week 12: December 12--16}
+
+
+\begin{itemize}
+\item {\sc Topic}: Regression with uncertainty
+\item {\sc Textbook}: Chapter 7 (Section 7.3)
+\item {\sc Workshop}: Regression Analysis in \R
+\item {\sc Take-home Exam~2}: Due on Friday, December 16
+\end{itemize}
+
+\end{document}
