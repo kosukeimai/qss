@@ -31,7 +31,8 @@ In addition, the repository contains:
 ## R package `qss`
 
 The data and code in this repository are also available as an
-[R package `qss`](https://github.com/kosukeimai/qss-package).  To
+[R package `qss`](https://github.com/kosukeimai/qss-package) 
+(see [the package website](https://kosukeimai.github.io/qss-package/)).  To
 install this package, use the following command:
 
     install.packages("devtools") # if you have not installed devtools package already
@@ -48,7 +49,7 @@ Once the `qss` package is installed, you can use the data and code:
 ## Related repositories
 
 1. [swirl exercises `qss-swirl`](https://github.com/kosukeimai/qss-swirl)
-2. [R package `qss`](https://github.com/kosukeimai/qss-package)
+2. [R package `qss`](https://github.com/kosukeimai/qss-package) ([the package website](https://kosukeimai.github.io/qss-package/))
 3. [tidyverse code `qss-tidy`](https://github.com/jrnold/qss-tidy) 
 4. [instructors' materials `qss-inst`](https://github.com/kosukeimai/qss-inst)
    (private repository)
