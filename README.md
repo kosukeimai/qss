@@ -2,17 +2,14 @@
 [![Build Status](https://travis-ci.org/kosukeimai/qss.svg?branch=master)](https://travis-ci.org/kosukeimai/qss)
 Supplementary Materials for the book,
 **[Quantitative Social Science: An Introduction](http://press.princeton.edu/titles/11025.html)**,
-to be published from Princeton University Press in March 2017.  It is
-also available for pre-order at
+published by Princeton University Press in 2017.  It is
+also available for purchase at vendors like
 [Amazon](https://www.amazon.com/Quantitative-Social-Science-Kosuke-Imai/dp/0691175462).
-The book manuscript is available upon request for early classroom use.
 
 The book is based on the teaching philosophy summarized in the talk I
 gave at the Nuffield Foundation's
-[Q-Step Programme](http://www.nuffieldfoundation.org/q-step): Have a
-look at the
-[slides](http://imai.princeton.edu/talk/files/Q-Step15.pdf) for the
-talk I gave in 2015.
+[Q-Step Programme](http://www.nuffieldfoundation.org/q-step) in 2015: 
+[slides](http://imai.princeton.edu/talk/files/Q-Step15.pdf) 
 
 This repository contains the data sets and **R** scripts for all of the chapters:
 
@@ -32,19 +29,19 @@ In addition, the repository contains:
 
 The data and code in this repository are also available as an
 [R package `qss`](https://github.com/kosukeimai/qss-package) 
-(see [the package website](https://kosukeimai.github.io/qss-package/)).  To
-install this package, use the following command:
+(see [the package website](https://kosukeimai.github.io/qss-package/)). The code is in 
+the form of vignettes. To install this package, use the following command:
 
     install.packages("devtools") # if you have not installed devtools package already
     devtools::install_github("kosukeimai/qss-package")
     
-Once the `qss` package is installed, you can use the data and code:
+Once the `qss` package is installed, you can use the data and vignette:
 
     library(qss)
     data(package = "qss") # list all data sets
-    demo(package = "qss") # list all code
     data(elections) # load the elections data
-    demo(causality) # run the code in the Causality chapter
+    vignette(package = "qss") # list all vignettes
+    vignette(causality) # show the code in the Causality chapter
 
 ## Related repositories
 
