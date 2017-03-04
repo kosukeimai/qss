@@ -41,7 +41,8 @@ Once the `qss` package is installed, you can use the data and vignette:
     data(package = "qss") # list all data sets
     data(elections) # load the elections data
     vignette(package = "qss") # list all vignettes
-    vignette(causality) # show the code in the Causality chapter
+    browseVignette("qss") # list vignettes and R code
+    vignette("causality", package = "qss") # show the vignette for the Causality chapter
 
 ## Related repositories
 
