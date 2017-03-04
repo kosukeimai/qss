@@ -33,7 +33,7 @@ The data and code in this repository are also available as an
 the form of vignettes. To install this package, use the following command:
 
     install.packages("devtools") # if you have not installed devtools package already
-    devtools::install_github("kosukeimai/qss-package")
+    devtools::install_github("kosukeimai/qss-package", build_vignettes = TRUE)
     
 Once the `qss` package is installed, you can use the data and vignette:
 
