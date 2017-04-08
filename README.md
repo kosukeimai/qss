@@ -23,7 +23,9 @@ This repository contains the data sets and **R** scripts for all of the chapters
 
 In addition, the repository contains:
 
-1. [Sample course syllabi](syllabus)
+1. [Errata](errata/QSSerrata.pdf)
+2. [Sample course syllabi](syllabus)
+
 
 ## R package `qss`
 
