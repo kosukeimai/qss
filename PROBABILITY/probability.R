@@ -139,7 +139,10 @@ for (i in 1:sims) {
     result.noswitch[i] <- doors[first]
     remain <- doors[-first] # remaining two doors
     ## Monty chooses one door with a goat
-    monty <- sample((1:2)[remain == "goat"], size = 1)
+    if (doors[first] == "car") # two goats left
+        monty <- sample(1:2, size=1)
+    else # one goat and one car left
+        monty <- (1:2)[remain == "goat"]
     result.switch[i] <- remain[-monty]
 }
 
