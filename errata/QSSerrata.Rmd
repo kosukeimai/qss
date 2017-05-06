@@ -1,8 +1,10 @@
 ---
-title: "Errata for Quantitative Social Science: An Introduction (Princeton University Press, 2017)"
+title: 'Errata for Quantitative Social Science: An Introduction (Princeton University
+  Press, 2017)'
 author: "Kosuke Imai"
-date: "4/8/2017"
-output: pdf_document
+date: "5/5/2017"
+output:
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -15,9 +17,37 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * pages 170 -- 176. Throughout this section, the `primary2008` variable should be labeled as `primary2006` so that it matches with the `social.csv` data file introduced in Chapter 2.  For now, we include another version of `social.csv` in this chapter's folder so that users can 
 
+# Chapter 6
+
+## Section 6.2.3
+
+* The original code for the Monty Hall problem does not return the right answer when the order of doors is changed.  This is due to the fact that the `sample()` function behaves differently when an integer is supplied as an input.  The correct code that avoids this problem is below:
+
+```{r}
+sims <- 1000
+doors <- c("goat", "goat", "car")
+result.switch <- result.noswitch <- rep(NA, sims)
+
+for (i in 1:sims) {
+    ## randomly choose the initial door
+    first <- sample(1:3, size = 1)
+    result.noswitch[i] <- doors[first]
+    remain <- doors[-first] # remaining two doors
+    ## Monty chooses one door with a goat
+    if (doors[first] == "car") # two goats left
+        monty <- sample(1:2, size=1)
+    else # one goat and one car left
+        monty <- (1:2)[remain == "goat"]
+    result.switch[i] <- remain[-monty]
+}
+
+mean(result.noswitch == "car")
+mean(result.switch == "car")
+```
+
 # Chapter 7
 
-## Section 7.1.3.
+## Section 7.1.3
 
 * page 327, last paragraph. Change "such that $P(Z > \alpha/2) = 1 - P(Z \leq \alpha / 2) = 1 - \alpha/2$" to "such that $P(Z > z_{\alpha/2}) = 1 - P(Z \leq z_{\alpha/2}) = 1- \alpha/2$"
 
@@ -27,4 +57,4 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Acknowledgements
 
-Thanks to Jeff Arnold and Rocio Titiunik for pointing out the errors. 
+Thanks to Jeff Arnold, Soyoung Lee, and Rocio Titiunik for pointing out the errors. 
