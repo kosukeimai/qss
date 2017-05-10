@@ -1,5 +1,4 @@
-# qss
-[![Build Status](https://travis-ci.org/kosukeimai/qss.svg?branch=master)](https://travis-ci.org/kosukeimai/qss)
+# QSS (Quantitative Social Science) [![Build Status](https://travis-ci.org/kosukeimai/qss.svg?branch=master)](https://travis-ci.org/kosukeimai/qss)
 Supplementary Materials for the book,
 **[Quantitative Social Science: An Introduction](http://press.princeton.edu/titles/11025.html)**,
 published by Princeton University Press in 2017.  It is
