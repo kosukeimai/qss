@@ -2,7 +2,7 @@
 title: 'Errata for Quantitative Social Science: An Introduction (Princeton University
   Press, 2017)'
 author: "Kosuke Imai"
-date: "5/29/2017"
+date: "6/22/2017"
 output:
   pdf_document: default
 ---
@@ -11,11 +11,31 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# Table of Contents
+
+## Section 4.3.3
+
+* page ix. Change "Heterogenous" to "Heterogeneous"
+
 # Chapter 4
 
 ## Section 4.3.3
 
-* pages 170 -- 176. Throughout this section, the `primary2008` variable should be labeled as `primary2006` so that it matches with the `social.csv` data file introduced in Chapter 2.  For now, we include another version of `social.csv` in this chapter's folder so that users can 
+* page 170. Change "4.3.3 HETEROGENOUS TREATMENT EFFECTS" to "4.3.3 HETEROGENEOUS TREATMENT EFFECTS".  
+
+* page 170. Chage "helpful for exploring *heterogenous treatment effects*" to "helpful for exploring *heterogeneous treatment effects*".  
+
+* page 170. Change "To illustrate the analysis of heterogenous treatment effects" to "To illustrate the analysis of heterogeneous treatment effects"
+
+* pages 170 -- 176. Throughout this section, the `primary2008` variable should be labeled as `primary2006` so that it matches with the `social.csv` data file introduced in Chapter 2.  For now, we include another version of `social.csv` in this chapter's folder so that users can apply the code.
+
+* page 181. Change "We discussed how to estimate heterogenous treatment effects" to "We discussed how to estimate heterogeneous treatment effects"
+
+# Chapter 5
+
+## Section 5.3.6.
+
+* page 235. Change "by opening a web browser and clicking `File > Open file...` in the menu." to "opening the resulting `walmart.html` file in a web browser."
 
 # Chapter 6
 
@@ -74,7 +94,10 @@ $$\mathbb{E}(\overline{X}_n) = \mathbb{E}\left(\frac{1}{n} \sum_{i=1}^n {\color{
 
 * page 354, first paragraph.  The first sentence should read: "We can confirm this result using the current example by checking that 0.5 is contained in the 99% confidence interval (we fail to reject the null hypothesis when $\alpha = 0.01$) but not in the 95% confidence interval (we reject the null when $\alpha = 0.5$)."
 
+# General Index
+
+* page 402. Change "heterogenous treatment effects, 170" to "heterogeneous treatment effects, 170"
 
 # Acknowledgements
 
-Thanks to Jeff Arnold, Joel Gautschi, Soyoung Lee, and Rocio Titiunik for pointing out the errors. 
+Thanks to Jeff Arnold, Joel Gautschi, Yuko Kasuya, Soyoung Lee, and Rocio Titiunik for pointing out the errors. 
