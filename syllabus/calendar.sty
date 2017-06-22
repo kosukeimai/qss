@@ -1,0 +1,105 @@
+\NeedsTeXFormat{LaTeX2e}
+
+\def\CalendarVersion{3.1}
+\def\CalendarVersionDate{2009/04/24}
+
+\ProvidesClass{calendar}[\CalendarVersionDate
+           LaTeX2e class file `calendar' v\CalendarVersion]
+
+\typeout{'calendar' style \CalendarVersion \CalendarVersionDate.}
+\typeout{Created by Evan Sultanik}
+\typeout{****** Bugs/comments/suggestions/technicalities to Evan Sultanik -- evan@sultanik.com ******}
+
+\RequirePackage{tabularx}
+
+\def\@CALtrue{1}
+\newcount\@currentdaynum
+\newcounter{calendardate}
+\newcount\StartingDayNumber
+
+\def\dayheader#1#2{
+  \noindent
+  \begin{minipage}[t]{0.87\hsize}
+    \noindent
+    \raggedright
+    \textit{#1}
+  \end{minipage}
+  \begin{minipage}[t]{0.1\hsize}
+    \noindent
+    \raggedleft
+    \textit{#2}
+  \end{minipage}
+}
+\def\activities#1{
+  \parbox{\hsize}{\vspace*{5pt}\raggedright\scriptsize #1}\smallskip
+}
+
+\let\@colbreak=&
+
+\def\printdayname#1{\hfil\textsc{#1}\hfil}
+
+\newcommand{\dayname}[1]{
+  \ifnum#1=1 Sunday\else
+  \ifnum#1=2 Monday\else
+  \ifnum#1=3 Tuesday\else
+  \ifnum#1=4 Wednesday\else
+  \ifnum#1=5 Thursday\else
+  \ifnum#1=6 Friday\else
+  \ifnum#1=7 Saturday\else
+    \PackageError{calendar}{Unrecognized day number: #1!}
+  \fi\fi\fi\fi\fi\fi\fi
+}
+
+\StartingDayNumber=1
+\newenvironment{calendar}[1]{
+  \newdimen\@calendarwidth
+  \@calendarwidth=#1
+  \begingroup
+    \def\@calendarmode{\@CALtrue}
+  \def\day##1##2{
+  \if\@calendarmode\@CALtrue\else\PackageWarning{calendar}{The '\day' macro is expected to be used in the 'calendar' environment!}\fi
+  \ifnum\@currentdaynum>7\global\@currentdaynum=1\fi
+  \global\advance\@currentdaynum by 1
+  %\dayheader{##1}{\thecalendardate}
+  \def\daysep{\vskip1pt\hrule\vskip1pt}
+  \activities{##2}
+  \addtocounter{calendardate}{1}
+  \ifnum\@currentdaynum>7\@arraycr\hline\else&\fi
+  }
+\def\finishCalendar{
+  \ifnum\@currentdaynum=6 &\\\hline\else
+  \ifnum\@currentdaynum=5 &&\\\hline\else
+  \ifnum\@currentdaynum=4 &&&\\\hline\else
+  \ifnum\@currentdaynum=3 &&&&\\\hline\else
+  \ifnum\@currentdaynum=2 &&&&&\\\hline\else
+  \ifnum\@currentdaynum=1 &&&&&&\\\hline
+  \fi\fi\fi\fi\fi\fi
+}
+  \def\BlankDay{
+  \if\@calendarmode\@CALtrue\else\PackageWarning{calendar}{The '\calendarday' macro is expected to be used in the 'calendar' environment!}\fi
+  \ifnum\@currentdaynum>7\global\@currentdaynum=1\fi
+  \global\advance\@currentdaynum by 1
+  \addtocounter{calendardate}{1}
+  \ifnum\@currentdaynum>7\@arraycr\hline\else&\fi
+  }
+
+    \setcounter{calendardate}{1}
+    \newcount\@currday
+    \@currday=\StartingDayNumber
+    \newcount\@numdays
+    \@numdays=7
+    \let\@cbreak=&
+    \tabularx{\@calendarwidth}{|X|X|X|X|X|X|X|} \hline
+    \ifnum\@currday>\@numdays\@currday=1\fi\printdayname{\dayname{\@currday}} \global\advance\@currday by 1 &
+    \ifnum\@currday>\@numdays\@currday=1\fi\printdayname{\dayname{\@currday}} \global\advance\@currday by 1 &
+    \ifnum\@currday>\@numdays\@currday=1\fi\printdayname{\dayname{\@currday}} \global\advance\@currday by 1 &
+    \ifnum\@currday>\@numdays\@currday=1\fi\printdayname{\dayname{\@currday}} \global\advance\@currday by 1 &
+    \ifnum\@currday>\@numdays\@currday=1\fi\printdayname{\dayname{\@currday}} \global\advance\@currday by 1 &
+    \ifnum\@currday>\@numdays\@currday=1\fi\printdayname{\dayname{\@currday}} \global\advance\@currday by 1 &
+    \ifnum\@currday>\@numdays\@currday=1\fi\printdayname{\dayname{\@currday}} \global\advance\@currday by 1 \\ \hline \hline
+      \@currentdaynum=1
+      \let\@firstline=\@CALtrue
+}{
+    \endtabularx
+  \endgroup
+}
