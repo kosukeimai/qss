@@ -4,7 +4,6 @@ title: 'Errata for *Quantitative Social Science: An Introduction* (Princeton Uni
 author: "Kosuke Imai"
 date: "1/27/2018"
 output:
-  html_document: default
   pdf_document: default
 ---
 
