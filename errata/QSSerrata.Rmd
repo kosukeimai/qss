@@ -100,4 +100,4 @@ $$\mathbb{E}(\overline{X}_n) = \mathbb{E}\left(\frac{1}{n} \sum_{i=1}^n {\color{
 
 # Acknowledgements
 
-Thanks to Jeff Arnold, Joel Gautschi, Yuko Kasuya, Soyoung Lee, and Rocio Titiunik for pointing out the errors. 
+Thanks to Jeff Arnold, Masataka Harada, Joel Gautschi, Yuko Kasuya, Soyoung Lee, and Rocio Titiunik for pointing out the errors. 
