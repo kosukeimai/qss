@@ -2,7 +2,7 @@
 title: 'Errata for Quantitative Social Science: An Introduction (Princeton University
   Press, 2017)'
 author: "Kosuke Imai"
-date: "9/3/2017"
+date: "9/11/2017"
 output:
   pdf_document: default
 ---
@@ -41,7 +41,18 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Chapter 5
 
-## Section 5.3.6.
+## Section 5.2.3
+
+* page 212. The code chunk that loads the data sets need to be changed to:
+
+```{r, eval = FALSE}
+twitter <- read.csv("twitter-following.csv", stringsAsFactors = FALSE)
+senator <- read.csv("twitter-senator.csv", stringsAsFactors = FALSE)
+```
+
+so that the names of senators will be treated as a character variable instead of a factor variable (default).  Unfortunately, this changes the results of the rest of this subsection 5.2 although it does not change the code.
+
+## Section 5.3.6
 
 * page 235. Change "by opening a web browser and clicking `File > Open file...` in the menu." to "opening the resulting `walmart.html` file in a web browser."
 
@@ -79,13 +90,13 @@ mean(result.switch == "car")
 
 ## Section 6.4.2.
 
-* page 304, first paragraph. Change "we expect a binomial random variable to approximate the normal distribution as the sample size, or the number of balls in this case, increases." to "we expect the binomial random variable to approximate the normal random variable as the sample size, or the number of lines of pegs in this case, increases.  Here, the sample size refers to the number of lines of pegs, not the number of balls.  Increasing the latter reduces the Monte Carlo error."  
+* page 304, first paragraph. Change "we expect a binomial random variable to approximate the normal distribution as the sample size, or the number of balls in this case, increases." to "we expect the binomial random variable to approximate the normal random variable as the sample size, or the number of lines of pegs in this case, increases.  Here, the sample size refers to the number of lines of pegs, not the number of balls.  Increasing the latter reduces the Monte Carlo error."  Also, change "The central limit theorem applies not only to the binomial distribution, but" to "The central limit theorem applies not only to the Bernoulli random variable, but".  
 
 * page 304, equation (6.42).  The second term is missing $X_i$, which is highlighted in the correct equation below:
 
 $$\mathbb{E}(\overline{X}_n) = \mathbb{E}\left(\frac{1}{n} \sum_{i=1}^n {\color{red}{X_i}}\right)  = \frac{1}{n}\sum_{i=1}^n \mathbb{E}(X_i) = \mathbb{E}(X)$$
 
-* pages 305 - 306.  For the reason stated above, it is more instructive to increase the size parameter in Binomial distribution (which improves the CLT approximation) rather than to increase the number of Monte Carlo simulations (which reduces the Monte Carlo error).
+* pages 305.  Add a sentence to the end of the last paragraph whose last sentence ends with "approximated by the standard normal distribution."  The sentence to be added is "To illustrate the quincunx through Monte Carlo simulations, we sample from the Bernoulli distribution or equivalently the Binomial distribution with size $n=1$."
 
 
 # Chapter 7
@@ -108,4 +119,4 @@ $$\mathbb{E}(\overline{X}_n) = \mathbb{E}\left(\frac{1}{n} \sum_{i=1}^n {\color{
 
 # Acknowledgements
 
-Thanks to Jeff Arnold, Masataka Harada, Joel Gautschi, Yuko Kasuya, Soyoung Lee, and Rocio Titiunik for pointing out the errors. 
+Thanks to Jeff Arnold, Fallend Franz, Joel Gautschi, Masataka Harada, Yuko Kasuya, Soyoung Lee, and Rocio Titiunik for pointing out the errors. 
