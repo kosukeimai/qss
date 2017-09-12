@@ -201,8 +201,8 @@ plot(florence, vertex.size = betweenness(florence),
 
 ### Section 5.2.3: Twitter-Following Network
 
-twitter <- read.csv("twitter-following.csv", stringsAsFactors = FALSE)
-senator <- read.csv("twitter-senator.csv", stringsAsFactors = FALSE)
+twitter <- read.csv("twitter-following.csv")
+senator <- read.csv("twitter-senator.csv")
 
 n <- nrow(senator) # number of senators
 
