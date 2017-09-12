@@ -62,7 +62,7 @@ so that the names of senators will be treated as a character variable instead of
 
 * page 265. The original code for the Monty Hall problem does not return the right answer when the order of doors is changed.  This is due to the fact that the `sample()` function behaves differently when an integer is supplied as an input.  The correct code that avoids this problem is below:
 
-```{r}
+```{r, eval = FALSE}
 sims <- 1000
 doors <- c("goat", "goat", "car")
 result.switch <- result.noswitch <- rep(NA, sims)
@@ -96,7 +96,7 @@ mean(result.switch == "car")
 
 $$\mathbb{E}(\overline{X}_n) = \mathbb{E}\left(\frac{1}{n} \sum_{i=1}^n {\color{red}{X_i}}\right)  = \frac{1}{n}\sum_{i=1}^n \mathbb{E}(X_i) = \mathbb{E}(X)$$
 
-* pages 305.  Add a sentence to the end of the last paragraph whose last sentence ends with "approximated by the standard normal distribution."  The sentence to be added is "To illustrate the quincunx through Monte Carlo simulations, we sample from the Bernoulli distribution or equivalently the Binomial distribution with size $n=1$."
+* page 305.  Add a sentence to the end of the last paragraph whose last sentence ends with "approximated by the standard normal distribution."  The sentence to be added is "To illustrate the quincunx through Monte Carlo simulations, we sample from the Bernoulli distribution or equivalently the Binomial distribution with size $n=1$."
 
 
 # Chapter 7
