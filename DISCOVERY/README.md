@@ -5,7 +5,7 @@
 
 ## Data sets
 ### Main text
-1. 'The Federal Papers' Data (Table 5.1): [federalist/] (federalist/)
+1. 'The Federalist Papers' Data (Table 5.1): [federalist/] (federalist/)
 2. Florence Marriage Network Data (Table 5.3): [florentine.csv] (florentine.csv)
 4. Senator Follow / Following Data (Table 5.4): [twitter-following.csv] (twitter-following.csv)
 5. Senator Information Data (Table 5.4): [twitter-senator.csv] (twitter-senator.csv)
