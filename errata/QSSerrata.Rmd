@@ -96,7 +96,7 @@ $$\mathbb{E}(\overline{X}_n) = \mathbb{E}\left(\frac{1}{n} \sum_{i=1}^n {\color{
 
 * page 329, last paragraph. Change "Consider the probability that $(1 - \alpha/2) \times 100\%$ confidence interval" to "Consider the probability that $(1 - \alpha) \times 100\%$ confidence interval"
 
-* page 330, Step 3 in the box. Change "Compute the critical value $z_{\alpha/2}$ as the $(1 - \alpha) \times 100$ percentile value" to "Compute the critical value $z_{\alpha/2}$ as the $(1 - \alpha/2) \times 100$ percentile value"
+* page 330, Step 4 in the box. Change "Compute the critical value $z_{\alpha/2}$ as the $(1 - \alpha) \times 100$ percentile value" to "Compute the critical value $z_{\alpha/2}$ as the $(1 - \alpha/2) \times 100$ percentile value"
 
 ## Section 7.2.3
 
