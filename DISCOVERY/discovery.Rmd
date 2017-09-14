@@ -1,9 +1,16 @@
-##### Chapter 5: Discovery
+---
+title: 'Code for QSS Chapter 5: Discovery'
+author: "Kosuke Imai"
+date: "First Printing"
+output:
+  pdf_document: default
+---
 
-#### Section 5.1: Textual Data
+# Section 5.1: Textual Data
 
-### Section 5.1.1: The Disputed Authorship of 'The Federalist Papers'
+## Section 5.1.1: The Disputed Authorship of 'The Federalist Papers'
 
+```{r}
 ## load two required libraries
 library(tm, SnowballC)
 
@@ -40,9 +47,11 @@ dtm
 inspect(dtm[1:5, 1:8])
 
 dtm.mat <- as.matrix(dtm)
+```
 
-### Section 5.1.3: Topic Discovery
+## Section 5.1.3: Topic Discovery
 
+```{r}
 library(wordcloud)
 
 wordcloud(colnames(dtm.mat), dtm.mat[12, ], max.words = 20)  # essay No. 12
@@ -81,9 +90,11 @@ for (i in 1:k) { # loop for each cluster
     print(rownames(dtm.tfidf.hamilton)[km.out$cluster == i])
     cat("\n")
 }
+```
 
-### Section 5.1.4: Authorship Prediction
+## Section 5.1.4: Authorship Prediction
 
+```{r}
 ## document-term matrix converted to matrix for manipulation 
 dtm1 <- as.matrix(DocumentTermMatrix(corpus.prep)) 
 tfm <- dtm1 / rowSums(dtm1) * 1000 # term frequency per 1000 words
@@ -117,9 +128,11 @@ hm.fit
 
 hm.fitted <- fitted(hm.fit) # fitted values
 sd(hm.fitted)  
+```
 
-### Section 5.1.5: Cross-Validation
+## Section 5.1.5: Cross-Validation
 
+```{r}
 ## proportion of correctly classified essays by Hamilton
 mean(hm.fitted[author.data$author == 1] > 0)
 
@@ -150,7 +163,6 @@ tf.disputed <- as.data.frame(tfm[disputed, ])
 pred <- predict(hm.fit, newdata = tf.disputed)
 pred # predicted values
 
-par(cex = 1.25)
 ## fitted values for essays authored by Hamilton; red squares
 plot(hamilton, hm.fitted[author.data$author == 1], pch = 15, 
      xlim = c(1, 85), ylim  = c(-2, 2), col = "red", 
@@ -163,11 +175,13 @@ points(madison, hm.fitted[author.data$author == -1],
 
 ## disputed authorship; black triangles
 points(disputed, pred, pch = 17) 
+```
 
-#### Section 5.2: Network Data
+# Section 5.2: Network Data
 
-### Section 5.2.1: Marriage Network in Renaissance Florence
+## Section 5.2.1: Marriage Network in Renaissance Florence
 
+```{r}
 ## the first column "FAMILY" of the CSV file represents row names
 florence <- read.csv("florentine.csv", row.names = "FAMILY")
 florence <- as.matrix(florence) # coerce into a matrix
@@ -175,11 +189,11 @@ florence <- as.matrix(florence) # coerce into a matrix
 ## print out the adjacency (sub)matrix for the first 5 families
 florence[1:5, 1:5]
 rowSums(florence)
+```
 
-### Section 5.2.2: Undirected Graph and Centrality Measures
+## Section 5.2.2: Undirected Graph and Centrality Measures
 
-par(cex = 1.25)
-
+```{r}
 library("igraph")  # load the package
 
 florence <- graph.adjacency(florence, mode = "undirected", diag = FALSE)
@@ -192,15 +206,16 @@ closeness(florence)
 
 betweenness(florence)
 
-par(cex = 1.25) 
 plot(florence, vertex.size = closeness(florence) * 1000, 
      main = "Closeness")
 
 plot(florence, vertex.size = betweenness(florence), 
      main = "Betweenness")
+```
 
-### Section 5.2.3: Twitter-Following Network
+## Section 5.2.3: Twitter-Following Network
 
+```{r}
 twitter <- read.csv("twitter-following.csv")
 senator <- read.csv("twitter-senator.csv")
 
@@ -218,9 +233,11 @@ for (i in 1:nrow(twitter)) {
 }
 
 twitter.adj <- graph.adjacency(twitter.adj, mode = "directed", diag = FALSE)
+```
 
-### Section 5.2.4: Directed Graph and Centrality
+## Section 5.2.4: Directed Graph and Centrality
 
+```{r}
 senator$indegree <- degree(twitter.adj, mode = "in")
 senator$outdegree <- degree(twitter.adj, mode = "out") 
 
@@ -244,7 +261,6 @@ pch <- rep(16, n)
 pch[senator$party == "D"] <- 17
 pch[senator$party == "I"] <- 4
 
-par(cex = 1.25)
 ## plot for comparing two closeness measures (incoming vs. outgoing)
 plot(closeness(twitter.adj, mode = "in"), 
      closeness(twitter.adj, mode = "out"), pch = pch, col = col, 
@@ -257,7 +273,6 @@ plot(betweenness(twitter.adj, directed = TRUE),
 
 senator$pagerank <- page.rank(twitter.adj)$vector
 
-par(cex = 1.25)
 ## `col' parameter is defined earlier
 plot(twitter.adj, vertex.size = senator$pagerank * 1000, 
      vertex.color = col, vertex.label = NA, 
@@ -294,18 +309,18 @@ while (diff > 0.001) {
 }
 
 pr
+```
 
-#### Section 5.3: Spatial Data
+# Section 5.3: Spatial Data
 
-### Section 5.3.1: The 1854 Cholera Outbreak in Action
+## Section 5.3.1: The 1854 Cholera Outbreak in Action
 
-### Section 5.3.2: Spatial Data in R
+## Section 5.3.2: Spatial Data in R
 
+```{r}
 library(maps)
 data(us.cities)
 head(us.cities)
-
-par(cex = 1.25)
 
 map(database = "usa") 
 capitals <- subset(us.cities, capital == 2) # subset state capitals
@@ -315,7 +330,6 @@ points(x = capitals$long, y = capitals$lat,
        cex = capitals$pop / 500000, pch = 19) 
 title("US state capitals") # add a title
 
-par(cex = 1.25)
 map(database = "state", regions = "California")
 
 cal.cities <- subset(us.cities, subset = (country.etc == "CA"))
@@ -336,9 +350,11 @@ names(usa)  # list elements
 
 length(usa$x) 
 head(cbind(usa$x, usa$y)) # first five coordinates of a polygon
+```
 
-### Section 5.3.3: Colors in R
+## Section 5.3.3: Colors in R
 
+```{r}
 allcolors <- colors()
 
 head(allcolors)   # some colors
@@ -361,8 +377,6 @@ blue.trans <- rgb(red = 0, green = 0, blue = 1, alpha = 0.5)
 ## semi-transparent black
 black.trans <- rgb(red = 0, green = 0, blue = 0, alpha = 0.5) 
 
-par(cex = 1.25)
-
 ## completely colored dots; difficult to distinguish
 plot(x = c(1, 1), y = c(1, 1.2), xlim = c(0.5, 4.5), ylim = c(0.5, 4.5), 
      pch = 16, cex = 5, ann = FALSE, col = black)
@@ -371,9 +385,11 @@ points(x = c(3, 3), y = c(3, 3.2), pch = 16, cex = 5, col = blue)
 ## semi-transparent; easy to distinguish
 points(x = c(2, 2), y = c(2, 2.2), pch = 16, cex = 5, col = black.trans) 
 points(x = c(4, 4), y = c(4, 4.2), pch = 16, cex = 5, col = blue.trans) 
+```
 
-### Section 5.3.4: US Presidential Elections
+## Section 5.3.4: US Presidential Elections
 
+```{r}
 pres08 <- read.csv("pres08.csv")
 ## two-party vote share
 pres08$Dem <- pres08$Obama / (pres08$Obama + pres08$McCain)
@@ -384,7 +400,6 @@ cal.color <- rgb(red = pres08$Rep[pres08$state == "CA"],
                  blue = pres08$Dem[pres08$state == "CA"], 
                  green = 0)
 
-par(cex = 1.25)
 ## California as a blue state
 map(database = "state", regions = "California", col = "blue", 
     fill = TRUE)
@@ -393,7 +408,6 @@ map(database = "state", regions = "California", col = "blue",
 map(database = "state", regions = "California", col = cal.color,
     fill = TRUE)
 
-par(cex = 1.25)
 ## America as red and blue states
 map(database = "state") # create a map
 for (i in 1:nrow(pres08)) {
@@ -415,9 +429,11 @@ for (i in 1:nrow(pres08)) {
                 green = 0), fill = TRUE, add = TRUE)
     }
 }
+```
 
-### Section 5.3.5: Expansion of Walmart
+## Section 5.3.5: Expansion of Walmart
 
+```{r}
 walmart <- read.csv("walmart.csv")
 
 ## red = WalMartStore, green = SuperCenter, blue = DistributionCenter
@@ -433,7 +449,6 @@ walmart$storecolors[walmart$type == "DistributionCenter"] <-
 ## larger circles for DistributionCenter
 walmart$storesize <- ifelse(walmart$type == "DistributionCenter", 1, 0.5)
 
-par(cex = 1.25)
 ## map with legend
 map(database = "state")
 
@@ -453,8 +468,6 @@ walmart.map <- function(data, date) {
     points(walmart$long, walmart$lat, col = walmart$storecolors, 
            pch = 19, cex = walmart$storesize)
 }
-
-par(cex = 1.25)
 
 walmart$opendate <- as.Date(walmart$opendate)
 
@@ -481,5 +494,6 @@ dates <- seq(from = min(walmart$opendate),
 ##     }
 ## }, title = "Expansion of Walmart", htmlfile = "walmart.html",
 ##          outdir = getwd(), autobrowse = FALSE)
+```
 
-#### 5.4: Summary
+# 5.4: Summary
