@@ -1,8 +1,9 @@
 # Chapter 1: Introduction
 
 ## R scripts
-1. The script for the entire chapter: [intro.R](intro.R)
-2. The script used in Section 1.3.8: [UNpop.R](UNpop.R)
+1. The script for the entire chapter: [intro.Rmd](intro.Rmd)
+2. The pdf file with outputs: [intro.pdf](intro.pdf) 
+3. The script used in Section 1.3.8: [UNpop.R](UNpop.R)
 
 ## Data sets
 ### Main text
