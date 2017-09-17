@@ -1,7 +1,14 @@
-##### Chapter 3: Measurement
+---
+title: 'Code for QSS Chapter 3: Measurement'
+author: "Kosuke Imai"
+date: "First Printing"
+output:
+  pdf_document: default
+---
 
-#### Section 3.1: Measuring Civilian Victimization during Wartime
+# Section 3.1: Measuring Civilian Victimization during Wartime
 
+```{r}
 ## load data
 afghan <- read.csv("afghan.csv")
 
@@ -13,9 +20,11 @@ summary(afghan$income)
 
 prop.table(table(ISAF = afghan$violent.exp.ISAF, 
                  Taliban = afghan$violent.exp.taliban))
+```
 
-#### Section 3.2: Handling Missing Data in R
+# Section 3.2: Handling Missing Data in R
 
+```{r}
 ## print income data for first 10 respondents
 head(afghan$income, n = 10)
 
@@ -34,11 +43,13 @@ prop.table(table(ISAF = afghan$violent.exp.ISAF,
 afghan.sub <- na.omit(afghan)  # listwise deletion
 nrow(afghan.sub)               
 length(na.omit(afghan$income)) 
+```
 
-#### Section 3.3: Visualizating the Univariate Distribution
+# Section 3.3: Visualizating the Univariate Distribution
 
-### Section 3.3.1: Bar Plot
+## Section 3.3.1: Bar Plot
 
+```{r}
 par(cex = 1.5)
 
 ## a vector of proportions to plot
@@ -61,9 +72,11 @@ barplot(Taliban.ptable,
         main = "Civilian victimization by the Taliban",
         xlab = "Response category",
         ylab = "Proportion of the respondents", ylim = c(0, 0.7)) 
+```
 
-### Section 3.3.2: Histogram
+## Section 3.3.2: Histogram
 
+```{r}
 par(cex = 1.5)
 hist(afghan$age, freq = FALSE, ylim = c(0, 0.04), xlab = "Age",
      main = "Distribution of respondent's age")
@@ -91,30 +104,34 @@ boxplot(educ.years ~ province, data = afghan,
 
 tapply(afghan$violent.exp.taliban, afghan$province, mean, na.rm = TRUE)
 tapply(afghan$violent.exp.ISAF, afghan$province, mean, na.rm = TRUE)
+```
 
+```{r, eval = FALSE}
 ## Saving or Printing a Graph
 
-## pdf(file = "educ.pdf", height = 5, width = 5)
-## boxplot(educ.years ~ province, data = afghan,
-##         main = "Education by Province", ylab = "Years of education")
-## dev.off()
-## pdf(file = "hist.pdf", height = 4, width = 8)
-## ## one row with 2 plots with font size 0.8
-## par(mfrow = c(1, 2), cex = 0.8)
-## ## for simplicity omit the texts and lines from the earlier example
-## hist(afghan$age, freq = FALSE,
-##      xlab = "Age", ylim = c(0, 0.04),
-##      main = "Distribution of Respondent's Age")
-## hist(afghan$educ.years, freq = FALSE,
-##      breaks = seq(from = -0.5, to = 18.5, by = 1),
-##      xlab = "Years of education", xlim = c(0, 20),
-##      main = "Distribution of Respondent's Education")
-## dev.off()
+pdf(file = "educ.pdf", height = 5, width = 5)
+boxplot(educ.years ~ province, data = afghan,
+         main = "Education by Province", ylab = "Years of education")
+dev.off()
 
-#### Section 3.4: Survey Sampling
+pdf(file = "hist.pdf", height = 4, width = 8)
+## one row with 2 plots with font size 0.8
+par(mfrow = c(1, 2), cex = 0.8)
+## for simplicity omit the texts and lines from the earlier example
+hist(afghan$age, freq = FALSE,
+      xlab = "Age", ylim = c(0, 0.04),
+      main = "Distribution of Respondent's Age")
+hist(afghan$educ.years, freq = FALSE,
+      breaks = seq(from = -0.5, to = 18.5, by = 1),
+      xlab = "Years of education", xlim = c(0, 20),
+      main = "Distribution of Respondent's Education")
+dev.off()
+```
 
-### Section 3.4.1: The Role of Randomization
+# Section 3.4: Survey Sampling
 
+## Section 3.4.1: The Role of Randomization
+```{r}
 par(cex = 1.5)
 
 ## load village data
@@ -127,9 +144,11 @@ boxplot(altitude ~ village.surveyed, data = afghan.village,
 ## boxplots for log population
 boxplot(log(population) ~ village.surveyed, data = afghan.village,
         ylab = "log population", names = c("Nonsampled", "Sampled"))
+```
 
-### Section 3.4.2: Nonresponse and Other Sources of Bias
+## Section 3.4.2: Nonresponse and Other Sources of Bias
 
+```{r}
 tapply(is.na(afghan$violent.exp.taliban), afghan$province, mean)
 tapply(is.na(afghan$violent.exp.ISAF), afghan$province, mean)
 
@@ -137,13 +156,15 @@ mean(afghan$list.response[afghan$list.group == "ISAF"]) -
     mean(afghan$list.response[afghan$list.group == "control"]) 
 
 table(response = afghan$list.response, group = afghan$list.group)
+```
 
-#### Section 3.5: Measuring Political Polarization
+# Section 3.5: Measuring Political Polarization
 
-#### Section 3.6: Summarizing Bivariate Relationships
+# Section 3.6: Summarizing Bivariate Relationships
 
-### Section 3.6.1: Scatter Plot
+## Section 3.6.1: Scatter Plot
 
+```{r}
 congress <- read.csv("congress.csv")
 
 ## subset the data by party
@@ -189,9 +210,11 @@ plot(names(dem.median), dem.median, col = "blue", type = "l",
 lines(names(rep.median), rep.median, col = "red")
 text(110, -0.6, "Democratic\n Party")
 text(110, 0.85, "Republican\n Party")
+```
 
-### Section 3.6.2: Correlation
+## Section 3.6.2: Correlation
 
+```{r}
 par(cex = 1.5) 
 ## Gini coefficient data
 gini <- read.csv("USGini.csv")
@@ -207,8 +230,11 @@ plot(gini$year, gini$gini, ylim = c(0.35, 0.45), xlab = "Year",
 
 cor(gini$gini[seq(from = 2, to = nrow(gini), by = 2)], 
     rep.median - dem.median)
+```
 
-### Section 3.6.3: Quantile-Quantile Plot
+## Section 3.6.3: Quantile-Quantile Plot
+
+```{r}
 par(cex = 1.5)
 hist(dem112$dwnom2, freq = FALSE, main = "Democrats", 
      xlim = c(-1.5, 1.5), ylim = c(0, 1.75), 
@@ -222,9 +248,11 @@ qqplot(dem112$dwnom2, rep112$dwnom2, xlab = "Democrats",
        ylab = "Republicans", xlim = c(-1.5, 1.5), ylim = c(-1.5, 1.5), 
        main = "Racial liberalism/conservatism dimension") 
 abline(0, 1) # 45 degree line
+```
 
-#### Section 3.7: Clustering
+# Section 3.7: Clustering
 
+```{r}
 ## 3x4 matrix filled by row; first argument take actual entries
 x <- matrix(1:12, nrow = 3, ncol = 4, byrow = TRUE)
 rownames(x) <- c("a", "b", "c")
@@ -251,9 +279,11 @@ apply(x, 2, sum)
 apply(x, 1, mean)
 ## standard deviation for each row
 apply(x, 1, sd)
+```
 
-### Section 3.7.2: List in R
+## Section 3.7.2: List in R
 
+```{r}
 ## create a list
 x <- list(y1 = 1:10, y2 = c("hi", "hello", "hey"),
           y3 = data.frame(z1 = 1:3, z2 = c("good", "bad", "ugly"))) 
@@ -261,9 +291,11 @@ x <- list(y1 = 1:10, y2 = c("hi", "hello", "hey"),
 x$y1 # first element
 x[[2]] # second element
 x[["y3"]] # third element
+```
 
-### Section 3.7.3: The k-Means Algorithm
+## Section 3.7.3: The k-Means Algorithm
 
+```{r}
 names(x)  # names of all elements 
 length(x) # number of elements
 
@@ -307,3 +339,4 @@ plot(dwnom112, col = k112four.out$cluster + 1, xlab = xlab, ylab = ylab,
 points(k112four.out$centers, pch = 8, cex = 2)
 
 palette()
+```

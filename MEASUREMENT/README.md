@@ -1,7 +1,8 @@
 # Chapter 3: Measurement
 
 ## R scripts
-- The script for the entire chapter: [measurement.R](measurement.R)
+1. The script for the entire chapter: [measurement.Rmd](measurement.Rmd)
+2. The pdf file with outputs: [measurement.pdf](measurement.pdf)
 
 ## Data sets
 ### Main text
