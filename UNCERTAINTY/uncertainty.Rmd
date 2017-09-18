@@ -1,9 +1,16 @@
-##### Chapter 7: Uncertainty
+---
+title: 'Code for QSS Chapter 7: Uncertainty'
+author: "Kosuke Imai"
+date: "First Printing"
+output:
+  pdf_document: default
+---
 
-#### Section 7.1: Estimation
+# Section 7.1: Estimation
 
-### Section 7.1.1: Unbiasedness and Consistency
+## Section 7.1.1: Unbiasedness and Consistency
 
+```{r}
 ## simulation parameters
 n <- 100 # sample size
 mu0 <- 0 # mean of Y_i(0)
@@ -50,9 +57,11 @@ est.error <- diff.means - PATE
 
 ## unbiased 
 summary(est.error) 
+```
 
-### Section 7.1.2: Standard Error
+## Section 7.1.2: Standard Error
 
+```{r}
 par(cex = 1.5) 
 hist(diff.means, freq = FALSE, xlab = "Difference-in-means estimator", 
      main = "Sampling distribution")
@@ -80,9 +89,11 @@ for (i in 1:sims) {
 sd(diff.means)
 ## mean of standard errors
 mean(se) 
+```
 
-### Section 7.1.3: Confidence Intervals
+## Section 7.1.3: Confidence Intervals
 
+```{r}
 n <- 1000 # sample size
 x.bar <- 0.6 # point estimate
 s.e. <- sqrt(x.bar * (1 - x.bar) / n) # standard error
@@ -130,9 +141,11 @@ for (i in 1:length(n)) {
     results[i] <- mean(ci.results)
 }
 results
+```
 
-### Scetion 7.1.4: Margin of Error and Sample Size Calculation in Polls
+## Section 7.1.4: Margin of Error and Sample Size Calculation in Polls
 
+```{r}
 par(cex = 1.5, lwd = 2) 
 MoE <- c(0.01, 0.03, 0.05)  # the desired margin of error
 p <- seq(from = 0.01, to = 0.99, by = 0.01)
@@ -208,9 +221,11 @@ ci.bias.upper <- poll.bias + qnorm(1 - alpha / 2) * s.e.bias
 ## proportion of bias-corrected CIs that contain the election day outcome
 mean((ci.bias.lower <= pres08$Obama / 100) & 
          (ci.bias.upper >= pres08$Obama / 100))
+```
 
-### Section 7.1.5: Analysis of Randomized Controlled Trials
+## Section 7.1.5: Analysis of Randomized Controlled Trials
 
+```{r}
 par(cex = 1.5)
 ## read in data
 STAR <- read.csv("STAR.csv", head = TRUE)
@@ -265,9 +280,11 @@ ate.se
 ate.ci <- c(ate.est - qnorm(1 - alpha / 2) * ate.se,
             ate.est + qnorm(1 - alpha / 2) * ate.se)
 ate.ci
+```
 
-### Section 7.1.6: Analysis Based on Student's t-Distribution
+## Section 7.1.6: Analysis Based on Student's t-Distribution
 
+```{r}
 ## 95% CI for small class  
 c(est.small - qt(0.975, df = n.small - 1) * se.small, 
   est.small + qt(0.975, df = n.small - 1) * se.small)
@@ -285,11 +302,13 @@ ci.regular
 t.ci <- t.test(STAR$g4reading[STAR$classtype == 1], 
                STAR$g4reading[STAR$classtype == 2])
 t.ci
+```
 
-#### Section 7.2: Hypothesis Testing
+# Section 7.2: Hypothesis Testing
 
-### Section 7.2.1: Tea-Testing Experiment
+## Section 7.2.1: Tea-Testing Experiment
 
+```{r}
 ## truth: enumerate the number of assignment combinations
 true <- c(choose(4, 0) * choose(4, 4), 
           choose(4, 1) * choose(4, 3), 
@@ -318,9 +337,11 @@ for (i in 1:sims) {
 prop.table(table(correct)) 
 ## comparison with analytical answers; the differences are small
 prop.table(table(correct)) - true
+```
 
-### Section 7.2.2: The General Framework
+## Section 7.2.2: The General Framework
 
+```{r}
 ## all correct
 x <- matrix(c(4, 0, 0, 4), byrow = TRUE, ncol = 2, nrow = 2)
 ## six correct
@@ -378,9 +399,11 @@ prop.test(550, n = n, p = 0.5, conf.level = 0.99)
 
 ## two-sided one-sample t-test
 t.test(STAR$g4reading, mu = 710)
+```
 
-### Section 7.2.4: Two-Sample Tests
+## Section 7.2.4: Two-Sample Tests
 
+```{r}
 ## one-sided p-value
 pnorm(-abs(ate.est), mean = 0, sd = ate.se)
 ## two-sided p-value
@@ -424,11 +447,13 @@ zstat
 pnorm(-abs(zstat))
 
 prop.test(x, alternative = "greater", correct = FALSE) 
+```
 
-### Section 7.2.5: Pitfalls of Hypothesis Testing
+## Section 7.2.5: Pitfalls of Hypothesis Testing
 
-### Section 7.2.6: Power Analysis
+## Section 7.2.6: Power Analysis
 
+```{r}
 ## set the parameters
 n <- 250
 p.star <- 0.48 # data generating process
@@ -471,11 +496,13 @@ power.t.test(n = 100, delta = 0.25, sd = 1, type = "one.sample")
 power.t.test(power = 0.9, delta = 0.25, sd = 1, type = "one.sample")
 power.t.test(delta = 0.25, sd = 1, type = "two.sample", 
              alternative = "one.sided", power = 0.9)
+```
 
-#### Section 7.3: Linear Regression Model with Uncertainty
+# Section 7.3: Linear Regression Model with Uncertainty
 
-### Section 7.3.1: Linear Regression as a Generative Model
+## Section 7.3.1: Linear Regression as a Generative Model
 
+```{r}
 minwage <- read.csv("minwage.csv")
 
 ## compute proportion of full employment before minimum wage increase
@@ -501,13 +528,15 @@ fit.minwage1
 
 predict(fit.minwage, newdata = minwage[1, ])
 predict(fit.minwage1, newdata = minwage[1, ])
+```
 
-### Section 7.3.2: Unbiasedness of Estimated Coefficients
+## Section 7.3.2: Unbiasedness of Estimated Coefficients
 
-### Section 7.3.3: Standard Errors of Estimated Coefficients
+## Section 7.3.3: Standard Errors of Estimated Coefficients
 
-### Section 7.3.4: Inference About Coefficients
+## Section 7.3.4: Inference About Coefficients
 
+```{r}
 women <- read.csv("women.csv")
 fit.women <- lm(water ~ reserved, data = women)
 summary(fit.women)
@@ -518,9 +547,11 @@ summary(fit.minwage)
 
 ## confidence interval just for the `NJ' variable
 confint(fit.minwage)["NJ", ] 
+```
 
-### Section 7.3.5: Inference About Predictions
+## Section 7.3.5: Inference About Predictions
 
+```{r}
 ## load the data and subset them into two parties
 MPs <- read.csv("MPs.csv")
 MPs.labour <- subset(MPs, subset = (party == "labour")) 
@@ -595,5 +626,4 @@ CI
 z.score <- diff.est / se.diff
 p.value <- 2 * pnorm(abs(z.score), lower.tail = FALSE) # two-sided p-value
 p.value
-
-#### Section 7.4: Summary
+```
