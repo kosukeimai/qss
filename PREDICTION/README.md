@@ -1,7 +1,8 @@
 # Chapter 4: Prediction
 
 ## R scripts
-- The script for the entire chapter: [prediction.R](prediction.R)
+1. The script for the entire chapter: [prediction.Rmd](prediction.Rmd)
+2. The pdf file with outputs: [prediction.pdf](prediction.pdf)
 
 ## Data sets
 ### Main text
