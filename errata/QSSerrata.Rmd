@@ -1,0 +1,122 @@
+---
+title: 'Errata for Quantitative Social Science: An Introduction (Princeton University
+  Press, 2017)'
+author: "Kosuke Imai"
+date: "9/11/2017"
+output:
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Table of Contents
+
+## Section 4.3.3
+
+* page ix. Change "Heterogenous" to "Heterogeneous"
+
+# Chapter 1
+
+## Section 1.3.8
+
+* page 27. Change "The `lintr()` function in the **lintr** package" to "The `lint()` function in the **lintr** package"
+
+* page 27. In the code output, change "`## UNpop.R:8:7: style`" to "`## UNpop.R:7:7: style`"
+
+# Chapter 4
+
+## Section 4.3.3
+
+* page 170. Change "4.3.3 HETEROGENOUS TREATMENT EFFECTS" to "4.3.3 HETEROGENEOUS TREATMENT EFFECTS".  
+
+* page 170. Chage "helpful for exploring *heterogenous treatment effects*" to "helpful for exploring *heterogeneous treatment effects*".  
+
+* page 170. Change "To illustrate the analysis of heterogenous treatment effects" to "To illustrate the analysis of heterogeneous treatment effects"
+
+* pages 170 -- 176. Throughout this section, the `primary2008` variable should be labeled as `primary2006` so that it matches with the `social.csv` data file introduced in Chapter 2.  For now, we include another version of `social.csv` in this chapter's folder so that users can apply the code.
+
+* page 181. Change "We discussed how to estimate heterogenous treatment effects" to "We discussed how to estimate heterogeneous treatment effects"
+
+# Chapter 5
+
+## Section 5.2.3
+
+* page 212. The code chunk that loads the data sets need to be changed to:
+
+```{r, eval = FALSE}
+twitter <- read.csv("twitter-following.csv", stringsAsFactors = FALSE)
+senator <- read.csv("twitter-senator.csv", stringsAsFactors = FALSE)
+```
+
+so that the names of senators will be treated as a character variable instead of a factor variable (default).  Unfortunately, this changes the results of the rest of this subsection 5.2 although it does not change the code.
+
+## Section 5.3.6
+
+* page 235. Change "by opening a web browser and clicking `File > Open file...` in the menu." to "opening the resulting `walmart.html` file in a web browser."
+
+# Chapter 6
+
+## Section 6.2.2
+
+* page 265. The original code for the Monty Hall problem does not return the right answer when the order of doors is changed.  This is due to the fact that the `sample()` function behaves differently when an integer is supplied as an input.  The correct code that avoids this problem is below:
+
+```{r, eval = FALSE}
+sims <- 1000
+doors <- c("goat", "goat", "car")
+result.switch <- result.noswitch <- rep(NA, sims)
+
+for (i in 1:sims) {
+    ## randomly choose the initial door
+    first <- sample(1:3, size = 1)
+    result.noswitch[i] <- doors[first]
+    remain <- doors[-first] # remaining two doors
+    ## Monty chooses one door with a goat
+    if (doors[first] == "car") # two goats left
+        monty <- sample(1:2, size = 1)
+    else # one goat and one car left
+        monty <- (1:2)[remain == "goat"]
+    result.switch[i] <- remain[-monty]
+}
+
+mean(result.noswitch == "car")
+mean(result.switch == "car")
+```
+
+## Section 6.3.3.
+
+* page 284, second paragraph. Change "$\{HTHTHT\}$" to "$\{HTHTH\}$".
+
+## Section 6.4.2.
+
+* page 304, first paragraph. Change "we expect a binomial random variable to approximate the normal distribution as the sample size, or the number of balls in this case, increases." to "we expect the binomial random variable to approximate the normal random variable as the sample size, or the number of lines of pegs in this case, increases.  Here, the sample size refers to the number of lines of pegs, not the number of balls.  Increasing the latter reduces the Monte Carlo error."  Also, change "The central limit theorem applies not only to the binomial distribution, but" to "The central limit theorem applies not only to the Bernoulli random variable, but".  
+
+* page 304, equation (6.42).  The second term is missing $X_i$, which is highlighted in the correct equation below:
+
+$$\mathbb{E}(\overline{X}_n) = \mathbb{E}\left(\frac{1}{n} \sum_{i=1}^n {\color{red}{X_i}}\right)  = \frac{1}{n}\sum_{i=1}^n \mathbb{E}(X_i) = \mathbb{E}(X)$$
+
+* page 305.  Add a sentence to the end of the last paragraph whose last sentence ends with "approximated by the standard normal distribution."  The sentence to be added is "To illustrate the quincunx through Monte Carlo simulations, we sample from the Bernoulli distribution or equivalently the Binomial distribution with size $n=1$."
+
+
+# Chapter 7
+
+## Section 7.1.3
+
+* page 327, last paragraph. Change "such that $P(Z > \alpha/2) = 1 - P(Z \leq \alpha / 2) = 1 - \alpha/2$" to "such that $P(Z > z_{\alpha/2}) = 1 - P(Z \leq z_{\alpha/2}) = 1- \alpha/2$"
+
+* page 329, last paragraph. Change "Consider the probability that $(1 - \alpha/2) \times 100\%$ confidence interval" to "Consider the probability that $(1 - \alpha) \times 100\%$ confidence interval"
+
+* page 330, Step 4 in the box. Change "Compute the critical value $z_{\alpha/2}$ as the $(1 - \alpha) \times 100$ percentile value" to "Compute the critical value $z_{\alpha/2}$ as the $(1 - \alpha/2) \times 100$ percentile value"
+
+## Section 7.2.3
+
+* page 354, first paragraph.  The first sentence should read: "We can confirm this result using the current example by checking that 0.5 is contained in the 99% confidence interval (we fail to reject the null hypothesis when $\alpha = 0.01$) but not in the 95% confidence interval (we reject the null when $\alpha = 0.5$)."
+
+# General Index
+
+* page 402. Change "heterogenous treatment effects, 170" to "heterogeneous treatment effects, 170"
+
+# Acknowledgements
+
+Thanks to Jeff Arnold, Fallend Franz, Joel Gautschi, Masataka Harada, Yuko Kasuya, Soyoung Lee, and Rocio Titiunik for pointing out the errors. 
