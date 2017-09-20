@@ -3,7 +3,7 @@ warnings_are_errors: true
 sudo: required
 
 script:
-    - Rscript -e 'for (fn in list.files(".", recursive=TRUE, pattern=".Rmd")) {knitr::purl(fn, output = paste0(fn,".R"), documentation = 2); setwd(dirname(fn)); getwd(); source(paste0(basename(fn),".R")); unlink(paste0(basename(fn),".R")); setwd("../")}'
+    - R -e 'for (fn in list.files(".", recursive=TRUE, pattern=".Rmd")) {knitr::purl(fn, output = paste0(fn,".R"), documentation = 2); setwd(dirname(fn)); getwd(); source(paste0(basename(fn),".R")); unlink(paste0(basename(fn),".R")); setwd("../")}'
  
 #   - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
 #   - chmod 755 ./travis-tool.sh
