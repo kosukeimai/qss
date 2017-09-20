@@ -1,7 +1,8 @@
 # Chapter 6: Probability
 
 ## R scripts
-- The script for the entire chapter: [probability.R](probability.R)
+- The script for the entire chapter: [probability.Rmd](probability.Rmd)
+- The pdf file with outputs: [probability.pdf](probability.pdf)
 
 ## Data sets
 ### Main text

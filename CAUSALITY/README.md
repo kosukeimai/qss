@@ -1,7 +1,8 @@
 # Chapter 2: Causality
 
 ## R scripts
-- The script for the entire chapter: [causality.R](causality.R)
+1. The script for the entire chapter: [causality.Rmd](causality.Rmd)
+2. The pdf file with outputs: [causality.pdf](causality.pdf)
 
 ## Data sets
 ### Main text

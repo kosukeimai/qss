@@ -1,7 +1,13 @@
-##### Chapter 2: Causality
+---
+title: 'Code for QSS Chapter 2: Causality'
+author: "Kosuke Imai"
+date: "First Printing"
+output:
+  pdf_document: default
+---
 
-#### Section 2.1: Racial Discrimination in the Labor Market
-
+# Section 2.1: Racial Discrimination in the Labor Market
+```{r}
 resume <- read.csv("resume.csv")
 
 dim(resume)
@@ -24,9 +30,11 @@ race.call.tab[1, ]  # the first row
 race.call.tab[, 2]  # the second column
 
 mean(resume$call)
+```
 
-#### Section 2.2: Subsetting the Data in R
 
+# Section 2.2: Subsetting the Data in R
+```{r}
 class(TRUE)
 
 as.integer(TRUE)
@@ -50,9 +58,11 @@ TF1 <- c(TRUE, FALSE, FALSE)
 TF2 <- c(TRUE, FALSE, TRUE)
 TF1 | TF2
 TF1 & TF2
+```
 
-### Section 2.2.2: Relational Operators
+## Section 2.2.2: Relational Operators
 
+```{r}
 4 > 3
 
 "Hello" == "hello"  # R is case-sensitive
@@ -72,9 +82,11 @@ x.int
 
 mean(x.int) # proportion of TRUEs
 sum(x.int)  # number of TRUEs
+```
 
-### Section 2.2.3: Subsetting
+## Section 2.2.3: Subsetting
 
+```{r}
 ## callback rate for black-sounding names
 mean(resume$call[resume$race == "black"]) 
 
@@ -109,16 +121,20 @@ resumeWm <- subset(resume, subset = (race == "white") & (sex == "male"))
 ## racial gaps
 mean(resumeWf$call) - mean(resumeBf$call) # among females
 mean(resumeWm$call) - mean(resumeBm$call) # among males
+```
 
-### Section 2.2.4: Simple Conditional Statements
+## Section 2.2.4: Simple Conditional Statements
 
+```{r}
 resume$BlackFemale <- ifelse(resume$race == "black" & 
                                  resume$sex == "female", 1, 0)
 table(race = resume$race, sex = resume$sex,
       BlackFemale = resume$BlackFemale)
+```
 
-### Section 2.2.5: Factor Variables
+## Section 2.2.5: Factor Variables
 
+```{r}
 resume$type <- NA
 resume$type[resume$race == "black" & resume$sex == "female"] <- "BlackFemale"
 resume$type[resume$race == "black" & resume$sex == "male"] <- "BlackMale"
@@ -143,17 +159,20 @@ resume$firstname <- as.factor(resume$firstname)
 callback.name <- tapply(resume$call, resume$firstname, mean)
 ## sort the result in the increasing order
 sort(callback.name)
+```
 
-#### Section 2.3: Causal Effects and the Counterfactual
-
+# Section 2.3: Causal Effects and the Counterfactual
+```{r}
 resume[1, ]
+```
 
-#### Section 2.4: Randomized Controlled Trials
+# Section 2.4: Randomized Controlled Trials
 
-### Section 2.4.1: The Role of Randomization
+## Section 2.4.1: The Role of Randomization
 
-### Section 2.4.2: Social Pressure and Voter Turnout
+## Section 2.4.2: Social Pressure and Voter Turnout
 
+```{r}
 social <- read.csv("social.csv") # load the data
 
 summary(social) # summarize the data
@@ -172,11 +191,13 @@ social$age <- 2006 - social$yearofbirth # create age variable
 tapply(social$age, social$messages, mean)
 tapply(social$primary2004, social$messages, mean) 
 tapply(social$hhsize, social$messages, mean) 
+```
 
-#### Section 2.5: Observational Studies
+# Section 2.5: Observational Studies
 
-### Section 2.5.1: Minimum Wage and Unemployment
+## Section 2.5.1: Minimum Wage and Unemployment
 
+```{r}
 minwage <- read.csv("minwage.csv") # load the data
 
 dim(minwage) # dimension of data
@@ -200,9 +221,11 @@ minwagePA$fullPropAfter <- minwagePA$fullAfter /
 
 ## compute the difference in means
 mean(minwageNJ$fullPropAfter) - mean(minwagePA$fullPropAfter)
+```
 
-### Section 2.5.2: Confounding Bias
+## Section 2.5.2: Confounding Bias
 
+```{r}
 prop.table(table(minwageNJ$chain))
 prop.table(table(minwagePA$chain))
 
@@ -218,9 +241,11 @@ minwageNJ.bk.subset <-
                                        (location != "centralNJ")))
 
 mean(minwageNJ.bk.subset$fullPropAfter) - mean(minwagePA.bk$fullPropAfter)
+```
 
-### Section 2.5.3: Before-and-After and Difference-in-Differences Designs
+## Section 2.5.3: Before-and-After and Difference-in-Differences Designs
 
+```{r}
 ## full-time employment proportion in the previous period for NJ
 minwageNJ$fullPropBefore <- minwageNJ$fullBefore / 
     (minwageNJ$fullBefore + minwageNJ$partBefore)
@@ -244,11 +269,13 @@ minwagePA$fullPropBefore <- minwagePA$fullBefore /
 PAdiff <- mean(minwagePA$fullPropAfter) - mean(minwagePA$fullPropBefore)
 ## difference-in-differences
 NJdiff - PAdiff
+```
 
-#### Section 2.6: Descriptive Statistics for a Single Variable
+# Section 2.6: Descriptive Statistics for a Single Variable
 
-### Section 2.6.1: Quantiles
+## Section 2.6.1: Quantiles
 
+```{r}
 ## cross-section comparison between NJ and PA
 median(minwageNJ$fullPropAfter) - median(minwagePA$fullPropAfter)
 ## before and after comparison
@@ -270,9 +297,11 @@ IQR(minwageNJ$wageAfter)
 ## deciles (10 groups)
 quantile(minwageNJ$wageBefore, probs = seq(from = 0, to = 1, by = 0.1))
 quantile(minwageNJ$wageAfter, probs = seq(from = 0, to = 1, by = 0.1))
+```
 
-### 2.6.2: Standard Deviation
+## 2.6.2: Standard Deviation
 
+```{r}
 sqrt(mean((minwageNJ$fullPropAfter - minwageNJ$fullPropBefore)^2))
 mean(minwageNJ$fullPropAfter - minwageNJ$fullPropBefore)
 
@@ -282,3 +311,4 @@ sd(minwageNJ$fullPropAfter)
 ## variance
 var(minwageNJ$fullPropBefore)
 var(minwageNJ$fullPropAfter)
+```
