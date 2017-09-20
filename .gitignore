@@ -11,3 +11,6 @@
 # produced vignettes
 vignettes/*.html
 vignettes/*.pdf
+
+.DS_Store
+

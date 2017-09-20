@@ -2,16 +2,18 @@ language: c
 warnings_are_errors: true
 sudo: required
 
-script: 
-   - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
-   - chmod 755 ./travis-tool.sh
-   - ./travis-tool.sh bootstrap
-   - echo "Install the dependency R packages used in the test scripts ..."
-   - ./travis-tool.sh install_r foreign
-   - ./travis-tool.sh install_r lintr 
-   - Rscript -e 'library(lintr); library(foreign)'
-   - echo "Execute the R testing scripts ..."
-   - cd INTRO; Rscript intro.R; cd ..
+script:
+    - Rscript -e 'for (fn in list.files(".", recursive=TRUE, pattern=".Rmd")) {knitr::purl(fn, output = paste0(fn,".R"), documentation = 2); setwd(dirname(fn)); getwd(); source(paste0(basename(fn),".R")); unlink(paste0(basename(fn),".R")); setwd("../")}'
+ 
+#   - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
+#   - chmod 755 ./travis-tool.sh
+#   - ./travis-tool.sh bootstrap
+#   - echo "Install the dependency R packages used in the test scripts ..."
+#   - ./travis-tool.sh install_r foreign
+#   - ./travis-tool.sh install_r lintr 
+#   - Rscript -e 'library(lintr); library(foreign)'
+#   - echo "Execute the R testing scripts ..."
+#   - cd INTRO; Rscript intro.R; cd ..
 
 #
 #  Note: (1) For each unique R package X in library(X) for any test scripts, install X:
