@@ -15,7 +15,6 @@ output:
 ## Section 6.1.3: Permutations
 
 ```{r}
-par(cex = 1.5, mar = c(5, 5, 4, 2))
 birthday <- function(k) {
     logdenom <- k * log(365) + lfactorial(365 - k) # log denominator
     lognumer <- lfactorial(365) # log numerator
@@ -117,14 +116,11 @@ joint3["black", 4, "f"] / joint2[4, "f"]
 ## Section 6.2.2: Independence
 
 ```{r}
-par(cex = 1.5)
 plot(c(margin.race * margin.gender["f"]), # product of marginal probs.
      c(joint.p[, "f"]), # joint probabilities
      xlim = c(0, 0.4), ylim = c(0, 0.4),
      xlab = "P(race) * P(female)", ylab = "P(race and female)")
 abline(0, 1) # 45 degree line
-
-par(cex = 1.5)
 
 ## joint independence
 plot(c(joint3[, 4, "f"]), # joint probability
@@ -387,7 +383,6 @@ pnorm(mu + 2*sigma, mean = 5, sd = 2) - pnorm(mu - 2*sigma, mean = 5, sd = 2)
 ## `Obama2008.z' is Obama's 2008 standardized vote share
 fit1
 
-par(cex = 1.5)
 e <- resid(fit1)
 
 ## z-score of residuals
@@ -443,7 +438,6 @@ pres08 <- read.csv("pres08.csv")
 ## two-party vote share
 pres08$p <- pres08$Obama / (pres08$Obama + pres08$McCain)
 
-par(cex = 1.5)
 n.states <- nrow(pres08) # number of states
 n <- 1000 # number of respondents
 sims <- 10000 # number of simulations
@@ -500,7 +494,6 @@ mean.binom <- cumsum(x.binom) / 1:sims
 x.unif <- runif(sims)
 mean.unif <- cumsum(x.unif) / 1:sims
 
-par(cex = 1.5)
 ## plot for binomial
 plot(1:sims, mean.binom, type = "l", ylim = c(1, 3),
      xlab = "Sample size", ylab = "Sample mean", main = "Binomial(10, 0.2)")
@@ -515,7 +508,6 @@ abline(h = 0.5, lty = "dashed") # expectation
 ## Section 6.4.2: The Central Limit Theorem
 
 ```{r}
-par(cex = 1.5)
 ## sims = number of simulations
 n.samp <- 1000
 z.binom <- z.unif <- rep(NA, sims)

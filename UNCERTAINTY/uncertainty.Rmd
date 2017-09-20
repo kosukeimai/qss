@@ -62,7 +62,6 @@ summary(est.error)
 ## Section 7.1.2: Standard Error
 
 ```{r}
-par(cex = 1.5) 
 hist(diff.means, freq = FALSE, xlab = "Difference-in-means estimator", 
      main = "Sampling distribution")
 abline(v = SATE, col = "red") # true value of SATE
@@ -146,7 +145,6 @@ results
 ## Section 7.1.4: Margin of Error and Sample Size Calculation in Polls
 
 ```{r}
-par(cex = 1.5, lwd = 2) 
 MoE <- c(0.01, 0.03, 0.05)  # the desired margin of error
 p <- seq(from = 0.01, to = 0.99, by = 0.01)
 n <- 1.96^2 * p * (1 - p) / MoE[1]^2
@@ -192,7 +190,6 @@ s.e. <- sqrt(poll.pred[, 1] * (1 - poll.pred[, 1]) / n) # standard error
 poll.pred[, 2] <- poll.pred[, 1] - qnorm(1 - alpha/2) * s.e.
 poll.pred[, 3] <- poll.pred[, 1] + qnorm(1 - alpha/2) * s.e.
 
-par(cex = 1.5)
 alpha <- 0.05
 plot(pres08$Obama / 100, poll.pred[, 1], xlim = c(0, 1), ylim = c(0, 1),
      xlab = "Obama's vote share", ylab = "Poll prediction")
@@ -226,7 +223,6 @@ mean((ci.bias.lower <= pres08$Obama / 100) &
 ## Section 7.1.5: Analysis of Randomized Controlled Trials
 
 ```{r}
-par(cex = 1.5)
 ## read in data
 STAR <- read.csv("STAR.csv", head = TRUE)
 hist(STAR$g4reading[STAR$classtype == 1], freq = FALSE, xlim = c(500, 900),
@@ -586,7 +582,6 @@ tory.y0 <- predict(tory.fit1, interval = "confidence",
 tory.y1 <- predict(tory.fit2, interval = "confidence", 
                    newdata = data.frame(margin = y2.range))
 
-par(cex = 1.5)   
 ## plotting the first regression with losers
 plot(y1.range, tory.y0[, "fit"], type = "l", xlim = c(-0.5, 0.5),
      ylim = c(10, 15), xlab = "Margin of victory", ylab = "log net wealth")

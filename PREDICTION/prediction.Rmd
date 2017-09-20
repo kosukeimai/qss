@@ -132,7 +132,6 @@ mean(errors) # mean prediction error
 
 sqrt(mean(errors^2))
 
-par(cex = 1.5)
 ## histogram
 hist(errors, freq = FALSE, ylim = c(0, 0.08),
      main = "Poll prediction error",
@@ -141,7 +140,6 @@ hist(errors, freq = FALSE, ylim = c(0, 0.08),
 abline(v = mean(errors), lty = "dashed", col = "red")
 text(x = -7, y = 0.07, "average error", col = "red")
 
-par(cex = 1.5)
 ## type = "n" generates "empty" plot
 plot(poll.pred, pres08$margin, type = "n", main = "", xlab = "Poll results",
      xlim = c(-40, 90), ylim = c(-40, 90), ylab = "Actual election results")
@@ -181,7 +179,6 @@ for (i in 1:90) {
     McCain.pred[i] <- mean(week.data$McCain)
 }
 
-par(cex = 1.5)
 ## plot going from 90 days to 1 day before the election
 plot(90:1, Obama.pred, type = "b", xlim = c(90, 0), ylim = c(40, 60),
      col = "blue", xlab = "Days to the election",
@@ -213,7 +210,6 @@ face$d.share <- face$d.votes / (face$d.votes + face$r.votes)
 face$r.share <- face$r.votes / (face$d.votes + face$r.votes)
 face$diff.share <- face$d.share - face$r.share
 
-par(cex = 1.5)
 plot(face$d.comp, face$diff.share, pch = 16,
      col = ifelse(face$w.party == "R", "red", "blue"),
      xlim = c(0, 1), ylim = c(-1, 1),
@@ -294,7 +290,6 @@ fit1
 fit1 <- lm(Obama2012.z ~ -1 + Obama2008.z, data = pres)
 fit1
 
-par(cex = 1.5)
 plot(pres$Obama2008.z, pres$Obama2012.z, xlim = c(-4, 4), ylim = c(-4, 4),
      xlab = "Obama's standardized vote share in 2008",
      ylab = "Obama's standardized vote share in 2012")
@@ -341,7 +336,6 @@ R2(fit2)
 summary(fit2)$r.squared
 R2(fit1)
 
-par(cex = 1.5)
 plot(fitted(fit2), resid(fit2), xlim = c(0, 1500), ylim = c(-750, 2500),
      xlab = "Fitted values", ylab = "Residuals")
 abline(h = 0)
@@ -357,7 +351,6 @@ fit3
 ## R^2 or coefficient of determination
 R2(fit3)
 
-par(cex = 1.5)
 ## residual plot
 plot(fitted(fit3), resid(fit3), xlim = c(0, 1500), ylim = c(-750, 2500),
      xlab = "Fitted values", ylab = "Residuals",
@@ -514,7 +507,6 @@ yT.hat <- predict(fit.age2,
 yC.hat <- predict(fit.age2,
                   newdata = data.frame(age = 25:85, messages = "Control"))
 
-par(cex = 1.5)
 ## plotting the predicted turnout rate under each condition
 plot(x = 25:85, y = yT.hat, type = "l", xlim = c(20, 90), ylim = c(0, 0.5),
      xlab = "Age", ylab = "Predicted turnout rate")
@@ -562,7 +554,6 @@ y2t.range <- c(0, max(MPs.tory$margin)) # 0 to max
 y1.tory <- predict(tory.fit1, newdata = data.frame(margin = y1t.range))
 y2.tory <- predict(tory.fit2, newdata = data.frame(margin = y2t.range))
 
-par(cex = 1.5)
 ## scatterplot with regression lines for labour
 plot(MPs.labour$margin, MPs.labour$ln.net, main = "Labour",
      xlim = c(-0.5, 0.5), ylim = c(6, 18), xlab = "Margin of victory",

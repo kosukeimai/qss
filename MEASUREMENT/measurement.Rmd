@@ -50,8 +50,6 @@ length(na.omit(afghan$income))
 ## Section 3.3.1: Bar Plot
 
 ```{r}
-par(cex = 1.5)
-
 ## a vector of proportions to plot
 ISAF.ptable <- prop.table(table(ISAF = afghan$violent.exp.ISAF, 
                                 exclude = NULL))
@@ -77,11 +75,9 @@ barplot(Taliban.ptable,
 ## Section 3.3.2: Histogram
 
 ```{r}
-par(cex = 1.5)
 hist(afghan$age, freq = FALSE, ylim = c(0, 0.04), xlab = "Age",
      main = "Distribution of respondent's age")
 
-par(cex = 1.5)
 ## histogram of education.  use `breaks' to choose bins 
 hist(afghan$educ.years, freq = FALSE, 
      breaks = seq(from = -0.5, to = 18.5, by = 1),
@@ -98,7 +94,6 @@ abline(v = median(afghan$educ.years))
 lines(x = rep(median(afghan$educ.years), 2), y = c(0, 0.5))
 
 ### Section 3.3.3: Box Plot
-par(cex = 1.25)
 boxplot(educ.years ~ province, data = afghan, 
         main = "Education by province", ylab = "Years of education")
 
@@ -115,8 +110,6 @@ boxplot(educ.years ~ province, data = afghan,
 dev.off()
 
 pdf(file = "hist.pdf", height = 4, width = 8)
-## one row with 2 plots with font size 0.8
-par(mfrow = c(1, 2), cex = 0.8)
 ## for simplicity omit the texts and lines from the earlier example
 hist(afghan$age, freq = FALSE,
       xlab = "Age", ylim = c(0, 0.04),
@@ -132,8 +125,6 @@ dev.off()
 
 ## Section 3.4.1: The Role of Randomization
 ```{r}
-par(cex = 1.5)
-
 ## load village data
 afghan.village <- read.csv("afghan-village.csv")
 
@@ -182,7 +173,6 @@ xlab <- "Economic liberalism/conservatism"
 ylab <- "Racial liberalism/conservatism"
 lim <- c(-1.5, 1.5)
 
-par(cex = 1.5)
 ## scatterplot for the 80th Congress 
 plot(dem80$dwnom1, dem80$dwnom2, pch = 16, col = "blue", 
      xlim = lim, ylim = lim, xlab = xlab, ylab = ylab,
@@ -201,7 +191,6 @@ points(rep112$dwnom1, rep112$dwnom2, pch = 17, col = "red")
 dem.median <- tapply(dem$dwnom1, dem$congress, median)
 rep.median <- tapply(rep$dwnom1, rep$congress, median)
 
-par(cex = 1.5)
 ## Democrats
 plot(names(dem.median), dem.median, col = "blue", type = "l",
      xlim = c(80, 115), ylim = c(-1, 1), xlab = "Congress",
@@ -215,7 +204,6 @@ text(110, 0.85, "Republican\n Party")
 ## Section 3.6.2: Correlation
 
 ```{r}
-par(cex = 1.5) 
 ## Gini coefficient data
 gini <- read.csv("USGini.csv")
 
@@ -235,7 +223,6 @@ cor(gini$gini[seq(from = 2, to = nrow(gini), by = 2)],
 ## Section 3.6.3: Quantile-Quantile Plot
 
 ```{r}
-par(cex = 1.5)
 hist(dem112$dwnom2, freq = FALSE, main = "Democrats", 
      xlim = c(-1.5, 1.5), ylim = c(0, 1.75), 
      xlab = "Racial liberalism/conservatism dimension") 
@@ -243,7 +230,6 @@ hist(rep112$dwnom2, freq = FALSE, main = "Republicans",
      xlim = c(-1.5, 1.5), ylim = c(0, 1.75), 
      xlab = "Racial liberalism/conservatism dimension") 
 
-par(cex = 1.5)
 qqplot(dem112$dwnom2, rep112$dwnom2, xlab = "Democrats", 
        ylab = "Republicans", xlim = c(-1.5, 1.5), ylim = c(-1.5, 1.5), 
        main = "Racial liberalism/conservatism dimension") 
@@ -325,7 +311,6 @@ table(party = congress$party[congress$congress == 112],
 k80four.out <- kmeans(dwnom80, centers = 4, nstart = 5)
 k112four.out <- kmeans(dwnom112, centers = 4, nstart = 5)
 
-par(cex = 1.5)
 ## plotting the results using the labels and limits defined earlier
 plot(dwnom80, col = k80four.out$cluster + 1, xlab = xlab, ylab = ylab,
      xlim = lim, ylim = lim, main = "80th Congress")
