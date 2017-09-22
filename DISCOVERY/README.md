@@ -1,8 +1,9 @@
 # Chapter 5: Discovery
 
-## R script
-- The script for the entire chapter: [discovery.Rmd](discovery.Rmd)
-- The pdf file with outputs: [discovery.pdf](discovery.pdf)
+## Code
+1. The markdown file for the entire chapter: [discovery.Rmd](discovery.Rmd)
+2. The pdf file with outputs: [discovery.pdf](discovery.pdf)
+3. The R script file for the entire chapter: [discovery.R](discovery.R)
 
 ## Data sets
 ### Main text

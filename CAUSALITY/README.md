@@ -1,8 +1,9 @@
 # Chapter 2: Causality
 
-## R scripts
-1. The script for the entire chapter: [causality.Rmd](causality.Rmd)
+## Code
+1. The markdown file for the entire chapter: [causality.Rmd](causality.Rmd)
 2. The pdf file with outputs: [causality.pdf](causality.pdf)
+3. The R script file for the entire chapter: [causality.R](causality.R)
 
 ## Data sets
 ### Main text
