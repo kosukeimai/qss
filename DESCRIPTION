@@ -1,0 +1,16 @@
+Description: Test that the R scripts inside the Rmd files are free of errors, at the time of submitting.
+Depends:
+    R (>= 3.3.1)
+Imports:
+    rmarkdown,
+    knitr,
+    animation,
+    maps,
+    tm,
+    SnowballC,
+    wordcloud,
+    igraph,
+    ineq,
+    markdown,
+    slam
+License: GPL-3
