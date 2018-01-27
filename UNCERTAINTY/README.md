@@ -1,8 +1,9 @@
 # Chapter 7: Uncertainty
 
-## R scripts
-- The script for the entire chapter: [uncertainty.Rmd](uncertainty.Rmd)
-- The pdf file with outputs: [uncertainty.pdf](uncertainty.pdf)
+## Code
+1. The markdown for the entire chapter: [uncertainty.Rmd](uncertainty.Rmd)
+2. The pdf file with outputs: [uncertainty.pdf](uncertainty.pdf)
+3. The R script file for the entire chapter: [uncertainty.R](uncertainty.R)
 
 ## Data sets
 ### Main text
