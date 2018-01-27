@@ -55,6 +55,18 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Chapter 5
 
+## Section 5.1.1
+
+* p. 192. In the `tm` package version 0.7-1, which was released after this book went into the printer, it introduced `SimpleCorpus`, which became the default output object class for the `Corpus()` function.  This change affects the results though the overall conclusions of the analysis remain similar.  To obtain the results in the book, you will have to specify `VCorpus` as the output class using the following syntax:
+
+```{r, eval = FALSE}
+corpus.raw <- VCorpus(DirSource(directory = "federalist", pattern = "fp")) 
+```
+
+## Section 5.1.4
+
+* p. 200, third paragraph. Change "we focus on the usage of articles, prepositions, and conjunctions" to "we focus on the usage of adjectives, adverbs, prepositions and conjunctions"
+
 ## Section 5.2.3
 
 * page 212. The code chunk that loads the data sets need to be changed to:
@@ -133,4 +145,4 @@ $$\mathbb{E}(\overline{X}_n) = \mathbb{E}\left(\frac{1}{n} \sum_{i=1}^n {\color{
 
 # Acknowledgements
 
-Thanks to Jeff Arnold, Matt Blackwell, Fallend Franz, Joel Gautschi, Masataka Harada, Yuko Kasuya, Soyoung Lee, and Rocio Titiunik for pointing out the errors. 
+Thanks to Jeff Arnold, Matt Blackwell, Fallend Franz, Joel Gautschi, Mamiko Hamakado, Masataka Harada, Yuko Kasuya, Soyoung Lee, Rocio Titiunik, and Sandy Weisberg for pointing out the errors. 
