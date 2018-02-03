@@ -1,5 +1,5 @@
 ---
-title: 'Errata for First Printing of *Quantitative Social Science: An Introduction* (Princeton University Press)'
+title: 'Errata for *Quantitative Social Science: An Introduction* (Princeton University Press)'
 author: "Kosuke Imai"
 date: "1/27/2018"
 output:
