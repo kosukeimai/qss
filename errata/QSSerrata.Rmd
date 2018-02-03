@@ -56,7 +56,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Section 5.1.1
 
-* p. 192. In the `tm` package version 0.7-1, which was released after this book went into the printer, it introduced `SimpleCorpus`, which became the default output object class for the `Corpus()` function.  This change affects the results though the overall conclusions of the analysis remain similar.  To obtain the results in the book, you will have to specify `VCorpus` as the output class using the following syntax:
+* page 192. In the `tm` package version 0.7-1, which was released after this book went into the printer, it introduced `SimpleCorpus`, which became the default output object class for the `Corpus()` function.  This change affects the results though the overall conclusions of the analysis remain similar.  To obtain the results in the book, you will have to specify `VCorpus` as the output class using the following syntax:
 
 ```{r, eval = FALSE}
 corpus.raw <- VCorpus(DirSource(directory = "federalist", pattern = "fp")) 
@@ -64,7 +64,12 @@ corpus.raw <- VCorpus(DirSource(directory = "federalist", pattern = "fp"))
 
 ## Section 5.1.4
 
-* p. 200, third paragraph. Change "we focus on the usage of articles, prepositions, and conjunctions" to "we focus on the usage of adjectives, adverbs, prepositions and conjunctions"
+* page 200, third paragraph. Change "we focus on the usage of articles, prepositions, and conjunctions" to "we focus on the usage of adjectives, adverbs, prepositions and conjunctions"
+
+## Section 5.2.2
+
+* page 209, first paragraph.  Add the following sentence to the end of the paragraph, "If a node is not connected to any other node, then the number of nodes in the graph, i.e., 16 in this case, is used instead of the length of the shortest path.  Thus, Pucci family's closeness is equal to $1 / (15 \times 16)$
+"
 
 ## Section 5.2.3
 
@@ -76,6 +81,12 @@ senator <- read.csv("twitter-senator.csv", stringsAsFactors = FALSE)
 ```
 
 so that the names of senators will be treated as a character variable instead of a factor variable (default).  Unfortunately, this changes the results of the rest of this subsection 5.2 although it does not change the code.
+
+## Section 5.3.1
+
+* page 221, first paragraph. Change "River Thames (indicated by the blue region)" to "River Thames (indicated by the red region)".  Change "further south (indicated by the red region)" to "further south (indicated by the blue region)".
+
+* page 222, Figure 5.5 caption. Change "blue (Lambeth) and red (Southwark and Vauxhall)" to "red (Lambeth) and blue (Southwark and Vauxhall)"
 
 ## Section 5.3.6
 
