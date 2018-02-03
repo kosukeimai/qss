@@ -26,9 +26,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Chapter 3
 
-## Section 3.3
+## Section 3.3.2
 
 * page 83, first paragraph. Change "skewed towards the left" to "right-skewed"
+
+## Section 3.7.3
+
+* page 114, first paragraph. Change "produces 1 cluster containing only Democrats and the other consisting only of Republicans" to "produces one cluster containing all Democrats except one and the other consisting only of Republicans".
 
 # Chapter 4
 
@@ -93,6 +97,8 @@ so that the names of senators will be treated as a character variable instead of
 * page 231, first paragraph. Change "Bentonville, Arkansas" to "Rogers, Arkansas".
 
 ## Section 5.3.6
+
+* page 235, first pragraph. Chagen "Midwestern" to "Southern".
 
 * page 235, second paragraph. Change "by opening a web browser and clicking `File > Open file...` in the menu." to "opening the resulting `walmart.html` file in a web browser."
 
@@ -168,5 +174,5 @@ $$\mathbb{E}(\overline{X}_n) = \mathbb{E}\left(\frac{1}{n} \sum_{i=1}^n {\color{
 
 # Acknowledgements
 
-Thanks to Jeff Arnold, Masahiko Asano, Matt Blackwell, Fallend Franz, Joel Gautschi, Mamiko Hamakado, Masataka Harada, Yuko Kasuya, Soyoung Lee, Rocio Titiunik, and Sandy Weisberg for pointing out the errors. 
+Thanks to Jeff Arnold, Masahiko Asano, Matt Blackwell, Michael Donnelly, Fallend Franz, Joel Gautschi, Mamiko Hamakado, Masataka Harada, Yuko Kasuya, Soyoung Lee, Rocio Titiunik, and Sandy Weisberg for pointing out the errors. 
 
