@@ -40,6 +40,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * page 126. In the second code chunk, the results should be "`1.5 NA NA`" rather than "`1 NA NA`"
 
+## Section 4.2.1
+
+* page 140, first paragraph. Add the following sentence immediately after the first sentence, "Here, the competence measure for a Democratic candidate, for example, represents the proportion of experimental subjects who rated the Democrat more competent than the Republican."
+
 ## Section 4.2.3
 
 * page 148. Change "roughly 13 percentage points" to "12 -- 13 percentage points"
