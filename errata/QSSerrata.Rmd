@@ -1,7 +1,7 @@
 ---
 title: 'Errata for *Quantitative Social Science: An Introduction* (Princeton University Press)'
 author: "Kosuke Imai"
-date: "1/27/2018"
+date: "February 3, 2018"
 output:
   pdf_document: default
 ---
@@ -68,7 +68,7 @@ corpus.raw <- VCorpus(DirSource(directory = "federalist", pattern = "fp"))
 
 ## Section 5.2.2
 
-* page 209, first paragraph.  Add the following sentence to the end of the paragraph, "If a node is not connected to any other node, then the number of nodes in the graph, i.e., 16 in this case, is used instead of the length of the shortest path.  Thus, Pucci family's closeness is equal to $1 / (15 \times 16)$
+* page 209, first paragraph.  Add the following footnote to the end of the paragraph, "If a node is not connected to any other node, then the number of nodes in the graph, i.e., 16 in this case, is used instead of the length of the shortest path.  Thus, Pucci family's closeness is equal to $1 / (15 \times 16)$
 "
 
 ## Section 5.2.3
@@ -84,15 +84,29 @@ so that the names of senators will be treated as a character variable instead of
 
 ## Section 5.3.1
 
-* page 221, first paragraph. Change "River Thames (indicated by the blue region)" to "River Thames (indicated by the red region)".  Change "further south (indicated by the red region)" to "further south (indicated by the blue region)".
+* page 221, first paragraph. Change "the neighborhoods along the River Thames (indicated by the blue region)" to "the area further south (indicated by the red region)".  Change "the area further south (indicated by the red region)" to "the neighborhoods along the River Thames (indicated by the blue region)".
 
-* page 222, Figure 5.5 caption. Change "blue (Lambeth) and red (Southwark and Vauxhall)" to "red (Lambeth) and blue (Southwark and Vauxhall)"
+* page 222, Figure 5.5 caption. Change "blue (Lambeth) and red (Southwark and Vauxhall)" to "red (Lambeth) and blue (Southwark and Vauxhall)".
+
+## Section 5.3.5
+
+* page 231, first paragraph. Change "Bentonville, Arkansas" to "Rogers, Arkansas".
 
 ## Section 5.3.6
 
 * page 235, second paragraph. Change "by opening a web browser and clicking `File > Open file...` in the menu." to "opening the resulting `walmart.html` file in a web browser."
 
 # Chapter 6
+
+## Section 6.1.5 
+
+* page 253, first paragraph. Change "$0.84 = 1 - 0.016 - 0.135$" to "$0.85 \approx 1 - 252/15504 - 2100/15504$".
+
+* page 253, footnote 1. Add the following sentence to the footnote, "Although there are a total of 86 words from `For` to `time`, we follow the original article and use 85".
+
+## Section 6.2.1
+
+* page 259, Table 6.2. We are missing the last row for `Other` whose entries should be 0.017 (Female), 0.017 (Male), 0.034 (Marginal prob.) 
 
 ## Section 6.2.2
 
