@@ -349,7 +349,7 @@ lm(irrigation ~ reserved, data = women)
 social <- read.csv("social.csv")
 levels(social$messages) # base level is `Civic'
 
-fit <- lm(primary2008 ~ messages, data = social)
+fit <- lm(primary2006 ~ messages, data = social)
 fit
 
 ## ## create indicator variables
@@ -357,7 +357,7 @@ fit
 ## social$Hawthorne <- ifelse(social$messages == "Hawthorne", 1, 0)
 ## social$Neighbors <- ifelse(social$messages == "Neighbors", 1, 0)
 ## ## fit the same regression as above by directly using indicator variables
-## lm(primary2008 ~ Control + Hawthorne + Neighbors, data = social)
+## lm(primary2006 ~ Control + Hawthorne + Neighbors, data = social)
 
 ## create a data frame with unique values of `messages'
 unique.messages <- data.frame(messages = unique(social$messages))
@@ -367,18 +367,18 @@ unique.messages
 predict(fit, newdata = unique.messages)
 
 ## sample average
-tapply(social$primary2008, social$messages, mean)
+tapply(social$primary2006, social$messages, mean)
 
 ## linear regression without intercept
-fit.noint <- lm(primary2008 ~ -1 + messages, data = social)
+fit.noint <- lm(primary2006 ~ -1 + messages, data = social)
 fit.noint
 
 ## estimated average effect of `Neighbors' condition
 coef(fit)["messagesNeighbors"] - coef(fit)["messagesControl"]
 
 ## difference in means
-mean(social$primary2008[social$messages == "Neighbors"]) -
-    mean(social$primary2008[social$messages == "Control"])
+mean(social$primary2006[social$messages == "Neighbors"]) -
+    mean(social$primary2006[social$messages == "Control"])
 
 ## adjusted Rsquare
 adjR2 <- function(fit) {
@@ -400,16 +400,16 @@ summary(fit)$adj.r.squared
 social.voter <- subset(social, primary2004 == 1)
 
 ate.voter <-
-    mean(social.voter$primary2008[social.voter$messages == "Neighbors"]) -
-        mean(social.voter$primary2008[social.voter$messages == "Control"])
+    mean(social.voter$primary2006[social.voter$messages == "Neighbors"]) -
+        mean(social.voter$primary2006[social.voter$messages == "Control"])
 ate.voter
 
 ## average effect among those who did not vote
 social.nonvoter <- subset(social, primary2004 == 0)
 
 ate.nonvoter <-
-    mean(social.nonvoter$primary2008[social.nonvoter$messages == "Neighbors"]) -
-        mean(social.nonvoter$primary2008[social.nonvoter$messages == "Control"])
+    mean(social.nonvoter$primary2006[social.nonvoter$messages == "Neighbors"]) -
+        mean(social.nonvoter$primary2006[social.nonvoter$messages == "Control"])
 ate.nonvoter
 
 ## difference
@@ -420,16 +420,16 @@ social.neighbor <- subset(social, (messages == "Control") |
                               (messages == "Neighbors"))
 
 ## standard way to generate main and interaction effects
-fit.int <- lm(primary2008 ~ primary2004 + messages + primary2004:messages,
+fit.int <- lm(primary2006 ~ primary2004 + messages + primary2004:messages,
               data = social.neighbor)
 fit.int
 
-## lm(primary2008 ~ primary2004 * messages, data = social.neighbor)
+## lm(primary2006 ~ primary2004 * messages, data = social.neighbor)
 
-social.neighbor$age <- 2008 - social.neighbor$yearofbirth
+social.neighbor$age <- 2006 - social.neighbor$yearofbirth
 summary(social.neighbor$age)
 
-fit.age <- lm(primary2008 ~ age * messages, data = social.neighbor)
+fit.age <- lm(primary2006 ~ age * messages, data = social.neighbor)
 fit.age
 
 ## age = 25, 45, 65, 85 in Neighbors group
@@ -446,7 +446,7 @@ ate.age <- predict(fit.age, newdata = age.neighbor) -
 
 ate.age
 
-fit.age2 <- lm(primary2008 ~ age + I(age^2) + messages + age:messages +
+fit.age2 <- lm(primary2006 ~ age + I(age^2) + messages + age:messages +
                  I(age^2):messages, data = social.neighbor)
 
 fit.age2
@@ -539,4 +539,3 @@ tory.fit3 <- lm(margin.pre ~ margin, data = MPs.tory[MPs.tory$margin < 0, ])
 tory.fit4 <- lm(margin.pre ~ margin, data = MPs.tory[MPs.tory$margin > 0, ])
 ## the difference between two intercepts is the estimated effect
 coef(tory.fit4)[1] - coef(tory.fit3)[1]
-
