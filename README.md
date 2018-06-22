@@ -50,6 +50,7 @@ Once the `qss` package is installed, you can use the data and vignette:
 1. [swirl exercises `qss-swirl`](https://github.com/kosukeimai/qss-swirl)
 2. [R package `qss`](https://github.com/kosukeimai/qss-package) ([the package website](https://kosukeimai.github.io/qss-package/))
 3. [tidyverse code `qss-tidy`](https://github.com/jrnold/qss-tidy) 
-4. [instructors' materials `qss-inst`](https://github.com/kosukeimai/qss-inst)
+4. [R package `qss.student` for students](https://conjugateprior.github.io/qss.student/) 
+5. [instructors' materials `qss-inst`](https://github.com/kosukeimai/qss-inst)
    (private repository)
 
