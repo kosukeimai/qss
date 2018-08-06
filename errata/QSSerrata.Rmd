@@ -1,7 +1,7 @@
 ---
 title: 'Errata for *Quantitative Social Science: An Introduction* (Princeton University Press)'
 author: "Kosuke Imai"
-date: "February 3, 2018"
+date: "August 6, 2018"
 output:
   pdf_document: default
 ---
@@ -62,7 +62,7 @@ corpus.raw <- VCorpus(DirSource(directory = "federalist", pattern = "fp"))
 
 ### Section 5.3.6
 
-* page 235, first pragraph. Chagen "Midwestern" to "Southern".
+* page 235, first pragraph. Change "Midwestern" to "Southern".
 
 ## Chapter 6
 
@@ -76,6 +76,12 @@ corpus.raw <- VCorpus(DirSource(directory = "federalist", pattern = "fp"))
 
 * page 259, Table 6.2. We are missing the last row for `Other` whose entries should be 0.017 (Female), 0.017 (Male), 0.034 (Marginal prob.) 
 
+* page 273, the third set of equations should be changed to:
+\begin{eqnarray*}
+  P({\sf surname} \mid {\sf race\ and\ residence}) & = & \frac{P({\sf surname\ and\ residence} \mid {\sf race})}{P({\sf residence} \mid {\sf race})} \\
+  & = & \frac{P({\sf surname} \mid {\sf race}) P({\sf residence} \mid {\sf race})}{P({\sf residence} \mid {\sf race})} \\
+  & = & P({\sf surname} \mid {\sf race}).  \hspace{2in} (6.23)
+\end{eqnarray*}
 
 # Corrections only applicable to the first printing
 
@@ -190,5 +196,5 @@ $$\mathbb{E}(\overline{X}_n) = \mathbb{E}\left(\frac{1}{n} \sum_{i=1}^n {\color{
 
 ## Acknowledgements
 
-Thanks to Jeff Arnold, Masahiko Asano, Matt Blackwell, Michael Donnelly, Fallend Franz, Joel Gautschi, Mamiko Hamakado, Masataka Harada, Yuko Kasuya, Soyoung Lee, Rocio Titiunik, and Sandy Weisberg for pointing out the errors. 
+Thanks to Jeff Arnold, Masahiko Asano, Matt Blackwell, Michael Donnelly, Fallend Franz, Joel Gautschi, Mamiko Hamakado, Masataka Harada, Michael Lewis, Yuko Kasuya, Soyoung Lee, Rocio Titiunik, and Sandy Weisberg for pointing out the errors. 
 
