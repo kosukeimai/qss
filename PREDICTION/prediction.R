@@ -510,8 +510,8 @@ plot(MPs.labour$margin, MPs.labour$ln.net, main = "Labour",
 abline(v = 0, lty = "dashed")
 
 ## add regression lines
-lines(y1l.range, y1.labour, col = "red")
-lines(y2l.range, y2.labour, col = "red")
+lines(y1l.range, y1.labour, col = "blue")
+lines(y2l.range, y2.labour, col = "blue")
 
 ## scatterplot with regression lines for tory
 plot(MPs.tory$margin, MPs.tory$ln.net, main = "Tory", xlim = c(-0.5, 0.5),
@@ -520,8 +520,8 @@ plot(MPs.tory$margin, MPs.tory$ln.net, main = "Tory", xlim = c(-0.5, 0.5),
 abline(v = 0, lty = "dashed")
 
 ## add regression lines
-lines(y1t.range, y1.tory, col = "red")
-lines(y2t.range, y2.tory, col = "red")
+lines(y1t.range, y1.tory, col = "blue")
+lines(y2t.range, y2.tory, col = "blue")
 
 ## average net wealth for Tory MP
 tory.MP <- exp(y2.tory[1])
