@@ -1,7 +1,7 @@
 ---
 title: 'Code for QSS Chapter 6: Probability'
 author: "Kosuke Imai"
-date: "First Printing"
+date: "Third Printing"
 output:
   pdf_document: default
 ---
@@ -228,7 +228,7 @@ FLCensus <- read.csv("FLCensusVTD.csv")
 ## compute proportions by applying weighted.mean() to each column
 race.prop <-
     apply(FLCensus[, c("white", "black", "api", "hispanic", "others")],
-          2, weighted.mean, weights = FLCensus$total.pop)
+          2, weighted.mean, w = FLCensus$total.pop)
 
 race.prop # race proportions in Florida
 

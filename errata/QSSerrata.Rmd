@@ -1,7 +1,7 @@
 ---
 title: 'Errata for *Quantitative Social Science: An Introduction* (Princeton University Press)'
 author: "Kosuke Imai"
-date: "August 6, 2018"
+date: "March 3, 2018"
 output:
   pdf_document: default
 ---
@@ -82,6 +82,28 @@ corpus.raw <- VCorpus(DirSource(directory = "federalist", pattern = "fp"))
   & = & \frac{P({\sf surname} \mid {\sf race}) P({\sf residence} \mid {\sf race})}{P({\sf residence} \mid {\sf race})} \\
   & = & P({\sf surname} \mid {\sf race}).  \hspace{2in} (6.23)
 \end{eqnarray*}
+
+### Section 6.2.4
+
+* page 274, the following line
+
+```{r, eval = FALSE}
+race.prop <-
+    apply(FLCensus[, c("white", "black", "api", "hispanic", "others")],
+          2, weighted.mean, weights = FLCensus$total.pop)
+```
+
+should be changed to
+
+```{r, eval = FALSE}
+race.prop <-
+    apply(FLCensus[, c("white", "black", "api", "hispanic", "others")],
+          2, weighted.mean, w = FLCensus$total.pop)
+```
+
+In addition, the last sentence of this page, "The `weighted.mean()` function can be used to compute weighted averages, in which the `weights` argument takes a vector of weights.", should be changed to "The `weighted.mean()` function can be used to compute weighted averages, in which the `w` argument takes a vector of weights."  
+
+* pages 276 and 277. As a result of the above change in the code, the numerical results on these two pages change somewhat.  Please see the `probability.pdf` file for details.  The first sentence of the final paragraph on page 276 should be changed to "The true positive rate for blacks has jumped from 16\% to 63\%."
 
 # Corrections only applicable to the first printing
 
