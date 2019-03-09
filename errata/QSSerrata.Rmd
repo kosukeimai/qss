@@ -218,5 +218,5 @@ $$\mathbb{E}(\overline{X}_n) = \mathbb{E}\left(\frac{1}{n} \sum_{i=1}^n {\color{
 
 ## Acknowledgements
 
-Thanks to Jeff Arnold, Masahiko Asano, Matt Blackwell, Michael Donnelly, Fallend Franz, Joel Gautschi, Mamiko Hamakado, Masataka Harada, Michael Lewis, Yuko Kasuya, Soyoung Lee, Rocio Titiunik, and Sandy Weisberg for pointing out the errors. 
+Thanks to Jeff Arnold, Masahiko Asano, Matt Blackwell, Michael Donnelly, Fallend Franz, Joel Gautschi, Mamiko Hamakado, Masataka Harada, Raymond Hicks, Michael Lewis, Yuko Kasuya, Soyoung Lee, Rocio Titiunik, and Sandy Weisberg for pointing out the errors. 
 
