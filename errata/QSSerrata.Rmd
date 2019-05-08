@@ -1,7 +1,7 @@
 ---
 title: 'Errata for *Quantitative Social Science: An Introduction* (Princeton University Press)'
 author: "Kosuke Imai"
-date: "March 3, 2018"
+date: "May 8, 2019"
 output:
   pdf_document: default
 ---
@@ -17,6 +17,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ### Section 3.7.3
 
 * page 114, first paragraph. Change "produces 1 cluster containing only Democrats and the other consisting only of Republicans" to "produces one cluster containing all Democrats except one and the other consisting only of Republicans".
+
+* page 136, second paragraph. Change "while Illinois (`IN`) and North Carolina (`NC`)" to "while Indiana (`IN`) and North Carolina (`NC`)"
 
 ## Chapter 4
 
@@ -41,6 +43,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r, eval = FALSE}
 corpus.raw <- VCorpus(DirSource(directory = "federalist", pattern = "fp")) 
 ```
+
+### Section 5.1.2
+
+* page 197, third paragraph.  Change "for which the default value is `FALSE`.  If this argument is set to `TRUE`, then term frequency `tf(w, d)` will be divided by the total number of terms in document `d`." to "for which the default value is `TRUE`.  If this argument is set to `FALSE`, then term frequency `tf(w, d)` will not be divided by the total number of terms in document `d`."
 
 ### Section 5.1.4
 
