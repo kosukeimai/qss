@@ -1,7 +1,7 @@
 ---
 title: 'Errata for *Quantitative Social Science: An Introduction* (Princeton University Press)'
 author: "Kosuke Imai"
-date: "May 8, 2019"
+date: "August 7, 2019"
 output:
   pdf_document: default
 ---
@@ -23,6 +23,12 @@ knitr::opts_chunk$set(echo = TRUE)
 ### Section 5.1.2
 
 * page 197, third paragraph.  Change "for which the default value is `FALSE`.  If this argument is set to `TRUE`, then term frequency `tf(w, d)` will be divided by the total number of terms in document `d`." to "for which the default value is `TRUE`.  If this argument is set to `FALSE`, then term frequency `tf(w, d)` will not be divided by the total number of terms in document `d`."
+
+## Chapter 6
+
+### Section 6.1.5
+
+* page 253, Figure 6.4. Change "gone with out the major reforms" to "gone without the major reforms".
 
 # Corrections applicable to the first and second printings
 
@@ -232,5 +238,5 @@ $$\mathbb{E}(\overline{X}_n) = \mathbb{E}\left(\frac{1}{n} \sum_{i=1}^n {\color{
 
 ## Acknowledgements
 
-Thanks to Jeff Arnold, Masahiko Asano, Matt Blackwell, Michael Donnelly, Fallend Franz, Joel Gautschi, Mamiko Hamakado, Masataka Harada, Raymond Hicks, Michael Lewis, Yuko Kasuya, Soyoung Lee, Rocio Titiunik, and Sandy Weisberg for pointing out the errors. 
+Thanks to Jeff Arnold, Masahiko Asano, Matt Blackwell, Michael Donnelly, Fallend Franz, Kentaro Fukumoto, Joel Gautschi, Mamiko Hamakado, Masataka Harada, Raymond Hicks, Michael Lewis, Yuko Kasuya, Soyoung Lee, Rocio Titiunik, and Sandy Weisberg for pointing out the errors. 
 
