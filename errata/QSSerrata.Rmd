@@ -1,7 +1,7 @@
 ---
 title: 'Errata for *Quantitative Social Science: An Introduction* (Princeton University Press)'
 author: "Kosuke Imai"
-date: "August 7, 2019"
+date: "September 16, 2019"
 output:
   pdf_document: default
 ---
@@ -12,9 +12,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Corrections applicable to the first, second, and third printings
 
-## Chapter 3
+## Chapter 4
 
-### Section 3.7.3
+### Section 4.1.3
 
 * page 136, second paragraph. Change "while Illinois (`IN`) and North Carolina (`NC`)" to "while Indiana (`IN`) and North Carolina (`NC`)"
 
