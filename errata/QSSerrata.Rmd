@@ -1,7 +1,7 @@
 ---
 title: 'Errata for *Quantitative Social Science: An Introduction* (Princeton University Press)'
 author: "Kosuke Imai"
-date: "September 16, 2019"
+date: "June 28, 2020"
 output:
   pdf_document: default
 ---
@@ -29,6 +29,15 @@ knitr::opts_chunk$set(echo = TRUE)
 ### Section 6.1.5
 
 * page 253, Figure 6.4. Change "gone with out the major reforms" to "gone without the major reforms".
+
+## Chapter 7
+
+### Section 7.3.5
+
+* page 384, textbox. Change the last equation to
+\begin{equation*}
+\mathbb{V}(aX + bY + c) \ = \ a^2 \mathbb{V}(X) + b^2 \mathbb{V}(Y) + 2ab\ {\rm Cov}(X, Y)
+\end{equation*}
 
 # Corrections applicable to the first and second printings
 
