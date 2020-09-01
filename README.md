@@ -48,9 +48,10 @@ Once the `qss` package is installed, you can use the data and vignette:
 ## Related repositories
 
 1. [swirl exercises `qss-swirl`](https://github.com/kosukeimai/qss-swirl)
-2. [R package `qss`](https://github.com/kosukeimai/qss-package) ([the package website](https://kosukeimai.github.io/qss-package/))
-3. [tidyverse code `qss-tidy`](https://github.com/jrnold/qss-tidy) 
-4. [R package `qss.student` for students](https://conjugateprior.github.io/qss.student/) 
-5. [instructors' materials `qss-inst`](https://github.com/kosukeimai/qss-inst)
+2. [Interactive Tutorials for QSS by Matt Blackwell](https://github.com/mattblackwell/qsslearnr)
+3. [R package `qss`](https://github.com/kosukeimai/qss-package) ([the package website](https://kosukeimai.github.io/qss-package/))
+4. [tidyverse code `qss-tidy` by Jeff Arnold](https://github.com/jrnold/qss-tidy) 
+5. [R package `qss.student` for students by Will Lowe](https://conjugateprior.github.io/qss.student/) 
+6. [instructors' materials `qss-inst`](https://github.com/kosukeimai/qss-inst)
    (private repository)
 
