@@ -1,7 +1,7 @@
 ---
 title: 'Errata for *Quantitative Social Science: An Introduction* (Princeton University Press)'
 author: "Kosuke Imai"
-date: "June 28, 2020"
+date: "September 3, 2020"
 output:
   pdf_document: default
 ---
@@ -18,6 +18,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * page 136, second paragraph. Change "while Illinois (`IN`) and North Carolina (`NC`)" to "while Indiana (`IN`) and North Carolina (`NC`)"
 
+* page 136, third paragraph. Change "which was 364 votes." to "which was 364 votes (see footnote~3)."
+
 ## Chapter 5
 
 ### Section 5.1.2
@@ -29,6 +31,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ### Section 6.1.5
 
 * page 253, Figure 6.4. Change "gone with out the major reforms" to "gone without the major reforms".
+
+### Section 6.3.4
+
+* page 288, first paragraph. Change "the second inequality holds since" to "the second equality holds since"
 
 ## Chapter 7
 
@@ -247,5 +253,5 @@ $$\mathbb{E}(\overline{X}_n) = \mathbb{E}\left(\frac{1}{n} \sum_{i=1}^n {\color{
 
 ## Acknowledgements
 
-Thanks to Jeff Arnold, Masahiko Asano, Matt Blackwell, Michael Donnelly, Fallend Franz, Kentaro Fukumoto, Joel Gautschi, Mamiko Hamakado, Masataka Harada, Raymond Hicks, Michael Lewis, Yuko Kasuya, Soyoung Lee, Rocio Titiunik, and Sandy Weisberg for pointing out the errors. 
+Thanks to Jeff Arnold, Masahiko Asano, Matt Blackwell, Lori Bougher, Michael Donnelly, Fallend Franz, Kentaro Fukumoto, Joel Gautschi, Mamiko Hamakado, Masataka Harada, Raymond Hicks, Michael Lewis, Yuko Kasuya, Soyoung Lee, Rocio Titiunik, and Sandy Weisberg for pointing out the errors. 
 
