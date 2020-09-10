@@ -15,7 +15,7 @@ output:
 library(tm, SnowballC)
 
 ## load the raw corpus
-corpus.raw <- Corpus(DirSource(directory = "federalist", pattern = "fp")) 
+corpus.raw <- VCorpus(DirSource(directory = "federalist", pattern = "fp"))
 corpus.raw
 
 ## make lower case
