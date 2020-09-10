@@ -1,9 +1,9 @@
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------------------------------------
 ## load two required libraries
 library(tm, SnowballC)
 
 ## load the raw corpus
-corpus.raw <- Corpus(DirSource(directory = "federalist", pattern = "fp")) 
+corpus.raw <- VCorpus(DirSource(directory = "federalist", pattern = "fp"))
 corpus.raw
 
 ## make lower case
@@ -36,7 +36,8 @@ inspect(dtm[1:5, 1:8])
 
 dtm.mat <- as.matrix(dtm)
 
-## ------------------------------------------------------------------------
+
+## -----------------------------------------------------------------------------------------------------------
 library(wordcloud)
 
 wordcloud(colnames(dtm.mat), dtm.mat[12, ], max.words = 20)  # essay No. 12
@@ -76,7 +77,8 @@ for (i in 1:k) { # loop for each cluster
     cat("\n")
 }
 
-## ------------------------------------------------------------------------
+
+## -----------------------------------------------------------------------------------------------------------
 ## document-term matrix converted to matrix for manipulation 
 dtm1 <- as.matrix(DocumentTermMatrix(corpus.prep)) 
 tfm <- dtm1 / rowSums(dtm1) * 1000 # term frequency per 1000 words
@@ -111,7 +113,8 @@ hm.fit
 hm.fitted <- fitted(hm.fit) # fitted values
 sd(hm.fitted)  
 
-## ------------------------------------------------------------------------
+
+## -----------------------------------------------------------------------------------------------------------
 ## proportion of correctly classified essays by Hamilton
 mean(hm.fitted[author.data$author == 1] > 0)
 
@@ -155,7 +158,8 @@ points(madison, hm.fitted[author.data$author == -1],
 ## disputed authorship; black triangles
 points(disputed, pred, pch = 17) 
 
-## ------------------------------------------------------------------------
+
+## -----------------------------------------------------------------------------------------------------------
 ## the first column "FAMILY" of the CSV file represents row names
 florence <- read.csv("florentine.csv", row.names = "FAMILY")
 florence <- as.matrix(florence) # coerce into a matrix
@@ -164,7 +168,8 @@ florence <- as.matrix(florence) # coerce into a matrix
 florence[1:5, 1:5]
 rowSums(florence)
 
-## ------------------------------------------------------------------------
+
+## -----------------------------------------------------------------------------------------------------------
 library("igraph")  # load the package
 
 florence <- graph.adjacency(florence, mode = "undirected", diag = FALSE)
@@ -183,9 +188,10 @@ plot(florence, vertex.size = closeness(florence) * 1000,
 plot(florence, vertex.size = betweenness(florence), 
      main = "Betweenness")
 
-## ------------------------------------------------------------------------
-twitter <- read.csv("twitter-following.csv")
-senator <- read.csv("twitter-senator.csv")
+
+## -----------------------------------------------------------------------------------------------------------
+twitter <- read.csv("twitter-following.csv", stringsAsFactors = FALSE)
+senator <- read.csv("twitter-senator.csv", stringsAsFactors = FALSE)
 
 n <- nrow(senator) # number of senators
 
@@ -202,7 +208,8 @@ for (i in 1:nrow(twitter)) {
 
 twitter.adj <- graph.adjacency(twitter.adj, mode = "directed", diag = FALSE)
 
-## ------------------------------------------------------------------------
+
+## -----------------------------------------------------------------------------------------------------------
 senator$indegree <- degree(twitter.adj, mode = "in")
 senator$outdegree <- degree(twitter.adj, mode = "out") 
 
@@ -275,7 +282,8 @@ while (diff > 0.001) {
 
 pr
 
-## ------------------------------------------------------------------------
+
+## -----------------------------------------------------------------------------------------------------------
 library(maps)
 data(us.cities)
 head(us.cities)
@@ -309,7 +317,8 @@ names(usa)  # list elements
 length(usa$x) 
 head(cbind(usa$x, usa$y)) # first five coordinates of a polygon
 
-## ------------------------------------------------------------------------
+
+## -----------------------------------------------------------------------------------------------------------
 allcolors <- colors()
 
 head(allcolors)   # some colors
@@ -341,7 +350,8 @@ points(x = c(3, 3), y = c(3, 3.2), pch = 16, cex = 5, col = blue)
 points(x = c(2, 2), y = c(2, 2.2), pch = 16, cex = 5, col = black.trans) 
 points(x = c(4, 4), y = c(4, 4.2), pch = 16, cex = 5, col = blue.trans) 
 
-## ------------------------------------------------------------------------
+
+## -----------------------------------------------------------------------------------------------------------
 pres08 <- read.csv("pres08.csv")
 ## two-party vote share
 pres08$Dem <- pres08$Obama / (pres08$Obama + pres08$McCain)
@@ -362,10 +372,11 @@ map(database = "state", regions = "California", col = cal.color,
 
 ## America as red and blue states
 map(database = "state") # create a map
+map(database = "state") # for some reason this needs to be repeated twice to get the map correct if you run markdown
 for (i in 1:nrow(pres08)) {
     if ((pres08$state[i] != "HI") & (pres08$state[i] != "AK") &
         (pres08$state[i] != "DC")) {
-        map(database = "state", regions = pres08$state.name[i], 
+        maps::map(database = "state", regions = pres08$state.name[i],
             col = ifelse(pres08$Rep[i] > pres08$Dem[i], "red", "blue"),
             fill = TRUE, add = TRUE)
     }
@@ -382,7 +393,8 @@ for (i in 1:nrow(pres08)) {
     }
 }
 
-## ------------------------------------------------------------------------
+
+## -----------------------------------------------------------------------------------------------------------
 walmart <- read.csv("walmart.csv")
 
 ## red = WalMartStore, green = SuperCenter, blue = DistributionCenter

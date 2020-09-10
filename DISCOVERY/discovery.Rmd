@@ -4,6 +4,8 @@ author: "Kosuke Imai"
 date: "First Printing"
 output:
   pdf_document: default
+  html_document:
+    df_print: paged
 ---
 
 # Section 5.1: Textual Data
@@ -410,10 +412,11 @@ map(database = "state", regions = "California", col = cal.color,
 
 ## America as red and blue states
 map(database = "state") # create a map
+map(database = "state") # for some reason this needs to be repeated twice to get the map correct if you run markdown
 for (i in 1:nrow(pres08)) {
     if ((pres08$state[i] != "HI") & (pres08$state[i] != "AK") &
         (pres08$state[i] != "DC")) {
-        map(database = "state", regions = pres08$state.name[i], 
+        maps::map(database = "state", regions = pres08$state.name[i],
             col = ifelse(pres08$Rep[i] > pres08$Dem[i], "red", "blue"),
             fill = TRUE, add = TRUE)
     }
