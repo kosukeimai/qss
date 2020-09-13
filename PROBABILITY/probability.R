@@ -1,4 +1,4 @@
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 birthday <- function(k) {
     logdenom <- k * log(365) + lfactorial(365 - k) # log denominator
     lognumer <- lfactorial(365) # log numerator
@@ -15,7 +15,8 @@ plot(k, bday, xlab = "Number of people", xlim = c(0, 50), ylim = c(0, 1),
 abline(h = 0.5) # horizontal 0.5 line
 bday[20:25]
 
-## ------------------------------------------------------------------------
+
+## -----------------------------------------------------------------------------
 k <- 23 # number of people
 sims <- 1000 # number of simulations
 event <- 0 # counter
@@ -34,10 +35,12 @@ for (i in 1:sims) {
 answer <- event / sims
 answer
 
-## ------------------------------------------------------------------------
+
+## -----------------------------------------------------------------------------
 choose(84, 6)
 
-## ------------------------------------------------------------------------
+
+## -----------------------------------------------------------------------------
 FLVoters <- read.csv("FLVoters.csv")
 dim(FLVoters) # before removal of missing data
 
@@ -85,7 +88,8 @@ joint2[4, "f"] # P(above 60 and female)
 ## P(black | female and above 60)
 joint3["black", 4, "f"] / joint2[4, "f"]
 
-## ------------------------------------------------------------------------
+
+## -----------------------------------------------------------------------------
 plot(c(margin.race * margin.gender["f"]), # product of marginal probs.
      c(joint.p[, "f"]), # joint probabilities
      xlim = c(0, 0.4), ylim = c(0, 0.4),
@@ -130,7 +134,8 @@ for (i in 1:sims) {
 mean(result.noswitch == "car")
 mean(result.switch == "car")
 
-## ------------------------------------------------------------------------
+
+## -----------------------------------------------------------------------------
 cnames <- read.csv("names.csv")
 dim(cnames)
 
@@ -195,7 +200,7 @@ FLCensus <- read.csv("FLCensusVTD.csv")
 ## compute proportions by applying weighted.mean() to each column
 race.prop <-
     apply(FLCensus[, c("white", "black", "api", "hispanic", "others")],
-          2, weighted.mean, weights = FLCensus$total.pop)
+          2, weighted.mean, w = FLCensus$total.pop)
 
 race.prop # race proportions in Florida
 
@@ -287,7 +292,8 @@ summary(FLVoters$pre.black[FLVoters$surname == "WHITE"])
 1 - mean(FLVoters$race[apply(FLVoters[, vars1], 1, max) ==
                            FLVoters$pre.asian] == "asian")
 
-## ------------------------------------------------------------------------
+
+## -----------------------------------------------------------------------------
 ## uniform PDF: x = 0.5, interval = [0, 1]
 dunif(0.5, min = 0, max = 1)
 
@@ -303,7 +309,8 @@ y <- as.integer(x <= p) # Bernoulli; turn TRUE/FALSE to 1/0
 head(y)
 mean(y) # close to success probability p, proportion of 1's vs. 0's
 
-## ------------------------------------------------------------------------
+
+## -----------------------------------------------------------------------------
 ## PMF when x = 2, n = 3, p = 0.5
 dbinom(2, size = 3, prob = 0.5)
 
@@ -314,7 +321,8 @@ pbinom(1, size = 3, prob = 0.5)
 voters <- c(1000, 10000, 100000)
 dbinom(voters / 2, size = voters, prob = 0.5)
 
-## ------------------------------------------------------------------------
+
+## -----------------------------------------------------------------------------
 ## plus minus one standard deviation from the mean
 pnorm(1) - pnorm(-1)
 
@@ -330,7 +338,8 @@ pnorm(mu + sigma, mean = 5, sd = 2) - pnorm(mu - sigma, mean = 5, sd = 2)
 ## plus minus two standard deviations from the mean
 pnorm(mu + 2*sigma, mean = 5, sd = 2) - pnorm(mu - 2*sigma, mean = 5, sd = 2)
 
-## ---- eval = FALSE-------------------------------------------------------
+
+## ---- eval = FALSE------------------------------------------------------------
 ## ## see the page reference above
 ## ## `Obama2012.z' is Obama's 2012 standardized vote share
 ## ## `Obama2008.z' is Obama's 2008 standardized vote share
@@ -372,14 +381,16 @@ pnorm(mu + 2*sigma, mean = 5, sd = 2) - pnorm(mu - 2*sigma, mean = 5, sd = 2)
 ## 
 ## pnorm(TX.2008, mean = TX.mean2012, sd = e.sd, lower.tail = FALSE)
 
-## ------------------------------------------------------------------------
+
+## -----------------------------------------------------------------------------
 ## theoretical variance: p was set to 0.5 earlier
 p * (1-p)
 
 ## sample variance using `y' generated earlier
 var(y)
 
-## ------------------------------------------------------------------------
+
+## -----------------------------------------------------------------------------
 pres08 <- read.csv("pres08.csv")
 
 ## two-party vote share
@@ -423,7 +434,8 @@ sd(Obama.ev)
 ## theoretical standard deviation
 sqrt(V)
 
-## ------------------------------------------------------------------------
+
+## -----------------------------------------------------------------------------
 sims <- 1000
 
 ## 3 separate simulations for each
@@ -446,7 +458,8 @@ plot(1:sims, mean.unif, type = "l", ylim = c(0, 1),
      xlab = "Sample size", ylab = "Sample mean", main = "Uniform(0, 1)")
 abline(h = 0.5, lty = "dashed") # expectation
 
-## ------------------------------------------------------------------------
+
+## -----------------------------------------------------------------------------
 ## sims = number of simulations
 n.samp <- 1000
 z.binom <- z.unif <- rep(NA, sims)
