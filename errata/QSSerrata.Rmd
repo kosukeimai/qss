@@ -1,7 +1,7 @@
 ---
 title: 'Errata for *Quantitative Social Science: An Introduction* (Princeton University Press)'
 author: "Kosuke Imai"
-date: "September 3, 2020"
+date: "October 6, 2020"
 output:
   pdf_document: default
 ---
@@ -11,6 +11,12 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Corrections applicable to the first, second, and third printings
+
+## Chapter 3
+
+### Section 3.3.2
+
+* pages 81--82. The intervals should be right-closed, which is the default of \textsf{R}, rather than left-closed.  For example, in the last paragraph of page 81, change "which results in the intervals $[15, 20),[20, 25),[25, 30)$, and so on" to "which results in the intervals $(15, 20],(20, 25],(25, 30]$, and so on"
 
 ## Chapter 4
 
@@ -253,5 +259,5 @@ $$\mathbb{E}(\overline{X}_n) = \mathbb{E}\left(\frac{1}{n} \sum_{i=1}^n {\color{
 
 ## Acknowledgements
 
-Thanks to Jeff Arnold, Masahiko Asano, Matt Blackwell, Lori Bougher, Michael Donnelly, Fallend Franz, Kentaro Fukumoto, Joel Gautschi, Mamiko Hamakado, Masataka Harada, Raymond Hicks, Michael Lewis, Yuko Kasuya, Soyoung Lee, Rocio Titiunik, and Sandy Weisberg for pointing out the errors. 
+Thanks to Jeff Arnold, Masahiko Asano, Matt Blackwell, Lori Bougher, Bo Coleman, Michael Donnelly, Fallend Franz, Kentaro Fukumoto, Joel Gautschi, Mamiko Hamakado, Masataka Harada, Raymond Hicks, Michael Lewis, Yuko Kasuya, Soyoung Lee, Rocio Titiunik, and Sandy Weisberg for pointing out the errors. 
 
