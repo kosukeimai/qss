@@ -1,7 +1,7 @@
 ---
 title: 'Errata for *Quantitative Social Science: An Introduction* (Princeton University Press)'
 author: "Kosuke Imai"
-date: "October 6, 2020"
+date: "June 13, 2021"
 output:
   pdf_document: default
 ---
@@ -50,6 +50,10 @@ knitr::opts_chunk$set(echo = TRUE)
 \begin{equation*}
 \mathbb{V}(aX + bY + c) \ = \ a^2 \mathbb{V}(X) + b^2 \mathbb{V}(Y) + 2ab\ {\rm Cov}(X, Y)
 \end{equation*}
+
+### Section 7.5.3.
+
+* pages 394 - 396. The year of election should be 1933 rather than 1932
 
 # Corrections applicable to the first and second printings
 
@@ -259,5 +263,5 @@ $$\mathbb{E}(\overline{X}_n) = \mathbb{E}\left(\frac{1}{n} \sum_{i=1}^n {\color{
 
 ## Acknowledgements
 
-Thanks to Jeff Arnold, Masahiko Asano, Matt Blackwell, Lori Bougher, Bo Coleman, Michael Donnelly, Fallend Franz, Kentaro Fukumoto, Joel Gautschi, Mamiko Hamakado, Masataka Harada, Raymond Hicks, Michael Lewis, Yuko Kasuya, Soyoung Lee, Rocio Titiunik, and Sandy Weisberg for pointing out the errors. 
+Thanks to Jeff Arnold, Masahiko Asano, Matt Blackwell, Lori Bougher, Calvin Garner, Bo Coleman, Michael Donnelly, Fallend Franz, Kentaro Fukumoto, Joel Gautschi, Mamiko Hamakado, Masataka Harada, Raymond Hicks, Michael Lewis, Yuko Kasuya, Soyoung Lee, Rocio Titiunik, and Sandy Weisberg for pointing out the errors. 
 
