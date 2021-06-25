@@ -12,6 +12,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Corrections applicable to the first, second, and third printings
 
+## Chapter 2
+
+### Section 2.8.1.
+
+* page 70. Move the last sentence of Question 1, which begins with "Recall that", to the end of Question 2.
+
+* pages 70-71. "aid" should be "aide". The mistake appears in Table 2.6, Questions 4 and 5.
+
 ## Chapter 3
 
 ### Section 3.3.2
