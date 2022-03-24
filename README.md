@@ -3,14 +3,14 @@ Supplementary Materials for the book,
 **[Quantitative Social Science: An Introduction](http://press.princeton.edu/titles/11025.html)**,
 published by Princeton University Press in 2017.  See the [book website](http://qss.princeton.press/).  It is
 also available for purchase at vendors like
-[Amazon](https://www.amazon.com/Quantitative-Social-Science-Kosuke-Imai/dp/0691175462).
+[Amazon](https://www.amazon.com/Quantitative-Social-Science-Kosuke-Imai/dp/0691175462). Also included are materials for **[Quantitative Social Science: An Introduction in tidyverse](https://qss.princeton.press/)**, published by Princeton University Press in 2022. All tidyverse versions contain "-tidy" in their file names. 
 
 The book is based on the teaching philosophy summarized in the talk I
 gave at the Nuffield Foundation's
 [Q-Step Programme](http://www.nuffieldfoundation.org/q-step) in 2015: 
 [slides](http://imai.princeton.edu/talk/files/Q-Step15.pdf) 
 
-This repository contains the data sets and **R** scripts for all of the chapters:
+This repository contains the data sets and **R** scripts (available in .R, .Rmd, and .pdf formats) for all of the chapters:
 
 1. [Introduction](INTRO)
 2. [Causality](CAUSALITY)
@@ -50,7 +50,7 @@ Once the `qss` package is installed, you can use the data and vignette:
 1. [swirl exercises `qss-swirl`](https://github.com/kosukeimai/qss-swirl)
 2. [Interactive Tutorials for QSS by Matt Blackwell](https://github.com/mattblackwell/qsslearnr)
 3. [R package `qss`](https://github.com/kosukeimai/qss-package) ([the package website](https://kosukeimai.github.io/qss-package/))
-4. [tidyverse code `qss-tidy` by Jeff Arnold](https://github.com/jrnold/qss-tidy) 
+4. [tidyverse code `qss-tidy` by Jeff Arnold (the starting point for the QSS: tidyverse version of the book)](https://github.com/jrnold/qss-tidy) 
 5. [R package `qss.student` for students by Will Lowe](https://conjugateprior.github.io/qss.student/) 
 6. [instructors' materials `qss-inst`](https://github.com/kosukeimai/qss-inst)
 7. [Lecture slides for QSS](https://github.com/kosukeimai/qss-lecture) 

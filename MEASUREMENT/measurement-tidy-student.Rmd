@@ -1,0 +1,759 @@
+---
+title: 'Code for QSS tidyverse Chapter 3: Measurement'
+author: "Kosuke Imai and Nora Webb Williams"
+date: "First Printing"
+output:
+  pdf_document: default
+always_allow_html: true
+---
+
+# Measurement
+
+```{r setup3, include = FALSE, purl=FALSE, eval = T}
+library(knitr)
+library(kableExtra)
+library(tidyverse)
+opts_chunk$set(tidy = FALSE,
+        fig.align = "center",
+        background = "#EEEEEE",
+        fig.width = 7,
+        fig.height = 7,
+        out.width = ".7\\linewidth",
+        out.height = ".7\\linewidth",
+        cache = TRUE)
+options(width = 60)
+set.seed(12345)
+```
+
+## Measuring Civilian Victimization during Wartime 
+
+```{r, echo=FALSE}
+library(qss)
+library(ggplot2)
+## Load in the data from QSS package
+data(afghan, package = "qss")
+```
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(qss)
+
+## Load in the data from QSS package
+data(afghan, package = "qss")
+
+## Summarize the main variables
+afghan %>%
+  select(age, educ.years, employed, income) %>%
+  summary()
+```
+
+```{r}
+count(afghan, income)
+```
+
+```{r}
+unique(afghan$income)
+```
+
+```{r}
+## What proportion of respondents were harmed by 
+## ISAF and/or Taliban?
+harm_props <- afghan %>%
+  group_by(violent.exp.ISAF, violent.exp.taliban) %>%
+  count() %>%
+  ungroup() %>%
+  mutate(prop = n / sum(n))
+
+harm_props
+
+## without ungroup(), commenting out the line
+afghan %>%
+  group_by(violent.exp.ISAF, violent.exp.taliban) %>%
+  count() %>%
+##  ungroup() %>%
+  mutate(prop = n / sum(n))
+```
+
+```{r}
+## What proportion of respondents were harmed by ISAF?
+ISAF_harm_prop <- harm_props %>% 
+  filter(violent.exp.ISAF == 1) %>% 
+  summarize(harm_prop = sum(prop)) %>% 
+  pull()
+
+ISAF_harm_prop
+
+## What proportion of respondents were harmed by Taliban?
+talib_harm_prop <- harm_props %>% 
+  filter(violent.exp.taliban == 1) %>% 
+  summarize(harm_prop = sum(prop)) %>% 
+  pull()
+
+talib_harm_prop
+
+## What proportion of respondents were harmed by both?
+both_harm_prop <- harm_props %>% 
+  filter(violent.exp.taliban == 1 & 
+           violent.exp.ISAF == 1) %>% 
+  summarize(harm_prop = sum(prop)) %>% 
+  pull()
+
+both_harm_prop
+```
+
+## Handling Missing Data in R
+
+
+```{r}
+## print income data for first 10 respondents
+afghan %>% 
+  select(income) %>% 
+  slice(1:10)
+
+## What is.na() returns for these observations
+afghan %>% 
+  select(income) %>% 
+  slice(1:10) %>% 
+  is.na()
+```
+
+```{r}
+## What number and proportion of responses are missing for income?
+summarize(afghan,
+          n_missing = sum(is.na(income)),
+          p_missing = mean(is.na(income)))
+```
+
+
+```{r}
+x <- c(1, 2, 3, NA)
+mean(x) 
+mean(x, na.rm = TRUE)
+```
+
+
+```{r}
+## Table for non-missing values of ISAF and Taliban
+afghan %>%
+  filter(!is.na(violent.exp.ISAF), !is.na(violent.exp.taliban)) %>%
+  group_by(violent.exp.ISAF, violent.exp.taliban) %>%
+  count() %>%
+  ungroup() %>%
+  mutate(prop = n / sum(n)) %>% 
+  arrange(prop) #compare to arrange(desc(prop))
+```
+
+```{r}
+## Reminder of what harm_props is
+harm_props
+
+## What proportion of observations are missing for either 
+## ISAF or Taliban harm?
+missing_prop <- harm_props %>% 
+  filter(is.na(violent.exp.ISAF) | is.na(violent.exp.taliban)) %>% 
+  ungroup() %>%
+  summarize(missing_prop = sum(prop)) %>% 
+  pull()
+
+missing_prop
+```
+
+```{r}
+afghan.sub <- na.omit(afghan)  # listwise deletion
+nrow(afghan.sub) 
+afghan.sub.2 <- drop_na(afghan) # equivalent with drop_na()
+nrow(afghan.sub.2)
+
+## compare to the dimensions if we only delete missing for income
+## instead of full listwise deletion
+afghan %>% 
+  drop_na(income) %>%  
+  nrow()
+```
+
+
+## Visualizing the Univariate Distribution 
+
+### Bar plot 
+
+```{r include=FALSE, purl=FALSE}
+## setting the ggplot theme
+theme_set(theme_classic(base_size = 22))
+```
+
+
+```{r, label='harm-barplot', out.width='45%', fig.show = 'hold', fig.align = 'center'}
+## First plot
+## Bar plot with ggplot
+ggplot(data = afghan, # Tell R what data to use
+       aes(x = as.factor(violent.exp.ISAF))) + # specify the x-axis
+  geom_bar(aes(y = ..prop.., ## add a bar plot layer
+           group = 1)) +
+  scale_x_discrete(labels = c('No Harm','Harm','Nonresponse')) +
+  ylab("Proportion of Respondents") + # Add a label to y-axis
+  xlab("Response Category") + # Add a label to the x-axis
+  ggtitle("Civilian Victimization by the ISAF") # Add a title
+
+## Second plot
+## Bar plot with ggplot
+ggplot(data = afghan,
+       aes(x = as.factor(violent.exp.taliban))) + 
+  geom_bar(aes(y = ..prop.., 
+           group = 1)) +
+  scale_x_discrete(labels = c('No Harm','Harm','Nonresponse')) +
+  ylab("Proportion of Respondents") + # Add a label to y-axis
+  xlab("Response Category") + # Add a label to the x-axis
+  ggtitle("Civilian Victimization by the Taliban") # Add a title
+```
+
+```{r include=FALSE, purl=FALSE}
+## setting the ggplot theme
+theme_set(theme_classic(base_size = 12))
+```
+
+
+```{r}
+## reshape data longer
+afghan_reshape <- afghan %>% 
+  pivot_longer(violent.exp.ISAF:violent.exp.taliban,
+               names_to = "harming_group",
+               values_to = "harm")
+
+## Bar plot with both harm indicators together 
+ggplot(data = afghan_reshape, # what's different here?
+       aes(x = as.factor(harm))) +  
+  geom_bar(aes(y = ..prop.., # what's different here?
+           fill = harming_group,
+           group = harming_group),
+           position = "dodge") +
+  scale_x_discrete(labels = c('No Harm','Harm','Nonresponse')) +
+  scale_fill_discrete(name = "Harming Group", labels = c("ISAF", "Taliban")) +
+  ylab("Proportion of Respondents") + 
+  xlab("Response Category") + 
+  ggtitle("Civilian Victimization")
+```
+
+### Histogram {#subsec:histogram}
+
+
+```{r include=FALSE, purl=FALSE}
+## setting the ggplot theme
+theme_set(theme_classic(base_size = 12))
+```
+
+```{r hist_age}
+ggplot(afghan, aes(x = age)) + # the data and initial aes()
+  geom_histogram(aes(y = ..density..), # histogram, additional aes()
+                 binwidth = 5, # how wide for each bin
+                 boundary = 0) + # bin position
+  scale_x_continuous(breaks = seq(20, 80, by = 10)) +
+  labs(title = "Distribution of respondent's age",
+       y = "Density", x = "Age") +
+  theme_classic()
+```
+
+```{r}
+ggplot(afghan, aes(x = educ.years, y = ..density..)) +
+  geom_histogram(binwidth = 1, center = 0) +
+  geom_vline(xintercept = median(afghan$educ.years)) +
+  annotate(geom = "text", x = median(afghan$educ.years),
+           y = 0.4, 
+           label = "median", 
+           hjust = -0.1) +
+  labs(title = "Distribution of respondent's education",
+       x = "Years of education",
+       y = "Density")
+```
+
+### Box plot 
+
+
+```{r eval=FALSE}
+## The code for adding curly braces and text is omitted
+ggplot(afghan, aes(y = age)) +
+  geom_boxplot() +
+  labs(y = "Age", x = "", title = "Distribution of Age")
+```
+
+
+```{r}
+ggplot(afghan, aes(y = educ.years, x = province)) +
+  geom_boxplot() +
+  labs(y = "Year of Education", x = "Province", title = "Education by province")
+```
+
+```{r warning=FALSE}
+afghan %>%
+  group_by(province) %>%
+  summarize(violent.exp.taliban =
+              mean(violent.exp.taliban, na.rm = TRUE),
+            violent.exp.ISAF =
+              mean(violent.exp.ISAF, na.rm = TRUE))
+```
+
+
+### Printing and Saving Graphs
+
+
+```{r eval = FALSE}
+## Save the last figure as a pdf in the results_figures directory
+ggsave("results_figures/education_by_province.pdf")
+```
+
+```{r eval=FALSE}
+library(gridExtra)
+
+## The age histogram
+age_hist <- ggplot(afghan, aes(x = age)) + 
+  geom_histogram(aes(y = ..density..), 
+                 binwidth = 5, 
+                 boundary = 0) + 
+  scale_x_continuous(breaks = seq(20, 80, by = 10)) +
+  labs(title = "Distribution of \nrespondent's age",
+       y = "Age", x = "Density")
+
+## The education histogram
+educ_hist <- ggplot(afghan, aes(x = educ.years, y = ..density..)) +
+  geom_histogram(binwidth = 1, center = 0) +
+  geom_vline(xintercept = median(afghan$educ.years)) +
+  annotate(geom = "text", x = median(afghan$educ.years),
+           y = 0.4, 
+           label = "median", 
+           hjust = -0.1) +
+  labs(title = "Distribution of \nrespondent's education",
+       x = "Years of education",
+       y = "Density")
+
+## Put the plots side-by-side
+grid.arrange(age_hist, educ_hist, ncol = 2)  
+```
+
+## Survey Sampling
+
+### The Role of Randomization
+
+```{r include=FALSE, purl=FALSE}
+## setting the ggplot theme
+theme_set(theme_classic(base_size = 22))
+```
+
+```{r, out.width='45%', fig.align = 'center', fig.show="hold",}
+## Altitude box plot by sampled or not
+ggplot(afghan.village, aes(x = as.factor(village.surveyed),
+                           y = altitude)) +
+  geom_boxplot() +
+  scale_x_discrete(labels = c('Nonsampled','Sampled')) +
+  labs(y = "Altitude (meters)", x = "")
+
+## Log population box plot by sampled or not
+ggplot(afghan.village, aes(x = as.factor(village.surveyed),
+                           y = log(population))) +
+  geom_boxplot() +
+  scale_x_discrete(labels = c('Nonsampled','Sampled')) +
+  labs(y = "log population", x = "")
+```
+
+```{r include=FALSE, purl=FALSE}
+## setting the ggplot theme
+theme_set(theme_classic(base_size = 12))
+```
+
+
+### Non-Response and Other Sources of Bias
+
+```{r}
+## Non-response rates on harm questions by province
+afghan %>%
+  group_by(province) %>%
+  summarize(ISAF = mean(is.na(violent.exp.ISAF)),
+            taliban = mean(is.na(violent.exp.taliban)))
+```
+
+
+```{r}
+## Difference in mean item count between treatment/control
+afghan %>% 
+  filter(list.group %in% c("ISAF", "control")) %>% 
+  group_by(list.group) %>% 
+  summarize(avg_list_response = mean(list.response)) %>% 
+  pivot_wider(names_from = list.group,
+         values_from = avg_list_response) %>% 
+  mutate(list_response_diff = ISAF - control)
+```
+
+
+```{r}
+afghan %>%
+  group_by(list.response, list.group) %>%
+  count() %>% 
+  pivot_wider(names_from = list.group, 
+              values_from = n)
+```
+
+## Measuring Political Polarization 
+
+## Summarizing Bivariate Relationships
+
+### Scatter plot 
+
+
+```{r include=FALSE, purl=FALSE}
+## setting the ggplot theme
+theme_set(theme_classic(base_size = 12))
+```
+
+```{r, warning=FALSE, message=FALSE}
+## Necessary packages and data
+library(gridExtra)
+data("congress", package = "qss")
+
+## 80th congress
+plot_80 <- ggplot(data = filter(congress, congress == 80),
+       aes(x = dwnom1, y = dwnom2)) +
+  geom_point(aes(shape = party, color = party), 
+             show.legend = FALSE) +
+  scale_color_manual(values = c(Democrat = "blue",
+                                 Republican = "red",
+                                 Other = "green")) +
+  scale_shape_manual(values = c(Democrat = "square",
+                                 Republican = "triangle",
+                                 Other = "circle")) +
+  scale_y_continuous("Racial liberalism/conservatism",
+                     limits = c(-1.5, 1.5)) +
+  scale_x_continuous("Economic\n liberalism/conservatism",
+                     limits = c(-1.5, 1.5)) +
+  ggtitle("80th Congress") +
+  coord_fixed()
+
+## 112th congress
+plot_112 <- ggplot(data = filter(congress, congress == 112),
+       aes(x = dwnom1, y = dwnom2)) +
+  geom_point(aes(shape = party, color = party), 
+             show.legend = FALSE) +
+  scale_color_manual(values = c(Democrat = "blue",
+                                 Republican = "red",
+                                 Other = "green")) +
+    scale_shape_manual(values = c(Democrat = "square",
+                                 Republican = "triangle",
+                                 Other = "circle")) +
+  scale_y_continuous("Racial liberalism/conservatism",
+                     limits = c(-1.5, 1.5)) +
+  scale_x_continuous("Economic\n liberalism/conservatism",
+                     limits = c(-1.5, 1.5)) +
+  ggtitle("112th Congress") +
+  coord_fixed()
+
+## Put the plots side-by-side
+grid.arrange(plot_80, plot_112, ncol = 2)
+```
+
+
+```{r, warning=FALSE, message=FALSE}
+## median DWnom1 scores
+median_dw1 <- congress %>%
+  filter(party %in% c("Republican", "Democrat")) %>% 
+  group_by(party, congress) %>% 
+  summarize(median_dw1 = median(dwnom1))
+```
+
+```{r include=FALSE, purl=FALSE}
+## setting the ggplot theme
+theme_set(theme_classic(base_size = 12))
+```
+
+```{r}
+ggplot(data = median_dw1,
+       aes(x = congress, y = median_dw1,
+             color = party)) +
+  geom_line() +
+  labs(y = "DW-NOMINATE score (1st Dimension)", x = "Congress",
+       color = "Party")
+```
+
+### Correlation 
+
+```{r include=FALSE, purl=FALSE}
+## setting the ggplot theme
+theme_set(theme_classic(base_size = 22))
+```
+
+```{r, fig.show="hold", out.width="45%"}
+## First, reshape the median data and calculate partisan difference
+polarization <- median_dw1 %>% 
+  pivot_wider(names_from = party,
+              values_from = median_dw1) %>% 
+  mutate(polarization = Republican - Democrat)
+
+## Plot polarization over time (by congress)
+ggplot(polarization, aes(x = congress, y = polarization)) +
+  geom_point() +
+  labs(x = "Congress", y = "Republican median -\n Democratic median") +
+  ggtitle("Political polarization")
+
+## Read in the Gini data
+data("USGini", package = "qss")
+
+## Plot US Gini over time (by year)
+ggplot(USGini, aes(x = year, y = gini)) +
+  geom_point() +
+  labs(x = "Year", y = "Gini coefficient") +
+  ggtitle("Income inequality")
+```
+
+```{r include=FALSE, purl=FALSE}
+## setting the ggplot theme
+theme_set(theme_classic(base_size = 12))
+```
+
+```{r}
+## Every second year Gini
+gini_2yr <- USGini %>% 
+  filter(row_number() %% 2 == 0) %>% 
+  select(gini) %>% 
+  pull()
+
+## Pull out the polarization score
+pol_annual <- polarization %>% 
+  select(polarization) %>% 
+  pull()
+
+## The correlation
+cor(gini_2yr, pol_annual)
+```
+
+## Quantile-Quantile Plot
+
+```{r}
+congress %>%
+  filter(congress == 112, party %in% c("Republican", "Democrat")) %>%
+  ggplot(aes(x = dwnom2, y = ..density..)) +
+  geom_histogram(binwidth = .2) +
+  facet_grid(party ~ .) +
+  labs(x = "Racial liberalism/conservatism dimension",
+       y = "Density")
+```
+
+
+```{r, message=FALSE, warning=FALSE, fig.align = 'center'}
+quantile_probs <- seq(from = 0, to = 1, by = 0.01)
+quantile_names <- as.character(quantile_probs)
+
+## The quantile data
+quantiles <- congress %>% 
+  filter(congress == 112) %>% 
+  group_by(party) %>% 
+  summarize(dwnom_quantile = quantile(dwnom2, probs = quantile_probs),
+            quantile = quantile_names) %>% 
+  pivot_wider(names_from = party,
+              values_from = dwnom_quantile)
+## plot it
+ggplot(data = quantiles,
+       aes(x = Democrat,
+           y = Republican)) +
+  geom_point(shape = 1) +
+  ylim(-1.5, 1.5) +
+  xlim(-1.5, 1.5) +
+  geom_abline(intercept = 0, slope = 1) +
+  ggtitle("Racial liberalism/conservatism \ndimension") +
+  coord_fixed()
+```
+
+
+```{r eval=FALSE}
+## x-axis
+dem112 <- filter(congress, party == "Democrat", congress == 112)
+## y-axis
+rep112 <- filter(congress, party == "Republican", congress == 112)
+
+## Q-Q plot
+qqplot(x = dem112$dwnom2, 
+       y = rep112$dwnom2, 
+       xlab = "Democrats", 
+       ylab = "Republicans", 
+       xlim = c(-1.5, 1.5), ylim = c(-1.5, 1.5), 
+       main = "Racial liberalism/conservatism dimension")
+```
+
+## Clustering
+
+### Matrix in R
+
+
+```{r}
+## 3x4 matrix filled by row; first argument take actual entries
+x <- matrix(1:12, nrow = 3, ncol = 4, byrow = TRUE)
+rownames(x) <- c("a", "b", "c")
+colnames(x) <- c("d", "e", "f", "g")
+dim(x) # dimension
+x
+```
+
+```{r}
+## data frame can take different data types
+y <- data.frame(y1 = as.factor(c("a", "b", "c")), y2 = c(0.1, 0.2, 0.3))
+class(y$y1)
+class(y$y2)
+## as.matrix() converts both variables to character
+z <- as.matrix(y)
+z
+```
+
+```{r}
+## column sums
+colSums(x)  
+## row means
+rowMeans(x) 
+```
+
+### List in R 
+
+```{r}
+## create a list
+x <- list(y1 = 1:10, y2 = c("hi", "hello", "hey"),
+          y3 = data.frame(z1 = 1:3, z2 = c("good", "bad", "ugly"))) 
+## 3 ways of extracting elements from a list 
+x$y1 # first element
+x[[2]] # second element
+x[["y3"]] # third element
+```
+
+```{r}
+names(x) # names of all elements 
+length(x) # number of elements
+```
+
+### The $k$-means Algorithm 
+
+```{r}
+## 80th congress, k = 2
+k80two.out <- congress %>% 
+  filter(congress == 80) %>% 
+  select(dwnom1, dwnom2) %>% 
+  kmeans(centers = 2, nstart = 5)
+
+## 112th congress, k = 2
+k112two.out <- congress %>% 
+  filter(congress == 112) %>% 
+  select(dwnom1, dwnom2) %>% 
+  kmeans(centers = 2, nstart = 5)
+```
+
+
+```{r}
+## elements of a k-means list object
+names(k80two.out)
+```
+
+```{r, warning=FALSE, message=FALSE}
+## final centroids
+k80two.out$centers
+k112two.out$centers
+
+# load needed library
+library(tidymodels) # or library(broom)
+
+## tidy() output
+k80two.clusters <- tidy(k80two.out)
+k80two.clusters
+
+k112two.clusters <- tidy(k112two.out)
+k112two.clusters
+```
+
+```{r}
+## Members per cluster, 80th
+congress80 <-
+  congress %>%
+  filter(congress == 80) %>%
+  mutate(cluster2 = k80two.out$cluster) %>% 
+  group_by(party, cluster2) %>%
+  count() %>% 
+  pivot_wider(names_from = cluster2,
+              values_from = n)
+
+## Members per cluster, 112th
+congress112 <-
+  congress %>%
+  filter(congress == 112) %>%
+  mutate(cluster2 = k112two.out$cluster) %>% 
+  group_by(party, cluster2) %>%
+  count() %>% 
+  pivot_wider(names_from = cluster2,
+              values_from = n)
+```
+
+```{r}
+## 80th congress, k = 4
+k80four.out <- congress %>% 
+  filter(congress == 80) %>% 
+  select(dwnom1, dwnom2) %>% 
+  kmeans(centers = 4, nstart = 5)
+
+## 112th congress, k = 4
+k112four.out <- congress %>% 
+  filter(congress == 112) %>% 
+  select(dwnom1, dwnom2) %>% 
+  kmeans(centers = 4, nstart = 5)
+```
+
+```{r include=FALSE, purl=FALSE}
+## setting the ggplot theme
+theme_set(theme_classic(base_size = 22))
+```
+
+
+```{r, fig.show="hold", out.width='45%', fig.align = 'center'}
+## plot the 80th congress
+## prepare the data
+congress80 <- filter(congress, congress == 80) %>%
+  mutate(cluster4 = factor(k80four.out$cluster))
+
+## prepare the centroids
+k80four.clusters <- tidy(k80four.out)
+
+## Plot it
+ggplot() +
+  geom_point(data = congress80,
+             aes(x = dwnom1, 
+                 y = dwnom2, 
+                 color = cluster4)) +
+  geom_point(data = k80four.clusters,
+             mapping = aes(x = dwnom1, y = dwnom2), 
+             size = 3,
+             shape = 8) +
+  ylim(-1.5, 1.5) +
+  xlim(-1.5, 1.5) +
+  coord_fixed() +
+  theme(legend.position = "none")
+
+## plot the 112th congress
+## prepare the data
+congress112 <- filter(congress, congress == 112) %>%
+  mutate(cluster4 = factor(k112four.out$cluster))
+
+## prepare the centroids
+k112four.clusters <- tidy(k112four.out)
+
+## Plot it
+ggplot() +
+  geom_point(data = congress112,
+             aes(x = dwnom1, 
+                 y = dwnom2, 
+                 color = cluster4)) +
+  geom_point(data = k112four.clusters,
+             mapping = aes(x = dwnom1, y = dwnom2), 
+             size = 3,
+             shape = 8) +
+  ylim(-1.5, 1.5) +
+  xlim(-1.5, 1.5) +
+  coord_fixed() +
+  theme(legend.position = "none")
+
+```
+
+```{r include=FALSE, purl=FALSE}
+## setting the ggplot theme
+theme_set(theme_classic(base_size = 12))
+```
+
+

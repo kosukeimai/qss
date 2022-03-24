@@ -1,0 +1,976 @@
+## ---- eval = FALSE----------------------------------------
+## for (i in X) {
+##     expression1
+##     expression2
+##     ...
+##     expressionN
+## }
+
+
+## ---- message=FALSE, warning=FALSE------------------------
+library(tidyverse)
+library(stringr)
+
+values <- c(2, 4, 6)
+n <- length(values) # number of elements in 'values'
+results <- rep(NA, n) # empty container vector for storing the results
+
+## loop counter 'i' will take values of 1, 2, ..., n in that order,
+## up to the length of 'values'
+for (i in seq_along(values)) {
+    ## store the result of multiplication as the ith element of
+    ## 'results' vector
+    results[i] <- values[i] * 2
+    print(str_c(values[i], " times 2 is equal to ", results[i]))
+}
+
+results
+
+
+## ---------------------------------------------------------
+## check if the code runs when i = 1
+i <- 1 # set i to a sample value
+x <- values[i] * 2 # the first expression in the loop
+print(str_c(values[i], " times 2 is equal to ", x)) # the second expression
+
+
+## ---------------------------------------------------------
+## a toy data frame
+data <- data.frame("a" = 1:2, "b" = c("hi", "hey"), "c" = 3:4)
+## we see an error occurring at iteration 2
+results <- rep(NA, 3)
+for (i in seq_along(data)) {
+    print(str_c("iteration", i))
+    results[i] <- median(data[, i]) # for the i-th column
+}
+results
+
+
+## ---- eval=FALSE------------------------------------------
+## if (X) {
+##     expression1
+##     expression2
+##     ...
+##     expressionN
+## }
+
+
+## ---------------------------------------------------------
+## define the operation to be executed
+operation <- "add"
+if (operation == "add") {
+    print("I will perform addition 4 + 4")
+    4 + 4
+}
+if (operation == "multiply") {
+    print("I will perform multiplication 4 * 4")
+    4 * 4
+}
+
+
+## ---- eval=FALSE------------------------------------------
+## if (X) {
+##     expression1a
+##     ...
+##     expressionNa
+## } else {
+##     expression1b
+##     ...
+##     expressionNb
+## }
+
+
+## ---------------------------------------------------------
+operation <- "multiply"
+if (operation == "add") {
+    print("I will perform addition 4 + 4")
+    4 + 4
+} else {
+    print("I will perform multiplication 4 * 4")
+    4 * 4
+}
+
+
+## ---- eval=FALSE------------------------------------------
+## if (X) {
+##     expression1a
+##     ...
+##     expressionNa
+## } else if (Y) {
+##     expression1b
+##     ...
+##     expressionNb
+## } else {
+##     expression1c
+##     ...
+##     expressionNc
+## }
+
+
+## ---------------------------------------------------------
+## Note that 'operation' is redefined
+operation <- "subtract"
+if (operation == "add") {
+    print("I will perform addition 4 + 4")
+    4 + 4
+} else if (operation == "multiply") {
+    print("I will perform multiplication 4 * 4")
+    4 * 4
+} else {
+    print(str_c("'", operation, "' is invalid. Use either 'add' or 'multiply'."))
+}
+
+
+## ---------------------------------------------------------
+values <- 1:5
+n <-  length(values)
+results <- rep(NA, n)
+for (i in seq_along(values)) {
+    ## x and r get overwritten in each iteration
+    x <- values[i]
+    r <- x %% 2  # remainder when divided by 2 to check whether even or odd
+    if (r == 0) { # remainder is zero
+        print(str_c(x, " is even and I will perform addition: " , x, "+", x))
+        results[i] <- x + x
+    } else { # remainder is not zero
+        print(str_c(x, " is odd and I will perform multiplication: ", x, "*", x))
+        results[i] <- x * x
+    }
+}
+results
+
+
+
+
+## ---------------------------------------------------------
+## Load the data
+data("pres08", package = "qss")
+data("polls08", package = "qss")
+## Add the Obama margin
+polls08 <-
+  polls08 %>% mutate(margin = Obama - McCain)
+pres08 <-
+  pres08 %>% mutate(margin = Obama - McCain)
+
+
+## ---- message=FALSE, warning=FALSE------------------------
+library(lubridate)
+## what class is middate?
+class(polls08$middate)
+
+## two example dates and subtraction
+x <- ymd("2008-11-04")
+y <- ymd("2008/9/1")
+subtraction <- x - y
+subtraction
+class(subtraction)
+as.numeric(subtraction)
+
+
+## ---------------------------------------------------------
+## the election date
+election_date <- ymd("2008-11-04")
+
+## add DaysToElection
+polls08 <- polls08 %>% 
+  mutate(DaysToElection = as.numeric(election_date - middate))
+
+poll.pred <- rep(NA, 51) # initialize a vector place holder
+## extract unique state names which the loop will iterate through
+st.names <- unique(polls08$state)
+## add state names as labels for easy interpretation later on
+names(poll.pred) <- as.character(st.names)
+
+## loop across 50 states plus DC
+for (i in seq_along(st.names)){
+    ## subset the ith state
+    state.data <- polls08 %>% 
+      filter(state == st.names[i])
+    
+    ## pull out the closest date (minimum days to election)
+    min_days <- min(state.data$DaysToElection)
+    
+    ## subset only the latest polls within the state
+    state.data <- state.data %>% 
+      filter(DaysToElection == min_days)
+    
+    ## compute the mean of latest polls and store it
+    poll.pred[i] <- mean(state.data$margin)
+}
+
+
+## ---------------------------------------------------------
+# Assuming the states are in the same order in both data:
+errors <- pres08$margin - poll.pred
+names(errors) <- st.names # add state names
+mean(errors) # mean prediction error
+
+
+## ---------------------------------------------------------
+sqrt(mean(errors^2))
+
+
+
+
+## ---------------------------------------------------------
+## Errors as tibble
+errors_tib <- as_tibble(errors)
+
+## Plot the histogram
+ggplot(errors_tib, aes(x = errors, y = ..density..)) +
+  geom_histogram(binwidth = 5, boundary = 0) +
+  geom_vline(xintercept = mean(errors_tib$value)) +
+  ggplot2::annotate("text", x = -.2,
+           y = 0.07, hjust = 1, label = "average error",
+           size = 14/.pt) +
+  labs(title = "Poll prediction error", y = "Density", 
+       x="Error in predicted margin for Obama (percentage points)") +
+  theme_classic(base_size = 12)
+
+
+## ---------------------------------------------------------
+pres08 <- pres08 %>% 
+  cbind(poll.pred = poll.pred)
+
+ggplot(data = pres08,
+       aes(x = poll.pred, y = margin)) +
+    geom_text(aes(label = state)) +
+  geom_abline(linetype = "dashed") +
+  geom_vline(xintercept = 0) +
+  geom_hline(yintercept = 0) +
+  ylim(-40, 100) +
+  xlim(-40, 100) +
+  labs(x = "Poll results",
+       y = "Actual election results")
+
+
+## ---------------------------------------------------------
+pres08 <- pres08 %>% 
+  mutate(correct = if_else(sign(poll.pred) == sign(margin), 1, 0))
+
+## Which states were miss-called?
+filter(pres08, correct == 0) %>% 
+  select(state.name, Obama, McCain, margin, poll.pred,correct)
+
+
+
+
+## ---------------------------------------------------------
+## actual results: total number of electoral votes won by Obama
+pres08 %>% 
+  filter(margin > 0) %>% 
+  summarize(total_EV = sum(EV))
+
+## poll prediction
+pres08 %>% 
+  filter(poll.pred >0) %>% 
+  summarize(pred_EV = sum(EV))
+
+
+## ---- cache = TRUE----------------------------------------
+data("pollsUS08", package = "qss")
+
+## What days should we loop over?
+## Every day from the earliest poll to the election date
+## election_date created earlier
+all_dates <- seq(min(pollsUS08$middate), election_date, by = "days")
+
+# How many prior days of polling to use?
+prior_days <- 7
+
+## Create an object to hold the loop results
+vote_avg <- vector(length(all_dates), mode = "list")
+
+## The loop
+for (i in seq_along(all_dates)) {
+  date <- all_dates[i]
+  # summarize the polls from the prior seven day
+  week_data <- filter(pollsUS08,
+          # want only days prior to the current loop date
+                      as.numeric(date - middate) >= 0, 
+          # want 7 days prior to the current loop date
+                      as.numeric(date - middate) < prior_days) %>% 
+     summarize(Obama = mean(Obama, na.rm = TRUE),
+               McCain = mean(McCain, na.rm = TRUE))
+  # add date for the observation
+  week_data$date <- date
+  # save the data as an item in the results list
+  vote_avg[[i]] <- week_data
+}
+
+## Convert the list of results to a data frame
+vote_avg_df <- bind_rows(vote_avg)
+
+
+
+
+## ---- cache = TRUE----------------------------------------
+## Focus only on last 90 days
+vote_avg_df %>% 
+  filter(election_date - date <= 90) %>% 
+  ggplot() +
+  geom_point(aes(x = date, y = Obama), 
+             color = "blue", shape = 1) +
+  geom_point(aes(x = date, y = McCain), 
+             color = "red", shape = 1) +
+  ylim(40, 55) +
+  labs(y = "Support for candidate (percentage points)",
+       x = "Date") +
+  ggplot2::annotate("text", x = ymd("2008-08-15"),
+           y = 47, label = "Obama", color = "blue") +
+  ggplot2::annotate("text", x = ymd("2008-08-15"),
+           y = 41, label = "McCain", color = "red") +
+  geom_vline(xintercept = election_date) +
+  geom_point(aes(x = election_date, y = 52.93), color = "blue") +
+  geom_point(aes(x = election_date, y = 45.65), color = "red")
+
+
+
+
+
+
+## ---------------------------------------------------------
+## load the data
+data("face", package = "qss")
+
+## add the shares and differences
+face <- mutate(face,
+                d.share = d.votes / (d.votes + r.votes),
+                r.share = r.votes / (d.votes + r.votes),
+                diff.share = d.share - r.share)
+
+
+## ---- cache = TRUE, warning=FALSE-------------------------
+ggplot(face, aes(x = d.comp, y = diff.share, color = w.party)) +
+  geom_point() +
+  scale_colour_manual(values = c(D = "blue", R = "red")) +
+  labs(x = "Competence scores for Democrats",
+       y = "Democratic margin in vote share",
+       title = "Facial competence and vote share") +
+  ylim(-1, 1) +
+  xlim(0, 1) +
+  theme(legend.position = "none")
+
+
+## ---------------------------------------------------------
+cor(face$d.comp, face$diff.share)
+
+
+
+
+## ---------------------------------------------------------
+fit <- lm(diff.share ~ d.comp, data = face) # fit the model
+fit
+
+
+## ---- eval=FALSE------------------------------------------
+## lm(face$diff.share ~ face$d.comp)
+
+
+## ---------------------------------------------------------
+coef(fit) # get estimated coefficients
+head(fitted(fit)) # show the first few fitted or predicted values
+
+
+## ---- message=FALSE, warning=FALSE------------------------
+library(tidymodels)
+glance(fit)
+
+
+## ---------------------------------------------------------
+tidy(fit)
+
+
+## ---------------------------------------------------------
+augment(fit) %>% head()
+
+
+## ---- eval = FALSE----------------------------------------
+## ggplot() +
+##   geom_point(data = face,
+##              mapping = aes(x = d.comp, y = diff.share), shape = 1) +
+##   geom_abline(slope = coef(fit)["d.comp"],
+##               intercept = coef(fit)["(Intercept)"]) +
+##   scale_y_continuous("Competence scores for Democrats",
+##                      breaks = seq(-1, 1, by = 0.5), limits = c(-1, 1)) +
+##   scale_x_continuous("Democratic margin in vote shares",
+##                      breaks = seq(0, 1, by = 0.2), limits = c(0, 1)) +
+##   geom_vline(xintercept = mean(face$d.comp),
+##              linetype = "dashed") +
+##   geom_hline(yintercept =  mean(face$diff.share),
+##                 linetype = "dashed") +
+##   ggtitle("Facial competence and vote share")
+
+
+## ----eval=FALSE-------------------------------------------
+## ggplot(data = face, mapping = aes(x = d.comp, y = diff.share)) +
+##   geom_point() +
+##   geom_smooth(method = "lm", se = FALSE)
+
+
+## ----echo=FALSE-------------------------------------------
+# function to draw curly braces
+# x, y position where to put the braces
+# range is the length of the brace
+# position: 1 vertical, 2 horizontal
+# direction: 1 left/down, 2 right/up
+# depth controls width of the shape
+
+CurlyBraces <- function(x0, x1, y0, y1, pos = 1, direction = 1, depth = 1, color = "black") {
+
+    a=c(1,2,3,48,50)    # set flexion point for spline
+    b=c(0,.2,.28,.7,.8) # set depth for spline flexion point
+
+    curve = spline(a, b, n = 50, method = "natural")$y * depth
+
+    curve = c(curve,rev(curve))
+
+    if (pos == 1){
+        a_sequence = seq(x0,x1,length=100)
+        b_sequence = seq(y0,y1,length=100)
+    }
+    if (pos == 2){
+        b_sequence = seq(x0,x1,length=100)
+        a_sequence = seq(y0,y1,length=100)
+    }
+
+    # direction
+    if(direction==1)
+        a_sequence = a_sequence+curve
+    if(direction==2)
+        a_sequence = a_sequence-curve
+
+    # pos
+    if(pos==1)
+        lines(a_sequence,b_sequence, lwd=1.5, xpd=NA, col = color) # vertical
+    if(pos==2)
+        lines(b_sequence,a_sequence, lwd=1.5, xpd=NA, col = color) # horizontal
+
+}
+
+
+## ----echo = FALSE, out.width='75%', out.height='75%', fig.show = 'hold', cache=TRUE, fig.pos="center"----
+par(cex = 1.25)
+plot(face$d.comp, face$diff.share, xlim = c(0, 1.05), ylim = c(-1, 1),
+     xlab = "Competence scores for Democrats",
+     ylab = "Democratic margin in vote share",
+     main = "Facial competence and vote share")
+abline(fit) # add regression line
+abline(v = 0, lty = "dashed")
+## misc
+arrows(x0 = 0.1, y0 = -0.75, x1 = 0, y1 = coef(fit)[1], length = 0.1)
+text(0.1, -0.8, "intercept")
+text(0.1, -0.95, expression(hat(alpha)))
+lines(rep(face$d.comp[10], 2), c(face$diff.share[10], fitted(fit)[10]))
+arrows(x0 = 0.8, x1 = face$d.comp[10]-0.01, y0 = -0.2,
+       y1 = face$diff.share[10] - 0.01, length = 0.1)
+text(0.8, -0.225, "outcome")
+text(0.8, -0.4, expression(Y))
+CurlyBraces(x0=face$d.comp[10], x1=face$d.comp[10], y0=face$diff.share[10],
+            y1=fitted(fit)[10], pos = 1, direction = 1, depth=0.035, color = "black")
+text(0.98, (face$diff.share[10] + fitted(fit)[10])/2, "residual")
+text(0.98, (face$diff.share[10] + fitted(fit)[10])/2-0.1, expression(hat(epsilon)))
+arrows(x0 = 0.98, x1 = face$d.comp[10] + 0.01, y0 = 0.5, y1 = fitted(fit)[10] + 0.01,
+       length = 0.1)
+text(0.98, 0.56, expression(hat(Y)))
+text(0.98, 0.9, "predicted\n value")
+abline(v = mean(face$d.comp), lty = "dotted")
+text(mean(face$d.comp) + 0.1, -0.9, expression(bar(X)))
+text(mean(face$d.comp) + 0.1, -0.8, "mean of X")
+abline(h = mean(face$diff.share), lty = "dotted")
+text(0.1, mean(face$diff.share) + 0.1, "mean of Y")
+text(0.1, mean(face$diff.share) - 0.1, expression(bar(Y)))
+points(mean(face$d.comp), mean(face$diff.share), pch = 19)
+
+
+## ---------------------------------------------------------
+epsilon.hat <- resid(fit)  # residuals
+sqrt(mean(epsilon.hat^2))  # RMSE
+
+
+
+
+## ---------------------------------------------------------
+data("pres12", package = "qss")
+glimpse(pres08)
+glimpse(pres12)
+
+
+## ---------------------------------------------------------
+pres <- full_join(x = pres08, y = pres12, by = "state")
+summary(pres)
+
+
+## ---------------------------------------------------------
+## change the variable name for illustration
+pres12 <- rename(pres12, state.abbrev = state)
+## merging data sets using the variables of different names
+## and specifying the suffix
+pres <- full_join(pres08, pres12, 
+              by = c("state" = "state.abbrev"),
+              suffix = c("_08", "_12"))
+glimpse(pres)
+
+
+## ---- warning=FALSE, message=FALSE------------------------
+## cbinding two data frames
+pres_cbind <- cbind(pres08, pres12)
+## DC and DE are flipped
+pres_cbind[8:9, ]
+## bind_cols two data frames
+pres_bind_cols <- bind_cols(pres08, pres12)
+## odd variable names 
+summary(pres_bind_cols)
+## more control with full_join!
+
+
+## ---------------------------------------------------------
+pres <- pres %>%
+  mutate(Obama2008.z = as.numeric(scale(Obama_08)),
+         Obama2012.z = as.numeric(scale(Obama_12)))
+
+
+
+
+## ---------------------------------------------------------
+## intercept is estimated essentially zero
+fit1 <- lm(Obama2012.z ~ Obama2008.z, data = pres)
+fit1
+## regression without an intercept; estimated slope is identical
+fit1 <- lm(Obama2012.z ~ -1 + Obama2008.z, data = pres)
+fit1
+
+
+
+
+## ---- message=FALSE, warning=FALSE------------------------
+ggplot(pres, aes(x = Obama2008.z, y = Obama2012.z)) +
+  geom_smooth(method = "lm", se=F, size = 0.5) +
+  geom_point(shape = 1) +
+  coord_fixed() +
+  scale_x_continuous("Obama's standardized vote share in 2008",
+                     limits = c(-4, 4)) +
+  scale_y_continuous("Obama's standardized vote share in 2012",
+                     limits = c(-4, 4)) 
+
+
+## ---------------------------------------------------------
+pres %>%
+  filter(Obama2008.z < quantile(Obama2008.z, 0.25)) %>%
+  summarize(improve = mean(Obama2012.z > Obama2008.z))
+
+pres %>%
+  filter(Obama2008.z < quantile(Obama2008.z, 0.75)) %>%
+  summarize(improve = mean(Obama2012.z > Obama2008.z))
+
+
+## ---------------------------------------------------------
+data("florida", package = "qss")
+fit2 <- lm(Buchanan00 ~ Perot96, data = florida)
+fit2
+
+## compute TSS (total sum of squares) and SSR (sum of squared residuals)
+TSS2 <- florida %>% 
+  mutate(diff_sq = (Buchanan00 - mean(florida$Buchanan00))^2) %>% 
+  summarize(TSS = sum(diff_sq))
+
+SSR2 <- sum(resid(fit2)^2)
+
+## Coefficient of determination
+(TSS2 - SSR2) / TSS2
+
+
+## ---------------------------------------------------------
+R2 <- function(fit) {
+    resid <- resid(fit) # residuals
+    y <- fitted(fit) + resid # outcome variable
+    TSS <- sum((y - mean(y))^2)
+    SSR <- sum(resid^2)
+    R2 <- (TSS - SSR) / TSS
+    return(R2)
+}
+R2(fit2)
+
+
+## ---------------------------------------------------------
+## built-in R function
+fit2summary <- summary(fit2)
+fit2summary$r.squared
+
+## with broom function
+glance(fit2)
+
+
+## ---------------------------------------------------------
+R2(fit1)
+
+
+## ---------------------------------------------------------
+augment_fit2 <- augment(fit2)
+
+ggplot(augment_fit2, aes(x = .fitted, y = .resid)) +
+  geom_point(shape = 1) +
+  geom_hline(yintercept = 0) +
+  labs(x = "Fitted values", y = "Residuals")
+
+
+## ---- message=FALSE, warning = FALSE----------------------
+library(modelr)
+
+florida_fit2 <- florida %>%
+  add_predictions(fit2) %>%
+  add_residuals(fit2)
+
+filter(florida_fit2, resid == max(resid)) %>% 
+  select(county) %>% 
+  pull()
+
+
+
+
+## ---------------------------------------------------------
+## data without Palm Beach
+florida.pb <- filter(florida, county != "PalmBeach")
+fit3 <- lm(Buchanan00 ~ Perot96, data = florida.pb)
+fit3
+## R^2 or coefficient of determination
+R2(fit3)
+
+
+
+
+## ---- out.width='45%', fig.show='hold', cache=TRUE, message = FALSE----
+## Residual plot
+florida.pb %>%
+  add_residuals(fit3) %>%
+  add_predictions(fit3) %>%
+  ggplot(aes(x = pred, y = resid)) +
+  geom_hline(yintercept = 0) +
+  geom_point(shape = 1) +
+  ylim(-750, 2500) +
+  xlim(0, 1500) +
+  labs(x = "Fitted values", y = "Residuals",
+       title = "Residual plot \nwithout Palm Beach") +
+  theme(plot.title = element_text(size = 22))
+
+## Scatter plot with regression lines
+ggplot() +
+  geom_point(data = florida, aes(x = Perot96, y = Buchanan00), 
+             shape = 1) +
+  geom_smooth(data = florida, aes(x = Perot96, y = Buchanan00), 
+              method = 'lm', se = FALSE, linetype = "dashed") +
+  geom_smooth(data = florida.pb, aes(x = Perot96, y = Buchanan00),
+              method = 'lm', se = FALSE) +
+  ggplot2::annotate("text", x = 30000, y = 3200, label = "Palm Beach",
+           size = 16/.pt)+
+  ggplot2::annotate("text", x = 30000, y = 300, 
+                    label = "Regression line without\n Palm Beach",
+           size = 16/.pt)+
+  ggplot2::annotate("text", x = 25000, y = 1400, 
+                    label = "Regression line with\n Palm Beach",
+           size = 16/.pt)
+
+
+
+
+
+
+## ---- message=FALSE---------------------------------------
+data("women", package = "qss")
+women %>%
+  group_by(reserved) %>%
+  summarize(prop_female = mean(female))
+
+
+## ---------------------------------------------------------
+women %>%
+  group_by(reserved) %>%
+  summarize(irrigation = mean(irrigation),
+            water = mean(water)) %>% 
+  pivot_longer(names_to = "variable", - reserved) %>% 
+  pivot_wider(names_from = reserved) %>% 
+  rename("not_reserved" = `0`,
+         "reserved" = `1` ) %>% 
+  mutate(diff = reserved - not_reserved)
+
+
+## ---------------------------------------------------------
+lm(water ~ reserved, data = women)
+lm(irrigation ~ reserved, data = women)
+
+
+## ---------------------------------------------------------
+data("social", package = "qss")
+unique(social$messages)
+fit <- lm(primary2006 ~ messages, data = social)
+fit # the Civic message is the reference category
+
+
+## ---------------------------------------------------------
+## create indicator variables
+social <- social %>% 
+  mutate(Control = if_else(messages == "Control", 1, 0),
+         Hawthorne = if_else(messages == "Hawthorne", 1, 0),
+         Neighbors = if_else(messages == "Neighbors", 1, 0))
+## fit the same regression as above by directly using indicator variables
+lm(primary2006 ~ Control + Hawthorne + Neighbors, data = social)
+
+
+## ---------------------------------------------------------
+unique_messages <-
+  data_grid(social, messages) %>% #What does this create?
+  add_predictions(fit)
+unique_messages
+
+
+## ---- message=FALSE---------------------------------------
+social %>%
+  group_by(messages) %>%
+  summarize(mean(primary2006))
+
+
+## ---------------------------------------------------------
+fit.noint <- lm(primary2006 ~ -1 + messages, data = social)
+fit.noint
+
+
+## ---- message=FALSE, warning=FALSE------------------------
+## difference in means
+social %>%
+  group_by(messages) %>%
+  summarize(primary2006 = mean(primary2006)) %>%
+  mutate(Control = primary2006[messages == "Control"],
+         diff = primary2006 - Control)
+
+
+## ---------------------------------------------------------
+## an adjusted Rsquare function
+adjR2 <- function(fit) {
+    resid <- resid(fit) # residuals
+    y <- fitted(fit) + resid # outcome
+    n <- length(y)
+    TSS.adj <- sum((y - mean(y))^2) / (n - 1)
+    SSR.adj <- sum(resid^2) / (n - length(coef(fit)))
+    R2.adj <- 1 - SSR.adj / TSS.adj
+    return(R2.adj)
+}
+adjR2(fit)
+R2(fit) # unadjusted Rsquare calculation
+
+
+## ---------------------------------------------------------
+fitsummary <- summary(fit)
+fitsummary$adj.r.squared
+
+
+## ---- warning=FALSE, message=FALSE------------------------
+## average treatment effect (ate) among those who voted in 2004 primary
+ate <- social %>%
+  group_by(primary2004, messages) %>%
+  summarize(primary2006 = mean(primary2006)) %>%
+  pivot_wider(names_from = messages, 
+              values_from = primary2006) %>%
+  mutate(ate_Neighbors = Neighbors - Control) %>%
+  select(primary2004, Neighbors, Control, ate_Neighbors)
+ate
+
+## ATE for 2004 voters and nonvoters
+ate.voter <- filter(ate, primary2004 == 1) %>% 
+  select(ate_Neighbors) %>% pull()
+
+ate.nonvoter <- filter(ate, primary2004 == 0) %>% 
+  select(ate_Neighbors) %>% pull()
+
+## Difference in ate based on 2004 voting
+ate.voter - ate.nonvoter
+
+
+## ---------------------------------------------------------
+## subset neighbors and control groups
+social.neighbor <- filter(social, 
+                          messages == "Control" 
+                          | messages == "Neighbors")
+
+## standard way to generate main and interaction effects
+fit.int <- lm(primary2006 ~ primary2004 + messages + primary2004:messages,
+              data = social.neighbor)
+fit.int
+
+
+## ----eval=FALSE-------------------------------------------
+## lm(primary2006 ~ primary2004 * messages, data = social.neighbor)
+
+
+## ---------------------------------------------------------
+## create an age variable (at time of election)
+social.neighbor <- social.neighbor %>% 
+  mutate(age = 2008 - yearofbirth)
+
+summary(social.neighbor$age)
+
+
+## ---------------------------------------------------------
+fit.age <- lm(primary2006 ~ age * messages, data = social.neighbor)
+fit.age
+
+
+## ---------------------------------------------------------
+ate.age <- tidyr::crossing(age = seq(from = 20, to = 80, by = 20),
+         messages = c("Neighbors", "Control")) %>%
+  add_predictions(fit.age) %>%
+  pivot_wider(names_from = messages, 
+              values_from = pred) %>%
+  mutate(diff = Neighbors - Control)
+ate.age
+
+
+## ---------------------------------------------------------
+fit.age2 <- lm(primary2006 ~ age + I(age^2) + messages +
+                 age:messages + I(age^2):messages, data = social.neighbor)
+fit.age2
+
+
+## ---------------------------------------------------------
+## predicted turnout rate under the two conditions
+## and many ages
+y.hat <- data_grid(social.neighbor, age, messages) %>%
+  add_predictions(fit.age2) 
+
+## the ATE
+social.neighbor.ate <- y.hat %>% 
+  pivot_wider(names_from = messages, 
+              values_from = pred) %>%
+  mutate(ate = Neighbors - Control)
+
+
+
+
+## ---- fig.show='hold', out.width="45%", message=FALSE, warning=FALSE----
+## Plot the predictions 
+ggplot(y.hat, aes(x = age, y = pred)) +
+  geom_line(aes(linetype = messages,
+                  color = messages)) +
+  labs(color = "", 
+       linetype = "", y = "Predicted \nturnout rate",
+       x = "Age") +
+  xlim(20, 90) +
+  theme(legend.position = "bottom")
+
+# Plot the ATE
+ggplot(social.neighbor.ate, aes(x = age, y = ate)) +
+  geom_line() +
+  labs(y = "Estimated average \ntreatment effect",
+       x = "Age") +
+  xlim(20, 90) +
+  ylim(0, 0.1)
+
+
+
+
+## ---------------------------------------------------------
+## load the data
+data("MPs", package = "qss")
+
+## Subset the data
+labour_winners <- filter(MPs, party == "labour", margin > 0)
+labour_losers <- filter(MPs, party == "labour", margin < 0)
+tory_winners <- filter(MPs, party == "tory", margin > 0)
+tory_losers <- filter(MPs, party == "tory", margin < 0)
+
+### the the regressions
+labour_fit_win <- lm(ln.net ~ margin, data = labour_winners)
+labour_fit_lose <- lm(ln.net ~ margin, data = labour_losers)
+tory_fit_win <- lm(ln.net ~ margin, data = tory_winners)
+tory_fit_lose <- lm(ln.net ~ margin, data = tory_losers)
+
+
+## ---------------------------------------------------------
+y1_labour_win <- labour_winners %>% 
+  data_grid(margin) %>%
+  add_predictions(labour_fit_win)
+
+y2_labour_lose <- labour_losers %>%
+  data_grid(margin) %>%
+  add_predictions(labour_fit_lose)
+
+y1_tory_win <- tory_winners %>% 
+  data_grid(margin) %>%
+  add_predictions(tory_fit_win)
+
+y2_tory_lose <- tory_losers %>%
+  data_grid(margin) %>%
+  add_predictions(tory_fit_lose)
+
+
+
+
+## ---- out.width='45%', fig.show='hold'--------------------
+## Labour
+ggplot() +
+  geom_point(data = labour_winners,
+             mapping = aes(x = margin, y = ln.net), shape = 1) +
+  geom_point(data = labour_losers,
+             mapping = aes(x = margin, y = ln.net), shape = 1) +
+  geom_line(data = y1_labour_win,
+            mapping = aes(x = margin, y = pred), 
+            color = "blue", size = 1) +
+  geom_line(data = y2_labour_lose,
+            mapping = aes(x = margin, y = pred), 
+            color = "blue", size = 1) +
+  geom_vline(xintercept = 0,
+             linetype = "dashed") +
+  labs(x = "Margin of victory", 
+       y = "log net wealth at death",
+       title = "Labour") +
+  xlim(-0.5, 0.5) +
+  ylim(6, 18)
+
+## Tory
+ggplot() +
+  geom_point(data = tory_winners,
+             mapping = aes(x = margin, y = ln.net), shape = 1) +
+  geom_point(data = tory_losers,
+             mapping = aes(x = margin, y = ln.net), shape = 1) +
+  geom_line(data = y1_tory_win,
+            mapping = aes(x = margin, y = pred), 
+            color = "blue", size = 1) +
+  geom_line(data = y2_tory_lose,
+            mapping = aes(x = margin, y = pred), 
+            color = "blue", size = 1) +
+  geom_vline(xintercept = 0,
+             linetype = "dashed") +
+  labs(x = "Margin of victory", 
+       y = "log net wealth at death",
+       title = "Tory") +
+  xlim(-0.5, 0.5) +
+  ylim(6, 18)
+
+
+
+
+## ---------------------------------------------------------
+spread_predictions(tibble(margin = 0),
+                   tory_fit_win, tory_fit_lose) %>%
+  mutate(rd_est = exp(tory_fit_win) - exp(tory_fit_lose)) %>% 
+  select(rd_est) %>% 
+  pull() 
+
+
+## ---------------------------------------------------------
+## two regressions for Tory: negative and positive margin
+tory_fit_win_placebo <- lm(margin.pre ~ margin, data = tory_winners)
+tory_fit_lose_placebo <- lm(margin.pre ~ margin, data = tory_losers)
+
+## the difference between two intercepts is the estimated effect
+win_intercept <- tidy(tory_fit_win_placebo) %>% 
+  filter(term == "(Intercept)") %>% 
+  select(estimate) %>% 
+  pull()
+
+lose_intercept <- tidy(tory_fit_lose_placebo) %>% 
+  filter(term == "(Intercept)") %>% 
+  select(estimate) %>% 
+  pull()
+
+win_intercept - lose_intercept
+
