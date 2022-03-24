@@ -1,9 +1,9 @@
 # Chapter 4: Prediction
 
 ## Code
-1. The markdown file for the entire chapter: [prediction.Rmd](prediction.Rmd)
-2. The pdf file with outputs: [prediction.pdf](prediction.pdf)
-3. The R script file for the entire chapter: [prediction.R](prediction.R)
+1. The markdown file for the entire chapter: [prediction.Rmd](prediction.Rmd) or [prediction-tidy.Rmd](prediction-tidy.Rmd)
+2. The pdf file with outputs: [prediction.pdf](prediction.pdf) or [prediction-tidy.pdf](prediction-tidy.pdf)
+3. The R script file for the entire chapter: [prediction.R](prediction.R) or [prediction-tidy.R](prediction-tidy.R)
 
 ## Data sets
 ### Main text
