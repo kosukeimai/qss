@@ -1,0 +1,633 @@
+---
+title: 'Code for QSS tidyverse Chapter 2: Causality'
+author: "Kosuke Imai and Nora Webb Williams"
+date: "First Printing"
+output:
+  pdf_document: default
+always_allow_html: true
+---
+
+# Causality
+
+```{r setup2, include = FALSE, purl=FALSE, eval = T}
+library(knitr)
+library(kableExtra)
+library(tidyverse)
+opts_chunk$set(tidy = FALSE,
+        fig.align = "center",
+        background = "#EEEEEE",
+        fig.width = 7,
+        fig.height = 7,
+        out.width = ".7\\linewidth",
+        out.height = ".7\\linewidth",
+        cache = TRUE)
+options(width = 60)
+set.seed(12345)
+```
+
+## Racial Discrimination in the Labor Market 
+
+
+```{r, message=FALSE}
+## Load required packages
+library(tidyverse)
+library(qss)
+
+## Load in the data from QSS package
+data(resume, package = "qss")
+```
+```{r}
+## Or read in a saved CSV
+resume <- read_csv("resume.csv")
+```
+
+```{r, message=FALSE}
+resume <- read_csv("resume.csv",
+                   col_types = cols(
+                     firstname = col_character(),
+                     sex = col_character(),
+                     race = col_character(),
+                     call = col_number()))
+```
+
+
+```{r}
+dim(resume)
+```
+
+```{r}
+head(resume)
+tail(resume)
+glimpse(resume)
+```
+
+
+```{r}
+summary(resume)
+```
+
+
+```{r, message=FALSE}
+race.call.summary <- resume %>%
+  group_by(race, call) %>% # create for each race and callback status
+  count() 
+
+race.call.summary
+```
+
+```{r, message=FALSE}
+race.call.tab <- race.call.summary %>%
+  pivot_wider(names_from = call, # reshape the data
+              values_from = n)
+
+race.call.tab
+```
+
+```{r}
+race.call.tab.names <- race.call.tab %>% 
+    rename(no_callback = "0",
+         callback = "1")
+
+race.call.tab.names
+```
+
+```{r}
+race.call.tab.names <- race.call.tab.names %>% 
+  mutate(total_resumes = no_callback + callback,
+         callback_prop = callback / total_resumes)
+
+race.call.tab.names
+```
+
+```{r}
+overall_callback <- resume %>% 
+  summarize(total_callback_rate = sum(call) / n())
+
+overall_callback
+```
+
+```{r}
+overall_callback <- resume %>% 
+  summarize(total_callback_rate = mean(call))
+
+overall_callback
+```
+
+
+```{r, message=FALSE}
+callback_by_race <- resume %>% 
+  group_by(race) %>% 
+  summarize(callback_rate = mean(call))
+
+callback_by_race
+```
+
+
+## Subsetting Data in R
+
+### Logical Values and Operators
+
+```{r}
+class(TRUE)
+```
+
+```{r}
+as.integer(TRUE)
+as.integer(FALSE)
+```
+
+
+```{r}
+x <- c(TRUE, FALSE, TRUE) # a vector with logical values
+mean(x) # proportion of TRUEs
+sum(x) # number of TRUEs
+```
+
+
+```{r}
+FALSE & TRUE
+TRUE & TRUE
+```
+
+
+```{r}
+TRUE | FALSE
+FALSE | FALSE
+```
+
+```{r}
+TRUE & FALSE & TRUE
+```
+
+
+```{r}
+(TRUE | FALSE) & FALSE # the parentheses evaluate to TRUE
+TRUE | (FALSE & FALSE) # the parentheses evaluate to FALSE
+```
+
+```{r}
+TF1 <- c(TRUE, FALSE, FALSE)
+TF2 <- c(TRUE, FALSE, TRUE)
+TF1 | TF2
+TF1 & TF2
+```
+
+### Relational Operators
+
+```{r}
+4 > 3
+"Hello" == "hello"  # R is case-sensitive
+"Hello" != "hello"
+```
+
+```{r}
+x <- c(3, 2, 1, -2, -1)
+x >= 2
+x != 1
+```
+
+```{r}
+## logical conjunction of two vectors with logical values
+(x > 0) & (x <= 2)
+## logical disjunction of two vectors with logical values
+(x > 2) | (x <= -1)
+```
+
+```{r}
+x.int <- (x > 0) & (x <= 2) # logical vector
+x.int
+mean(x.int) # proportion of TRUEs
+sum(x.int)  # number of TRUEs
+```
+
+### Subsetting
+
+
+```{r}
+## callback rate for black-sounding names
+resume %>% 
+  filter(race == "black") %>% # only keep observations where "race" is black
+  summarize(mean(call)) # take the average of call
+```
+```{r}
+## Subset the data with black names
+resumeB <- filter(resume, race == "black")
+## Calculate the mean callback rate
+summarize(resumeB, mean(call))
+## with $ operator to run mean() on the call column
+mean(resumeB$call)
+```
+
+```{r}
+resumeBf <- filter(resume, race == "black" & sex == "female")
+```
+
+
+
+```{r}
+## callback rate for black female names
+Bf_callback <- filter(resume, race == "black" & sex == "female") %>%
+  summarize(callback_rate = mean(call)) %>% 
+  pull()
+
+## print the value to the console
+print(Bf_callback)
+
+## callback rate for black male names
+Bm_callback <- filter(resume, race == "black" & sex == "male") %>%
+  summarize(callback_rate = mean(call)) %>% 
+  pull()
+
+## print the value to the console
+print(Bm_callback)
+
+## callback rate for white female names
+Wf_callback <- filter(resume, race == "white" & sex == "female") %>%
+  summarize(callback_rate = mean(call)) %>% 
+  pull()
+
+## print the value to the console
+print(Wf_callback)
+
+## callback rate for white male names
+Wm_callback <- filter(resume, race == "white" & sex == "male") %>%
+  summarize(callback_rate = mean(call)) %>% 
+  pull()
+
+## print the value to the console
+print(Wm_callback)
+
+## difference between white women and black women
+Wf_callback - Bf_callback
+
+## difference between white men and black men
+Wm_callback - Bm_callback
+```
+
+ 
+
+```{r, message=FALSE}
+racial_gaps_by_sex <- resume %>% 
+  group_by(race, sex) %>% # using two variables to group the data
+  summarize(callback = mean(call)) %>% # the callback rate for each group
+  pivot_wider(names_from = race, # reshaping the data
+              values_from = callback) %>% 
+  mutate(race_gap = white - black)
+
+print(racial_gaps_by_sex)
+```
+
+
+```{r, message=FALSE}
+## what happens in this portion of the code?
+resume %>% 
+  group_by(race, sex) %>% 
+  summarize(callback = mean(call))
+
+## What happens after we add the pivot_wider()? 
+resume %>% 
+  group_by(race, sex) %>% 
+  summarize(callback = mean(call)) %>% 
+  pivot_wider(names_from = race,
+              values_from = callback)
+
+## And so on
+```
+
+### Simple Conditional Statements
+
+```{r}
+resume <- resume %>% 
+  ## create a new variable that is 1 if the resume is black and female, 
+  ## 0 otherwise
+  mutate(BlackFemale = if_else(race == "black" & 
+                               sex == "female", 1, 0))
+```
+
+```{r}
+# Rows in the resumeBf data
+nrow(resumeBf)
+# Is that equal to sum of BlackFemale?
+nrow(resumeBf) == resume %>% summarize(bf = sum(BlackFemale))
+```
+
+
+### Factor Variables
+
+
+```{r}
+resume_fact <- resume %>% 
+  mutate(type = if_else(race == "black" & sex == "female", "BlackFemale", ""),
+         type = if_else(race == "black" & sex == "male", "BlackMale", type),
+         type = if_else(race == "white" & sex == "female", "WhiteFemale", type),
+         type = if_else(race == "white" & sex == "male", "WhiteMemale", type))
+
+head(resume_fact)
+```
+
+
+```{r}
+resume <- resume %>% 
+  ## add a categorical variable for race/gender type
+  mutate(type = case_when(race == "black" & sex == "female" ~ "BlackFemale",
+                          race == "white" & sex == "female" ~ "WhiteFemale",
+                          race == "black" & sex == "male" ~ "BlackMale",
+                          race == "white" & sex == "male" ~ "WhiteMale",
+                          TRUE ~ "other"
+))
+
+head(resume)
+
+## Did any observations receive the "other" value for type?
+filter(resume, type == "other")
+```
+
+```{r}
+## check object class
+class(resume$type)
+
+## coerce the character variable into a factor variable
+resume <- resume %>% 
+  mutate(type = as.factor(type))
+
+## look at the levels of the factor
+levels(resume$type)
+```
+
+```{r, message=FALSE}
+firstname_callback <- resume %>% 
+  group_by(firstname) %>% 
+  select(firstname, call) %>% 
+  summarize(callback = mean(call))
+
+head(firstname_callback)
+```
+
+## Causal Effects and the Counterfactual
+
+
+```{r}
+slice(resume, 1)
+```
+
+
+## Randomized Controlled Trials 
+
+### The Role of Randomization
+
+### Social Pressure and Voter Turnout 
+
+```{r}
+## Load in the data from QSS package
+data(resume, package = "qss")
+
+## Or from a csv
+social <- read_csv("social.csv", 
+                   col_types = cols(sex = col_character(),
+                                     yearofbirth = col_double(),
+                                     primary2004 = col_double(),
+                                     messages = col_character(),
+                                     primary2006 = col_double(),
+                                     hhsize = col_double())) 
+summary(social) # summarize the data
+```
+
+
+```{r, message=FALSE}
+## Average turnout by treatment message
+turnout_by_message <- social %>%
+  group_by(messages) %>%
+  summarize(turnout = mean(primary2006))
+
+turnout_by_message
+
+## Differences between treatment(s) and control means
+turnout_diffs <- turnout_by_message %>% 
+  pivot_wider(names_from = messages,
+              values_from = turnout) %>% 
+  mutate(diff_Civic_Duty = `Civic Duty` - Control,
+         diff_Hawthorne = Hawthorne - Control,
+         diff_Neighbors = Neighbors - Control) %>% 
+  select(diff_Civic_Duty, diff_Hawthorne, diff_Neighbors)
+
+turnout_diffs
+```
+
+```{r, message=FALSE}
+social %>% 
+  mutate(age = 2006 - yearofbirth) %>% 
+  group_by(messages) %>% 
+  summarize(age_avg = mean(age),
+            primary2004_avg = mean(primary2004),
+            hhsize_avg = mean(hhsize))
+```
+
+## Observational Studies
+
+### Minimum Wage and Unemployment
+
+```{r, message=FALSE}
+minwage <- read_csv("minwage.csv") # load the data
+## or 
+data(minwage, package = "qss")
+dim(minwage) # dimension of data
+glimpse(minwage)
+summary(minwage) # summary of data
+```
+
+
+```{r, message=FALSE}
+## Add a 'state' variable
+minwage <- minwage %>% 
+  mutate(state = if_else(location == "PA", "PA", "NJ"))
+
+## Create the 'new_wage' object
+new_wage <- 5.05
+
+## Calculate the proportions above and below the new wage by state
+state_props <- minwage %>% 
+  mutate(above_min_before = if_else(wageBefore >= new_wage, 1, 0),
+         above_min_after = if_else(wageAfter >= new_wage, 1, 0)) %>% 
+  group_by(state) %>% 
+  summarize(prop_before = mean(above_min_before),
+            prop_after = mean(above_min_after))
+
+state_props
+```
+
+
+```{r, message=FALSE}
+## First create new variables to calculate the 
+## proportion of full-time employees
+minwage <- minwage %>%
+  mutate(totalAfter = fullAfter + partAfter,
+        fullPropAfter = fullAfter / totalAfter)
+
+## Then calculate the average proportion of full-time workers by state 
+full_prop_by_state <- minwage %>%
+  group_by(state) %>%
+  summarize(fullPropAfter = mean(fullPropAfter))
+
+## To calculate the difference between states, we use pivot_wider()
+## and mutate()
+pivot_wider(full_prop_by_state, 
+            names_from = state, values_from = fullPropAfter) %>%
+  mutate(diff = NJ - PA)
+```
+
+### Confounding Bias
+
+```{r, message = FALSE}
+chains_by_state <- minwage %>%
+  group_by(state) %>%
+  count(chain) %>%
+  mutate(prop = n / sum(n)) %>% 
+  pivot_wider(-n, # this drops the 'n' variable prior to pivoting 
+              names_from = state,
+              values_from = prop)
+
+chains_by_state
+```
+
+
+```{r message=FALSE, warning=FALSE}
+full_prop_by_state_chain <- minwage %>%
+  group_by(state, chain) %>%
+  summarize(fullPropAfter = mean(fullPropAfter)) %>% 
+  pivot_wider(names_from = state,
+              values_from = fullPropAfter) %>% 
+  mutate(diff = NJ - PA)
+
+full_prop_by_state_chain
+```
+
+```{r, message = FALSE}
+prop_by_state_chain_location_subset <- minwage %>%
+  filter(!location %in% c("shoreNJ", "centralNJ")) %>% 
+  group_by(state, chain) %>%
+  summarize(fullPropAfter = mean(fullPropAfter)) %>% 
+  pivot_wider(names_from = state,
+              values_from = fullPropAfter) %>% 
+  mutate(diff = NJ - PA)
+
+prop_by_state_chain_location_subset
+```
+
+### Before-and-After and Difference-in-Differences Designs
+
+```{r}
+## First, create a variable for the full-time 
+## proportion prior to the change
+minwage <- minwage %>%
+  mutate(totalBefore = fullBefore + partBefore,
+         fullPropBefore = fullBefore / totalBefore)
+
+## Then look at the differences in average proportion of full-time
+## before and after (in NJ only)
+minwage %>%
+  filter(state == "NJ") %>%
+  summarize(diff = mean(fullPropAfter) - mean(fullPropBefore))
+```
+
+```{r, message=FALSE}
+## DiD estimate
+minwage %>%
+  group_by(state) %>%
+  ## difference before and after
+  summarize(diff = mean(fullPropAfter) - mean(fullPropBefore)) %>%
+  pivot_wider(names_from = state, values_from = diff) %>%
+  ## difference in difference between states
+  mutate(diff_in_diff = NJ - PA)
+```
+
+
+## Descriptive Statistics for a Single Variable
+
+### Quantiles 
+
+```{r, message=FALSE}
+## median difference-in-differences
+minwage %>%
+  group_by(state) %>%
+  summarize(diff = median(fullPropAfter) - median(fullPropBefore)) %>%
+  pivot_wider(names_from = state, values_from = diff) %>%
+  mutate(diff_in_diff = NJ - PA)
+```
+
+```{r}
+## summary() shows quartiles for the two wages variables
+## as well as minimum, maximum, and mean
+minwage %>%
+  filter(state == "NJ") %>% # just look at NJ
+  select(wageBefore, wageAfter) %>%
+  summary()
+
+## The interquartile range
+minwage %>%
+  filter(state == "NJ") %>%
+  select(wageBefore, wageAfter) %>%
+  summarize(wageBeforeIQR = IQR(wageBefore),
+            wageAfterIQR = IQR(wageAfter))
+```
+
+
+```{r}
+## Create an object for the quantiles we want (deciles)
+decile_probs <- seq(from = 0, to = 1, by = 0.1)
+## Save deciles as characters
+decile_names <- as.character(decile_probs)
+
+## Generate the deciles for wage before and after
+minwage %>% 
+  filter(state == "NJ") %>%
+  select(wageBefore, wageAfter) %>% 
+  summarize(wageBeforeDecile = quantile(wageBefore, probs = decile_probs),
+            wageAfterDecile = quantile(wageAfter, probs = decile_probs),
+            decile = decile_names) 
+```
+
+### Standard Deviation 
+
+
+```{r}
+## Calculate the RMS of the change in full-time 
+## employment proportion in NJ
+minwageNJ %>% 
+  mutate(fullPropChange = fullPropAfter - fullPropBefore,
+         sqfullPropChange = fullPropChange^2) %>% 
+  summarize(rms = sqrt(mean(sqfullPropChange)))
+
+## Compare to the mean
+minwageNJ %>% 
+  mutate(fullPropChange = fullPropAfter - fullPropBefore) %>% 
+  summarize(mean = mean(fullPropChange))
+```
+
+
+```{r, include=FALSE}
+## Original, before corrections
+minwage %>%
+  group_by(state) %>%
+  summarize_at(vars(wageAfter, wageBefore), 
+               .funs = list(sd, var))
+
+minwage %>%
+  group_by(state) %>%
+  summarize_at(vars(wageAfter, wageBefore), 
+               .funs = list(stdv = sd, 
+                            variance = var))
+```
+
+```{r}
+minwage %>%
+  group_by(state) %>%
+  summarize_at(vars(fullPropBefore, fullPropAfter), 
+               .funs = list(sd, var))
+
+minwage %>%
+  group_by(state) %>%
+  summarize_at(vars(fullPropBefore, fullPropAfter), 
+               .funs = list(stdv = sd, 
+                            variance = var))
+```
+
