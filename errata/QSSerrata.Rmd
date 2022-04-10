@@ -1,7 +1,7 @@
 ---
 title: 'Errata for *Quantitative Social Science: An Introduction* (Princeton University Press)'
 author: "Kosuke Imai"
-date: "June 13, 2021"
+date: "April 10, 2022"
 output:
   pdf_document: default
 ---
@@ -106,7 +106,16 @@ corpus.raw <- VCorpus(DirSource(directory = "federalist", pattern = "fp"))
 
 ### Section 5.2.2
 
-* page 209, first paragraph.  Add the following footnote to the end of the paragraph, "If a node is not connected to any other node, then the number of nodes in the graph, i.e., 16 in this case, is used instead of the length of the shortest path.  Thus, Pucci family's closeness is equal to $1 / (15 \times 16)$"
+* page 209, first paragraph.  Add the following footnote to the end of the paragraph, "If a node is not connected to any other node, then the number of nodes in the graph, i.e., 16 in this case, is used instead of the length of the shortest path.  Thus, Pucci family's closeness is equal to $1 / (15 \times 16)$"  
+
+* page 211, first paragraph. In the latest version of the `igraph` package, the `closeness()` function returns `NaN` for this family.  To prevent an error, we must manually code this as follows:
+
+```{r, eval = FALSE}
+close <- closeness(florence)
+close["PUCCI"] <- 1 / (15 * 16)
+plot(florence, vertex.size = close * 1000, 
+     main = "Closeness")
+```
 
 ### Section 5.3.1
 
