@@ -22,7 +22,7 @@ This repository contains the data sets and **R** scripts (available in .R, .Rmd,
 
 In addition, the repository contains:
 
-1. [Errata](errata/QSSerrata.pdf)
+1. Errata ([QSS](errata/QSSerrata.pdf), [QSStidy](errata/QSS_tidy_errata.pdf))
 2. [Sample course syllabi](syllabus)
 
 
