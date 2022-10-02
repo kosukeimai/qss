@@ -1,7 +1,7 @@
 ---
 title: 'Errata for *Quantitative Social Science: An Introduction* (Princeton University Press)'
 author: "Kosuke Imai"
-date: "September 30, 2022"
+date: "April 10, 2022"
 output:
   pdf_document: default
 ---
@@ -9,14 +9,6 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
-# Corrections applicable to QSS: tidyverse first printing
-
-## Chapter 3
-
-## Section 3.6.2
-
-* page 120-121. 0 and 1 should be flipped when describing the Gini coefficient, in both text and text box. Text should read "In a perfectly equal society, the Gini coefficient is 0. In contrast, a society where one person possesses all the wealth has a Gini coefficient of 1." Text box should read "It ranges from 1 (one person possesses all the wealth) to 0 (everyone has the same amount of wealth)."
 
 # Corrections applicable to the first, second, and third printings
 
@@ -293,5 +285,5 @@ $$\mathbb{E}(\overline{X}_n) = \mathbb{E}\left(\frac{1}{n} \sum_{i=1}^n {\color{
 
 ## Acknowledgements
 
-Thanks to Jeff Arnold, Masahiko Asano, Matt Blackwell, Lori Bougher, Alison Durham, Calvin Garner, Bo Coleman, Michael Donnelly, Fallend Franz, Kentaro Fukumoto, Joel Gautschi, Mamiko Hamakado, Masataka Harada, Raymond Hicks, Danya Lagos, Michael Lewis, Yuko Kasuya, Soyoung Lee, Rocio Titiunik, and Sandy Weisberg for pointing out the errors. 
+Thanks to Jeff Arnold, Masahiko Asano, Matt Blackwell, Lori Bougher, Alison Durham, Calvin Garner, Bo Coleman, Michael Donnelly, Fallend Franz, Kentaro Fukumoto, Joel Gautschi, Mamiko Hamakado, Masataka Harada, Raymond Hicks, Michael Lewis, Yuko Kasuya, Soyoung Lee, Rocio Titiunik, and Sandy Weisberg for pointing out the errors. 
 
