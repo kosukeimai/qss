@@ -1,0 +1,24 @@
+---
+title: 'Errata for *Quantitative Social Science: An Introduction in tidyverse* (Princeton University Press)'
+author: "Kosuke Imai and Nora Webb Williams"
+date: "September 30, 2022"
+output:
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Corrections applicable to first printing
+
+## Chapter 3
+
+## Section 3.6.2
+
+* page 120-121. 0 and 1 should be flipped when describing the Gini coefficient in both text and text box. Text should read "In a perfectly equal society, the Gini coefficient is 0. In contrast, a society where one person possesses all the wealth has a Gini coefficient of 1." Text box should read "It ranges from 0 (everyone has the same amount of wealth) to 1 (one person possesses all the wealth)."
+
+## Acknowledgements
+
+Thanks to Danya Lagos for pointing out the errors. 
+
