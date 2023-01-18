@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Section 3.3.3
 
-* page 103. In the box plot "Distribution of age," the blue curly bracket indicating the IQR should extend from the upper quartile to the lower quartile instead of from the median to the lower quartile. 
+* page 103. In the box plot "Distribution of age," the blue curly bracket indicating the IQR should extend from the upper quartile to the lower quartile instead of from the median to the lower quartile. In addition, the blue curly bracket indicating 1.5 x IQR should extend from the upper quartile instead of from the median. 
 
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
@@ -38,8 +38,8 @@ e$l <- l
   }, e)
 }
 
-b1 <- bracketsGrob(.78, .39, .78, .14, h=0.06, lwd=1.5, col="blue")
-b2 <- bracketsGrob(.75, .77, .75, .26, h=0.06, lwd=1.5, col="blue")
+b1 <- bracketsGrob(.75, .39, .75, .14, h=0.06, lwd=1.5, col="blue")
+b2 <- bracketsGrob(.75, .77, .75, .39, h=0.06, lwd=1.5, col="blue")
 
 ggplot(afghan, aes(y = age)) +
   geom_boxplot() +
@@ -50,10 +50,10 @@ ggplot(afghan, aes(y = age)) +
   ggplot2::annotate("text", x = -.56, y = 31, label = "Median", size = 14/.pt) +
   annotation_custom(b1) +
   annotation_custom(b2) +
-  ggplot2::annotate("text", x = .48, y = 49, label = "1.5 x IQR", 
+  ggplot2::annotate("text", x = .48, y = 53, label = "1.5 x IQR", 
            hjust = -.15,
            color = "blue", size = 14/.pt) +
-  ggplot2::annotate("text", x = .51, y = 31, label = "IQR", 
+  ggplot2::annotate("text", x = .48, y = 31, label = "IQR", 
            hjust = -.25,
            color = "blue", size = 14/.pt) +
   theme_classic(base_size = 12) +
