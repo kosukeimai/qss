@@ -1,7 +1,7 @@
 ---
 title: 'Errata for *Quantitative Social Science: An Introduction in tidyverse* (Princeton University Press)'
 author: "Kosuke Imai and Nora Webb Williams"
-date: "September 30, 2022"
+date: "January 17, 2023"
 output:
   pdf_document: default
 ---
@@ -14,11 +14,15 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Chapter 3
 
+## Section 3.3.3
+
+* page 103. In the box plot "Distribution of age," the blue curly bracket indicating the IQR should extend from the upper quartile to the lower quartile instead of from the median to the lower quartile. 
+
 ## Section 3.6.2
 
 * page 120-121. 0 and 1 should be flipped when describing the Gini coefficient in both text and text box. Text should read "In a perfectly equal society, the Gini coefficient is 0. In contrast, a society where one person possesses all the wealth has a Gini coefficient of 1." Text box should read "It ranges from 0 (everyone has the same amount of wealth) to 1 (one person possesses all the wealth)."
 
 ## Acknowledgements
 
-Thanks to Danya Lagos for pointing out the errors. 
+Thanks to Danya Lagos and Sanghoon Kim-Leffingwell for pointing out errors. 
 
