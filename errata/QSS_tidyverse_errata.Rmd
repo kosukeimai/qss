@@ -1,7 +1,7 @@
 ---
 title: 'Errata for *Quantitative Social Science: An Introduction in tidyverse* (Princeton University Press)'
 author: "Kosuke Imai and Nora Webb Williams"
-date: "January 17, 2023"
+date: "January 18, 2023"
 output:
   pdf_document: default
 ---
@@ -17,6 +17,50 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Section 3.3.3
 
 * page 103. In the box plot "Distribution of age," the blue curly bracket indicating the IQR should extend from the upper quartile to the lower quartile instead of from the median to the lower quartile. 
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+## remake the plot with correct curly brackets
+library(tidyverse)
+library(qss)
+
+## Load in the data from QSS package
+data(afghan, package = "qss")
+
+# with assist from https://stackoverflow.com/questions/35633239/add-curly-braces-to-ggplot2-and-then-use-ggsave
+library(pBrackets)
+bracketsGrob <- function(...){
+l <- list(...)
+e <- new.env()
+e$l <- l
+  grid:::recordGrob(  {
+    do.call(grid.brackets, l)
+  }, e)
+}
+
+b1 <- bracketsGrob(.78, .39, .78, .14, h=0.06, lwd=1.5, col="blue")
+b2 <- bracketsGrob(.75, .77, .75, .26, h=0.06, lwd=1.5, col="blue")
+
+ggplot(afghan, aes(y = age)) +
+  geom_boxplot() +
+  labs(y = "Age", x = "", title = "Distribution of age") +
+  xlim(-.75, .75) +
+  ggplot2::annotate("text", x = -.56, y = 40, label = "Upper quartile", size = 14/.pt) +
+  ggplot2::annotate("text", x = -.56, y = 23, label = "Lower quartile", size = 14/.pt) +
+  ggplot2::annotate("text", x = -.56, y = 31, label = "Median", size = 14/.pt) +
+  annotation_custom(b1) +
+  annotation_custom(b2) +
+  ggplot2::annotate("text", x = .48, y = 49, label = "1.5 x IQR", 
+           hjust = -.15,
+           color = "blue", size = 14/.pt) +
+  ggplot2::annotate("text", x = .51, y = 31, label = "IQR", 
+           hjust = -.25,
+           color = "blue", size = 14/.pt) +
+  theme_classic(base_size = 12) +
+  theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank()) +
+  theme(plot.title = element_text(hjust = 0.5))
+```
 
 ## Section 3.6.2
 
