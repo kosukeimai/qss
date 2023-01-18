@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Section 3.3.3
 
-* page 103. In the box plot "Distribution of age," the blue curly bracket indicating the IQR should extend from the upper quartile to the lower quartile instead of from the median to the lower quartile. In addition, the blue curly bracket indicating 1.5 x IQR should extend from the upper quartile instead of from the median. 
+* page 103. In the box plot "Distribution of age," the blue curly bracket indicating the IQR should extend from the upper quartile to the lower quartile instead of from the median to the lower quartile. In addition, the blue curly bracket indicating 1.5 $\times$ IQR should extend from the upper quartile instead of from the median. 
 
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
