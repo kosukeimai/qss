@@ -1,7 +1,7 @@
 ---
 title: 'Errata for *Quantitative Social Science: An Introduction in tidyverse* (Princeton University Press)'
 author: "Kosuke Imai and Nora Webb Williams"
-date: "January 18, 2023"
+date: "March 4, 2023"
 output:
   pdf_document: default
 ---
@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Chapter 3
 
-## Section 3.3.3
+### Section 3.3.3
 
 * page 103. In the box plot "Distribution of age," the blue curly bracket indicating the IQR should extend from the upper quartile to the lower quartile instead of from the median to the lower quartile. In addition, the blue curly bracket indicating 1.5 $\times$ IQR should extend from the upper quartile instead of from the median. 
 
@@ -62,11 +62,17 @@ ggplot(afghan, aes(y = age)) +
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-## Section 3.6.2
+### Section 3.6.2
 
-* page 120-121. 0 and 1 should be flipped when describing the Gini coefficient in both text and text box. Text should read "In a perfectly equal society, the Gini coefficient is 0. In contrast, a society where one person possesses all the wealth has a Gini coefficient of 1." Text box should read "It ranges from 0 (everyone has the same amount of wealth) to 1 (one person possesses all the wealth)."
+* pages 120-121. When describing the Gini coefficient in both text and text box, 0 and 1 should be flipped. Text should read "In a perfectly equal society, the Gini coefficient is 0. In contrast, a society where one person possesses all the wealth has a Gini coefficient of 1." Text box should read "It ranges from 0 (everyone has the same amount of wealth) to 1 (one person possesses all the wealth)."
+
+## Chapter 7
+
+### Section 7.1.3
+
+* page 372. The in-text equation, $P(Z > z_{\alpha/2})=1-P(Z\le z_{\alpha/2})=1-\alpha/2$, should be $$P(Z > z_{\alpha/2})=1-P(Z\le z_{\alpha/2})=\alpha/2$.
 
 ## Acknowledgements
 
-Thanks to Danya Lagos and Sanghoon Kim-Leffingwell for pointing out errors. 
+Thanks to Shiro Kuriwaki, Danya Lagos, and Sanghoon Kim-Leffingwell for pointing out errors. 
 
