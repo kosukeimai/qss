@@ -52,7 +52,8 @@ Once the `qss` package is installed, you can use the data and vignette:
 3. [R package `qss`](https://github.com/kosukeimai/qss-package) ([the package website](https://kosukeimai.github.io/qss-package/))
 4. [tidyverse code `qss-tidy` by Jeff Arnold (the starting point for the QSS: tidyverse version of the book)](https://github.com/jrnold/qss-tidy) 
 5. [R package `qss.student` for students by Will Lowe](https://conjugateprior.github.io/qss.student/) 
-6. [instructors' materials `qss-inst`](https://github.com/kosukeimai/qss-inst)
-7. [Lecture slides for QSS](https://github.com/kosukeimai/qss-lecture) 
+6. [python code `qsspy` by Jeffrey Allen](https://github.com/jeffallen13/qsspy) 
+7. [instructors' materials `qss-inst`](https://github.com/kosukeimai/qss-inst)
+8. [Lecture slides for QSS](https://github.com/kosukeimai/qss-lecture)
 
 The last two repositories are private.  Instructors who wish access to these materials should either request access at the [book website](http://qss.princeton.press/) or email me. 
