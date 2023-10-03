@@ -70,7 +70,7 @@ ggplot(afghan, aes(y = age)) +
 
 ### Section 7.1.3
 
-* page 372. The in-text equation, $P(Z > z_{\alpha/2})=1-P(Z\le z_{\alpha/2})=1-\alpha/2$, should be $$P(Z > z_{\alpha/2})=1-P(Z\le z_{\alpha/2})=\alpha/2$.
+* page 372. The in-text equation, $P(Z > z_{\alpha/2})=1-P(Z\le z_{\alpha/2})=1-\alpha/2$, should be $P(Z > z_{\alpha/2})=1-P(Z\le z_{\alpha/2})=\alpha/2$.
 
 ## Acknowledgements
 
